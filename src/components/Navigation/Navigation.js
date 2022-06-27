@@ -35,9 +35,10 @@ export default function Navigation() {
     return (
         <div className='navigation'>
             <ul>
-                {myList.map((item, index) => (
-                    <li key={item.id} className={`list ${activeIndex === item.id ? 'active' : ''}`} onClick={() => { setIndex(index) }}>
-                        <NavLink rel="noopener noreferrer"  to={item.link}>
+                {myList.map((item, index) => {
+
+                    return <li key={item.id} className={`list ${activeIndex === item.id ? 'active' : ''}`} onClick={() => { setIndex(index) }}>
+                        <NavLink to={item.link}>
                             <span>
                                 <span className='icon'>
                                     {item.iEle}
@@ -46,8 +47,8 @@ export default function Navigation() {
                             </span>
                         </NavLink>
                     </li>
-                ))}
-               
+                })}
+
                 <div className='indicator'></div>
             </ul>
         </div>

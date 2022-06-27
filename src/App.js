@@ -1,15 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
 import MainPage from "./pages/MainPage/MainPage";
 import { DashBoard } from "./templates/DashBoardTemplate/DashBoard";
 import { Route, Router, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history"
 import LinkCom from "./components/Link/LinkCom";
-import Design from "./components/design/Design";
-import Setting from "./components/setting/Setting";
+import Design from "./components/Design/Design";
+import Setting from "./components/Setting/Setting";
 import Stat from "./components/Stat/Stat";
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
 function App() {
   return (
