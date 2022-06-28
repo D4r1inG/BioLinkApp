@@ -1,0 +1,30 @@
+.btn-h-48 {
+    height: 48px;
+    width: 100%;
+}
+
+.bg-blPrimary {
+    background-color: #0095f6
+}
+
+.drag-and-drop {
+    width: 34px;
+    height: 100%;
+    right: 0;
+    top: 0;
+}
+
+.socio,
+.socio:hover {
+    background: #fff;
+    transition: all .15s ease;
+}
+
+.socio {
+    transform: scale(1);
+}
+
+.sociallink-each svg{
+    width: 28px;
+    height: 28px;
+}

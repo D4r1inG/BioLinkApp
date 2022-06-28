@@ -1,4 +1,3 @@
-import "./App.css";
 import MainPage from "./pages/MainPage/MainPage";
 import { DashBoard } from "./templates/DashBoardTemplate/DashBoard";
 import { Route, Router, Switch } from "react-router-dom";

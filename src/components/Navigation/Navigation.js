@@ -36,7 +36,6 @@ export default function Navigation() {
         <div className='navigation'>
             <ul>
                 {myList.map((item, index) => {
-
                     return <li key={item.id} className={`list ${activeIndex === item.id ? 'active' : ''}`} onClick={() => { setIndex(index) }}>
                         <NavLink to={item.link}>
                             <span>

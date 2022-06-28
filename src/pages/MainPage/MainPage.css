@@ -38,6 +38,14 @@ img, video{
     width: 125px;
 }
 
+.w-165{
+    width: 165px;
+}
+.w-h-48{
+    height: 48px;
+    width: 48px;
+}
+
 .nav-smooth{
     padding-top: 10px;
     margin: 0;
