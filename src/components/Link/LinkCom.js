@@ -8,16 +8,14 @@ import { useDispatch } from 'react-redux'
 export default function LinkCom() {
 
   const { linkList } = useSelector(state => state.LinkReducer)
-  const [list, setList] = useState(linkList)
   const dispatch = useDispatch()
 
   const handleOnDragEnd = (res) => {
     if (!res.destination) return;
-    const items = Array.from(list);
+    const items = Array.from(linkList);
     const dragItem = items.splice(res.source.index, 1);
     items.splice(res.destination.index, 0, dragItem[0]);
 
-    setList(items);
     dispatch({
       type: 'SET_LIST',
       linkList: items
@@ -27,10 +25,11 @@ export default function LinkCom() {
   return (
     <div>
       <div className='flex '>
-        <button className="bl-btn bl-btn-md bl-bg text-white rounded-md relative mr-4 uppercase tracking-wide btn-h-48 bl-bg" onClick={()=>{
+        <button className="bl-btn bl-btn-md bl-bg text-white rounded-md relative mr-4 uppercase tracking-wide btn-h-48 bl-bg" onClick={() => {
           dispatch({
-            type: 'OPEN_MODAL_ADD_NEW',
-            modalHeader: 'Add'
+            type: 'MODAL_ADD_NEW',
+            modalHeader: 'Add',
+            isHeader: false
           })
         }}>
           <span className="font-bold">+ ADD LINK</span>
@@ -40,17 +39,30 @@ export default function LinkCom() {
         </div>
       </div>
 
-      <div className="font-inter text-gray-500 mt-6 inline-flex items-center cursor-pointer select-none hover:text-black font-semibold">+ Add header</div>
+      <div className="font-inter text-gray-500 mt-6 inline-flex items-center cursor-pointer select-none hover:text-black font-semibold" onClick={() => {
+        dispatch({
+          type: 'MODAL_ADD_NEW',
+          modalHeader: 'Add header',
+          isHeader: true
+        })
+      }}>+ Add header</div>
       <div className='mt-8'>
 
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId='draggable'>
             {(provided) => (
               <div className='mt-6' {...provided.droppableProps} ref={provided.innerRef}>
-                {list.map((item, index) => {
+                {linkList.map((item, index) => {
                   return <Draggable key={item.id} draggableId={item.id} index={index} >
                     {(provided) => (
-                      <div className='mb-4' key={index} {...provided.draggableProps} ref={provided.innerRef} >
+                      <div className='mb-4' key={index} {...provided.draggableProps} ref={provided.innerRef} onClick={() => {
+                        dispatch({
+                          type: 'MODAL_EDIT',
+                          modalHeader: `Edit ${item.isHeader ? 'header' : ''}`,
+                          linkEdit: item,
+                          isHeader: item.isHeader
+                        })
+                      }}>
                         <div className="py-6 pl-6 pr-16 bg-white shadow-sm relative cursor-pointer rounded-sm ">
                           {item.isHeader
                             ?
