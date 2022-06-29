@@ -144,11 +144,9 @@
 
 .phone_view {
     width: 350px;
-    max-width: 350px;
     border: 15px solid #222;
     border-radius: 40px;
     height: 723px;
-    max-height: 723px;
     transform-origin: right top;
     transform-origin: 0 0;
     background-color: #222;

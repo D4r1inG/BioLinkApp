@@ -1,0 +1,39 @@
+.modal-content {
+    width: 450px;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 0 32px 80px;
+}
+
+.modal-header {
+    padding-bottom: 10px;
+    margin: 0 -32px;
+    padding: 0 32px;
+}
+
+.bl-input {
+    background-color: rgba(13, 12, 34, .05);
+    border: 1px solid transparent;
+    height: 40px;
+    border-radius: 0;
+}
+
+.input-main-wrap,
+.input-main-wrap-with-border:focus-within {
+    border: 1px solid transparent;
+}
+
+.input-main-wrap:focus-within {
+    background: linear-gradient(#c058ff, #ff4963);
+}
+
+.bl-input:focus {
+    outline: 0;
+    transition: none;
+}
+
+.btn-on-modal .bl-btn, .btn-on-modal .bl-btn:hover{
+    background: linear-gradient(.351turn,#ff5858 23.71%,#c058ff 78.8%);
+    background-size: 165%;
+    border-radius: 0;
+}

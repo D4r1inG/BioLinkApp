@@ -6,12 +6,15 @@ import LinkCom from "./components/Link/LinkCom";
 import Design from "./components/Design/Design";
 import Setting from "./components/Setting/Setting";
 import Stat from "./components/Stat/Stat";
+import Modal from "./components/Modal/Modal";
 
 export const history = createBrowserHistory();
 
-function App() {
+function App() {  
+
   return (
     <Router history={history}>
+      <Modal />
       <Switch>
         <Route path="/" exact component={MainPage} />
         <DashBoard path="/link" exact Component={LinkCom} />
