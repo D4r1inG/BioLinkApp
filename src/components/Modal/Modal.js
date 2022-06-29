@@ -70,14 +70,12 @@ export default function Modal() {
                                 type: 'CLOSE_MODAL'
                             })
                         }}>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path  d="M13.3222 2.6665L2.66663 13.3221" stroke="#6E6D7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path  d="M13.3311 13.3332L2.66663 2.6665" stroke="#6E6D7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.3222 2.6665L2.66663 13.3221" stroke="#6E6D7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M13.3311 13.3332L2.66663 2.6665" stroke="#6E6D7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                             </svg>
                         </div>
                     </div>
-                    <div className=''>
-                        <div className="flex mt-8">
-                            {renderInput(isHeader)}
-                        </div>
+                    <div className="flex mt-8">
+                        {renderInput(isHeader)}
                     </div>
                     <div className='absolute left-0 bottom-0 w-full'>
                         <button onClick={() => {

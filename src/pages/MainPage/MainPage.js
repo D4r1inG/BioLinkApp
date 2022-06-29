@@ -64,11 +64,11 @@ export default function Mainpage() {
                                 </div>
                             </div>
                             <div
-                                className={`${!isAnimate ? 'text-black ' :'text-white '} font-inter header_btn font-semibold mr-6 cursor-pointer self-center duration-200 hover:text-gray-600`}>
+                                className={`${!isAnimate ? 'text-black ' : 'text-white '} font-inter header_btn font-semibold mr-6 cursor-pointer self-center duration-200 hover:text-gray-600`}>
                                 Features
                             </div>
                             <div
-                                className={`${!isAnimate ? 'text-black' :' text-white'} font-inter header_btn font-semibold cursor-pointer self-center duration-200 hover:text-gray-600`}>
+                                className={`${!isAnimate ? 'text-black' : ' text-white'} font-inter header_btn font-semibold cursor-pointer self-center duration-200 hover:text-gray-600`}>
                                 FAQ</div>
                             <div className="flex flex-grow flex-row-reverse">
                                 <a href="#" className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer  rounded-full py-2 px-6 duration-200  text-white hover:bg-gray-800`}>
@@ -82,7 +82,7 @@ export default function Mainpage() {
                     </div>
                 </div>
 
-                <div id="about" className="duration-700 opacity-100">
+                <div id="about" className={`duration-700  ${!isAnimate ? 'opacity-100' : 'opacity-25'}`}>
                     <div className="flex flex-col relative text-center mx-auto w-full width_840 px-6 py-4 mt-5">
                         <h1 className="w-760 text-8xl font-bold my-12 heading_gradient self-center leading-100">
                             The One Link for All Your Links
@@ -94,7 +94,7 @@ export default function Mainpage() {
                                         bio.link/
                                     </div>
                                 </div>
-                                <input name="link" placeholder="yourname" type="text" className={`${!isAnimate ? '' : 'bg_dark'} bl-input bg_landing text-black font-semibold font-inter placeholder-grey w-200`} />
+                                <input name="link" placeholder="yourname" type="text" className={`${!isAnimate ? '' : 'bg_dark'} h-50 bg_landing text-black font-semibold font-inter placeholder-grey w-200`} />
                                 <div className="cursor-pointer w-full flex items-center justify-center bg_trans">
                                     <a href="#">
                                         <button className="font-semibold text-white w-125p rounded-r-md px-6 ">
@@ -111,7 +111,7 @@ export default function Mainpage() {
                 </div>
 
                 <div id="myStat"
-                    className="grid grid-cols-2 gap-y-8 w-screen w-1100 mx-auto lg:flex lg:space-x-12 lg:justify-center mt-16 mb-24 duration-700 opacity-100">
+                    className={`grid grid-cols-2 gap-y-8 w-screen w-1100 mx-auto lg:flex lg:space-x-12 lg:justify-center mt-16 mb-24 duration-700 ${!isAnimate ? 'opacity-100' : 'opacity-25'}`}>
                     <div className="flex ">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd"

@@ -45,6 +45,9 @@ img, video{
     height: 48px;
     width: 48px;
 }
+.h-50{
+    height: 50px;
+}
 
 .nav-smooth{
     padding-top: 10px;
@@ -118,10 +121,6 @@ img, video{
 
 .input-border-none{
     border: 2px solid transparent;
-}
-
-.bl-input{
-    height: 50px;
 }
 
 .bl-input:focus {

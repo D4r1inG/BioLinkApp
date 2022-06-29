@@ -39,7 +39,7 @@ const initialState = {
         }
     ],
     socialList: [
-        
+        'instagram', 'twitter', 'tiktok'
     ]
 }
 
@@ -64,9 +64,10 @@ export const LinkReducer = (state = initialState, action) => {
         }
 
         case 'EDIT_LINK': {
-            let newLink = { ...action.linkEdit,
+            let newLink = {
+                ...action.linkEdit,
                 linkHeader: action.newLink.title || action.linkEdit.linkHeader,
-                link: action.newLink.url || action.linkEdit.link 
+                link: action.newLink.url || action.linkEdit.link
             }
             return { ...state, linkList: state.linkList.map(item => item.id == action.linkEdit.id ? newLink : item) }
         }
