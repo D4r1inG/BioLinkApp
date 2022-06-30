@@ -39,7 +39,24 @@ const initialState = {
         }
     ],
     socialList: [
-        'instagram', 'twitter', 'tiktok'
+        {
+            id: 0,
+            name: 'instagram',
+            link: 'Link/insta',
+            click: 0,
+        },
+        {
+            id: 1,
+            name: 'twitter',
+            link: 'Link/twitter',
+            click: 0,
+        },
+        {
+            id: 2,
+            name: 'tiktok',
+            link: 'Link/tittok',
+            click: 0,
+        }
     ]
 }
 
@@ -51,6 +68,11 @@ export const LinkReducer = (state = initialState, action) => {
             return { ...state, linkList: action.linkList }
         }
 
+        case 'SET_SOCIAL_LIST': {
+            let newList = [...action.newList]
+            return { ...state, socialList: newList }
+        }
+
         case 'ADD_NEW_LINK': {
             let newLink = {
                 id: Math.floor(Math.random() * 100).toString(),
@@ -60,6 +82,27 @@ export const LinkReducer = (state = initialState, action) => {
                 isHeader: action.newLink.url ? false : true,
             }
             state.linkList.unshift(newLink)
+            return { ...state }
+        }
+
+        case 'ADD_SOCIALLINK' : {
+            action.newLinkList.forEach(item => {
+                const {name, link} = item
+                let index = state.socialList.findIndex(link => link.name === name)
+                if(index !== -1){
+                    let updateSocialLink = state.socialList[index]
+                    updateSocialLink.link = link
+                    state.socialList[index] = {...updateSocialLink}
+                }else{
+                    let newSocialLink = {
+                        id: Math.floor(Math.random() * 100).toString(),
+                        link: link,
+                        click: 0,
+                        name: name
+                    }
+                    state.socialList.unshift(newSocialLink)
+                }
+            })
             return { ...state }
         }
 
