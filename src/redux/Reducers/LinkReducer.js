@@ -87,16 +87,16 @@ export const LinkReducer = (state = initialState, action) => {
 
         case 'ADD_SOCIALLINK' : {
             action.newLinkList.forEach(item => {
-                const {name, link} = item
+                const {name, value} = item
                 let index = state.socialList.findIndex(link => link.name === name)
                 if(index !== -1){
                     let updateSocialLink = state.socialList[index]
-                    updateSocialLink.link = link
+                    updateSocialLink.link = value
                     state.socialList[index] = {...updateSocialLink}
                 }else{
                     let newSocialLink = {
-                        id: Math.floor(Math.random() * 100).toString(),
-                        link: link,
+                        id: Math.floor(Math.random() * 100),
+                        link: value,
                         click: 0,
                         name: name
                     }
@@ -113,6 +113,12 @@ export const LinkReducer = (state = initialState, action) => {
                 link: action.newLink.url || action.linkEdit.link
             }
             return { ...state, linkList: state.linkList.map(item => item.id == action.linkEdit.id ? newLink : item) }
+        }
+
+        case 'DELETE_SOCIAL_LINK':{
+            let newSocialList = state.socialList.filter(item => item.id != action.id)
+
+            return {...state, socialList: newSocialList}
         }
 
         default:

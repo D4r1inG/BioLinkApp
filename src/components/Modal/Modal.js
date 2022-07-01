@@ -10,9 +10,10 @@ export default function Modal() {
     const { socialList } = useSelector(state => state.LinkReducer)
     const dispatch = useDispatch()
 
-    const [social, setSocial] = useState(Object.keys(socialLinkList.byName).filter(item => socialList.map(link => link.name).indexOf(item) === -1))
+    const [unUsedSocialLink, setUnUsedSocialLink] = useState(Object.keys(socialLinkList.byName).filter(item => socialList.map(link => link.name).indexOf(item) === -1))
     const [modalInput, setModalInput] = useState()
     const [modalSocialInput, setModalSocialInput] = useState([])
+
     const myModal = useRef(null)
 
     window.onclick = (e) => {
@@ -23,10 +24,6 @@ export default function Modal() {
             })
         }
     }
-
-    useEffect(() => {
-        setSocial(Object.keys(socialLinkList.byName).filter(item => socialList.map(link => link.name).indexOf(item) === -1))
-    }, [socialList])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -44,8 +41,19 @@ export default function Modal() {
         setModalSocialInput([...modalSocialInput])
     }
 
+    const handleDelete = (id) => {
+        dispatch({
+            type: 'DELETE_SOCIAL_LINK',
+            id
+        })
+        unUsedSocialLink.unshift(socialList.find(item => item.id === id).name)
+        setUnUsedSocialLink([...unUsedSocialLink])
+    }
+
     const handleSave = () => {
         if (isSocial) {
+            let newSocialArr = modalSocialInput.map(item => item.name)
+            setUnUsedSocialLink(unUsedSocialLink.filter(item => newSocialArr.indexOf(item) === -1))
             dispatch({
                 type: 'ADD_SOCIALLINK',
                 newLinkList: modalSocialInput,
@@ -66,6 +74,10 @@ export default function Modal() {
 
     const handleOnDragEnd = (res) => {
         if (!res.destination) return;
+        dispatch({
+            type: 'ADD_SOCIALLINK',
+            newLinkList: modalSocialInput,
+        })
         const items = Array.from(socialList);
         const dragItem = items.splice(res.source.index, 1);
         items.splice(res.destination.index, 0, dragItem[0]);
@@ -93,7 +105,7 @@ export default function Modal() {
                                                     </span>
                                                     <input type="text" name={item.name} placeholder={socialLinkList.byName[item.name].placeHolder} defaultValue={item.link} maxLength="200" className="modal-input-box w-full py-2 font-normal font-inter placeholder-grey" onChange={handleSocialLinkChange} />
                                                     <div className="flex absolute right-0 top-0 modal-right-opt" {...provided.dragHandleProps}>
-                                                        <span className="modal-item-remove flex items-center justify-center cursor-pointer">
+                                                        <span className="modal-item-remove flex items-center justify-center cursor-pointer" onClick={() => { handleDelete(item.id) }}>
                                                             <svg width="12" height="12" viewBox="0  0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.99166 2L2 9.99166" stroke="#6E6D7A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M9.99833 10L2 2" stroke="#6E6D7A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                                                         </span>
                                                         <span className="modal-drag-drop flex items-center justify-center cursor-grab drag-handle"><svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="1.5" cy="1.5" r="1.5" fill="#6E6D7A"></circle><circle cx="1.5" cy="6.5" r="1.5" fill="#6E6D7A"></circle><circle cx="1.5" cy="11.5" r="1.5" fill="#6E6D7A"></circle><circle cx="6.5" cy="1.5" r="1.5" fill="#6E6D7A"></circle><circle cx="6.5" cy="6.5" r="1.5" fill="#6E6D7A"></circle><circle cx="6.5" cy="11.5" r="1.5" fill="#6E6D7A"></circle></svg>
@@ -110,7 +122,7 @@ export default function Modal() {
                     </DragDropContext>
                     <div className="mt-6 text-blGrey text-xs font-inter font-normal uppercase tracking-1 mb-3">Other links</div>
                     <div>
-                        {social.map((item, index) => {
+                        {unUsedSocialLink.map((item, index) => {
                             return <div key={index} className="relative input-main-wrap-with-border rounded-md overflow-hidden mb-3">
                                 <span className="modal-logo-holder social-link-dark absolute">
                                     {socialLinkList.byName[item].svg}
