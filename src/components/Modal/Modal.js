@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useDispatch, useSelector } from 'react-redux'
 import { socialLinkList } from '../../utils/SocialLink'
@@ -11,8 +11,13 @@ export default function Modal() {
     const dispatch = useDispatch()
 
     const [unUsedSocialLink, setUnUsedSocialLink] = useState(Object.keys(socialLinkList.byName).filter(item => socialList.map(link => link.name).indexOf(item) === -1))
+    const [socialLink, setSocialLink] = useState()
     const [modalInput, setModalInput] = useState()
     const [modalSocialInput, setModalSocialInput] = useState([])
+
+    useEffect(() => {
+        setSocialLink(socialList)
+    }, [socialList])
 
     const myModal = useRef(null)
 
@@ -38,28 +43,31 @@ export default function Modal() {
         } else {
             modalSocialInput.push({ name, value })
         }
-        setModalSocialInput([...modalSocialInput])
+        setModalSocialInput(modalSocialInput)
     }
 
     const handleDelete = (id) => {
-        dispatch({
-            type: 'DELETE_SOCIAL_LINK',
-            id
-        })
-        let linkDelete = socialList.find(item => item.id === id)
-        setModalSocialInput(modalSocialInput.filter(item => item.name !== linkDelete.name))
-        
-        unUsedSocialLink.unshift(linkDelete.name)
-        setUnUsedSocialLink([...unUsedSocialLink])
+        let linkDelete = socialLink.find(item => item.id === id)
+
+        setModalSocialInput(modalSocialInput.filter(item => item.name !== linkDelete.name)) //Xóa các social input value đang sửa trong trường hợp social link ý bị xóa
+        setSocialLink(socialLink.filter(item => item.id !== id)) // Xóa social link 
+        setUnUsedSocialLink(unUsedSocialLink.unshift(linkDelete.name)) //Thêm social link đã xóa vào unused social link
     }
 
     const handleSave = () => {
         if (isSocial) {
             let newSocialArr = modalSocialInput.map(item => item.name)
-            setUnUsedSocialLink(unUsedSocialLink.filter(item => newSocialArr.indexOf(item) === -1))
+            let newSocialLinkArr = socialLink.filter(item => newSocialArr.indexOf(item.name) === -1).map(item => {
+                return {
+                    name: item.name,
+                    value: item.link
+                }
+            }).concat(modalSocialInput)
+            setUnUsedSocialLink(unUsedSocialLink.filter(item => newSocialArr.indexOf(item) === -1)) // Xóa link social chưa dùng khi thêm mới
+            setModalSocialInput([])
             dispatch({
                 type: 'ADD_SOCIALLINK',
-                newLinkList: modalSocialInput,
+                newLinkList: newSocialLinkArr,
             })
         } else if (addNew) {
             dispatch({
@@ -77,18 +85,12 @@ export default function Modal() {
 
     const handleOnDragEnd = (res) => {
         if (!res.destination) return;
-        dispatch({
-            type: 'ADD_SOCIALLINK',
-            newLinkList: modalSocialInput,
+        modalSocialInput.forEach(item => {
+            socialLink.find(link => link.name === item.name).link = item.value
         })
-        const items = Array.from(socialList);
-        const dragItem = items.splice(res.source.index, 1);
-        items.splice(res.destination.index, 0, dragItem[0]);
-
-        dispatch({
-            type: 'SET_SOCIAL_LIST',
-            newList: items
-        })
+        const dragItem = socialLink.splice(res.source.index, 1);
+        socialLink.splice(res.destination.index, 0, dragItem[0]);
+        setSocialLink(socialLink)
     }
 
     const renderInput = (isHeader, isSocial) => {
@@ -99,7 +101,7 @@ export default function Modal() {
                         <Droppable droppableId='modalDroppable'>
                             {(provided) => (
                                 <div {...provided.droppableProps} ref={provided.innerRef}>
-                                    {socialList.map((item, index) => {
+                                    {socialLink.map((item, index) => {
                                         return <Draggable key={item.id} draggableId={item.id.toString()} index={index} >
                                             {(provided) => (
                                                 <div key={index} {...provided.draggableProps} ref={provided.innerRef} className="relative input-main-wrap-with-border rounded-md overflow-hidden mb-3">
