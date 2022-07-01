@@ -1,0 +1,30 @@
+.embed-ind-arrow-icon {
+    transition: all .4s ease-in-out;
+}
+
+.embed-ind-arrow {
+    height: 14px;
+    margin-bottom: 16px;
+    position: absolute;
+    right: 24px;
+    top: calc(50% - 7px);
+}
+
+.show-embed-item {
+    max-height: 217px;
+}
+
+.embed-wrap iframe,
+.embed-wrap-inside {
+    border-radius: 0px 0px 22px 22px;
+}
+
+.embed-wrap {
+    height: 100%;
+    padding: 8px;
+    width: 100%;
+}
+
+.embed-wrap-preview {
+    height: 100%;
+}

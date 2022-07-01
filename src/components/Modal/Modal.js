@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useDispatch, useSelector } from 'react-redux'
 import { socialLinkList } from '../../utils/SocialLink'
@@ -46,7 +46,10 @@ export default function Modal() {
             type: 'DELETE_SOCIAL_LINK',
             id
         })
-        unUsedSocialLink.unshift(socialList.find(item => item.id === id).name)
+        let linkDelete = socialList.find(item => item.id === id)
+        setModalSocialInput(modalSocialInput.filter(item => item.name !== linkDelete.name))
+        
+        unUsedSocialLink.unshift(linkDelete.name)
         setUnUsedSocialLink([...unUsedSocialLink])
     }
 

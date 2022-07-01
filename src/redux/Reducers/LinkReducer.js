@@ -117,7 +117,6 @@ export const LinkReducer = (state = initialState, action) => {
 
         case 'DELETE_SOCIAL_LINK':{
             let newSocialList = state.socialList.filter(item => item.id != action.id)
-
             return {...state, socialList: newSocialList}
         }
 

@@ -3,6 +3,7 @@ import './DashBoard.css'
 import { Route } from "react-router-dom";
 import Header from '../../components/Header/Header';
 import Navigation from '../../components/Navigation/Navigation';
+import PhoneView from '../../components/PhoneView/PhoneView';
 
 
 export const DashBoard = (props) => {
@@ -16,9 +17,7 @@ export const DashBoard = (props) => {
                     <div className='fixed h-screen left-0 py-8 z-10 bg-white' style={{ width: '40vw' }}>
                         <div className='flex justify-end pr-16 h-full w-full inset-0 absolute'>
                             <div className='ml-auto mt-8' style={{ width: '259px' }}>
-                                <div className='overflow-hidden phone_view'>
-                                    
-                                </div>
+                                <PhoneView />
                             </div>
                         </div>
                     </div>
