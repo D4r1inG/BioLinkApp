@@ -31,12 +31,16 @@ export default function PhoneView() {
     }
 
     const renderLink = (list) => {
-        return list.map((item, index) => {
+        return list.filter(item => !item.isHide).map((item, index) => {
+            console.log(item)
             if (item.isHeader) {
+
                 return <div key={index} style={{ color: '#000' }} className="text-center font-bold text-base mt-8">
                     {item.linkHeader}
                 </div>
-            } else {
+
+            } else if (item.isPlugIn) {
+
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" onClick={() => {
                     if (idVisible.indexOf(item.id) === -1) {
                         idVisible.push(item.id)
@@ -46,20 +50,31 @@ export default function PhoneView() {
                     }
                 }}>
                     <div style={pageItem} className="flex justify-center items-center"></div>
-                    <a style={{ minHeight: '60px' }} className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
+                    <div style={{ minHeight: '60px' }} className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
                         {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
                         <span className="item-title text-center">{item.linkHeader}</span>
-                        <svg style={idVisible.indexOf(item.id) !== -1 ? { transform: 'rotate(0deg)' } : { transform: 'rotate(-90deg)' }} className="embed-ind-arrow-icon embed-ind-arrow" fill="#0D0C22" viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
+                        <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)' }} className="embed-ind-arrow-icon embed-ind-arrow" fill="#0D0C22" viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
-                    </a>
-                    <div className="show-embed-item transition-all" style={idVisible.indexOf(item.id) === -1 ? { height: '0' } : { maxHeight: 'max-content' }}>
+                    </div>
+                    <div className="transition-all" style={{ height: idVisible.indexOf(item.id) !== -1 ? '100%' : '0' }}>
                         <div className="embed-wrap  relative">
                             <div className=" embed-wrap-preview ">
-                                <iframe style={{ height: idVisible.indexOf(item.id) !== -1 ? '80px' : '0' }} className='show-embed-item w-full transition-all' src="https://open.spotify.com/embed/track/0AJi38NumMDXqo8pRw6zdh?si=a998cb2d4fd242e2" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                                <iframe style={{ height: idVisible.indexOf(item.id) !== -1 ? '80px' : '0' }} className='w-full transition-all' src={item.link} title="Player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                                {/* Thay đổi height theo mỗi plugin khác nhau */}
                             </div>
                         </div>
                     </div>
+                </div>
+
+            } else {
+
+                return <div key={index} className="my-4 relative transition-all hover:scale-105" >
+                    <div style={pageItem} className="flex justify-center items-center"></div>
+                    <a style={{ minHeight: '60px' }} href={item.link} className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
+                        {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
+                        <span className="item-title text-center">{item.linkHeader}</span>
+                    </a>
                 </div>
             }
         })

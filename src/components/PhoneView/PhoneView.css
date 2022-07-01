@@ -10,9 +10,9 @@
     top: calc(50% - 7px);
 }
 
-.show-embed-item {
+/* .show-embed-item {
     max-height: 217px;
-}
+} */
 
 .embed-wrap iframe,
 .embed-wrap-inside {

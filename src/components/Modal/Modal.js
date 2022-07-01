@@ -14,10 +14,12 @@ export default function Modal() {
     const [socialLink, setSocialLink] = useState()
     const [modalInput, setModalInput] = useState()
     const [modalSocialInput, setModalSocialInput] = useState([])
+    const [isHide, setIsHide] = useState()
 
     useEffect(() => {
         setSocialLink(socialList)
-    }, [socialList])
+        setIsHide(linkEdit?.isHide)
+    }, [socialList, linkEdit])
 
     const myModal = useRef(null)
 
@@ -78,7 +80,7 @@ export default function Modal() {
             dispatch({
                 type: 'EDIT_LINK',
                 newLink: modalInput,
-                linkEdit: linkEdit
+                linkEdit: {...linkEdit, isHide: isHide}
             })
         }
     }
@@ -154,6 +156,7 @@ export default function Modal() {
         }
     }
 
+
     return (
         <div className={`${isOpen ? '' : 'hidden'} fixed w-screen z-50 h-screen inset-0  transition-all`} style={{ background: 'rgba(0, 0, 0, 0.8)' }} >
             <div ref={myModal} className='flex justify-center items-center h-full w-full'>
@@ -175,12 +178,39 @@ export default function Modal() {
                     <div className="flex mt-8 w-full">
                         {renderInput(isHeader, isSocial)}
                     </div>
+
+                    {addNew || isSocial ? '' :
+                        <div className="flex justify-between w-full mt-8">
+                            <div className="text-sm font-inter font-normal cursor-pointer text-red-500" onClick={()=>{
+                                dispatch({
+                                    type: 'DELETE_LINK',
+                                    id: linkEdit.id
+                                })
+                                dispatch({
+                                    type: 'CLOSE_MODAL'
+                                })
+                            }}>
+                                Delete
+                            </div>
+                            <div className="flex">
+                                <span htmlFor={linkEdit?.id} className="text-14 font-inter font-normal cursor-pointer text-gray-500 mr-2">Hide</span>
+                                <label id={linkEdit?.id} className="bl-toggle-btn relative inline-block ring-opacity-0">
+                                    <input type="checkbox" name='checkbox' className="bl-toggle-input" checked={isHide || false} onChange={() => {
+                                        setIsHide(!isHide)
+                                    }} />
+                                    <span className="bl-toggle-slider absolute cursor-pointer">
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    }
+                    
                     <div className='absolute left-0 bottom-0 w-full'>
                         <button onClick={() => {
-                            setModalInput()
                             dispatch({
                                 type: 'CLOSE_MODAL'
                             })
+                            setModalInput()
                             handleSave()
                         }} className="bl-btn bl-btn-md bl-bg font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
                             <span className="">{isHeader ? 'Add header' : 'Save'}</span>

@@ -102,6 +102,49 @@ input:focus {
     fill: #fff;
 }
 
+.bl-toggle-btn {
+    width: 40px;
+    height: 24px;
+}
+
+.bl-toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.bl-toggle-slider {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(13, 12, 34, .2);
+    border-radius: 52px;
+}
+
+.bl-toggle-slider:before {
+    border-radius: 50%;
+}
+
+.bl-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    transition: .4s;
+}
+
+.bl-toggle-btn input:checked+.bl-toggle-slider:before {
+    transform: translateX(15px);
+}
+
+.bl-toggle-btn input:checked+.bl-toggle-slider {
+    background: #0095f6;
+}
+
 .transparent-scroll::-webkit-scrollbar {
     width: 0;
 }
