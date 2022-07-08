@@ -8,16 +8,17 @@ export default function Modal() {
 
     const { isOpen, modalHeader, addNew, isHeader, linkEdit, isSocial } = useSelector(state => state.ModalReducer)
     const { socialList } = useSelector(state => state.LinkReducer)
+    let arr = Object.keys(socialLinkList.byName).filter(item => socialList.map(link => link.name).indexOf(item) === -1)
     const dispatch = useDispatch()
 
-    const [unUsedSocialLink, setUnUsedSocialLink] = useState(Object.keys(socialLinkList.byName).filter(item => socialList.map(link => link.name).indexOf(item) === -1))
+    const [unUsedSocialLink, setUnUsedSocialLink] = useState(arr)
     const [socialLink, setSocialLink] = useState()
     const [modalInput, setModalInput] = useState()
     const [modalSocialInput, setModalSocialInput] = useState([])
     const [isHide, setIsHide] = useState()
 
     useEffect(() => {
-        setSocialLink(socialList)
+        setSocialLink([...socialList])
         setIsHide(linkEdit?.isHide)
     }, [socialList, linkEdit])
 
@@ -25,10 +26,7 @@ export default function Modal() {
 
     window.onclick = (e) => {
         if (e.target === myModal.current) {
-            setModalInput()
-            dispatch({
-                type: 'CLOSE_MODAL'
-            })
+            cancelModal()
         }
     }
 
@@ -50,22 +48,35 @@ export default function Modal() {
 
     const handleDelete = (id) => {
         let linkDelete = socialLink.find(item => item.id === id)
+        unUsedSocialLink.unshift(linkDelete.name)
 
         setModalSocialInput(modalSocialInput.filter(item => item.name !== linkDelete.name)) //Xóa các social input value đang sửa trong trường hợp social link ý bị xóa
         setSocialLink(socialLink.filter(item => item.id !== id)) // Xóa social link 
-        setUnUsedSocialLink(unUsedSocialLink.unshift(linkDelete.name)) //Thêm social link đã xóa vào unused social link
+        setUnUsedSocialLink([...unUsedSocialLink]) //Thêm social link đã xóa vào unused social link
     }
 
     const handleSave = () => {
         if (isSocial) {
-            let newSocialArr = modalSocialInput.map(item => item.name)
-            let newSocialLinkArr = socialLink.filter(item => newSocialArr.indexOf(item.name) === -1).map(item => {
-                return {
-                    name: item.name,
-                    value: item.link
+            let newSocialArrName = modalSocialInput.map(item => item.name)
+            let newSocialLinkArr = socialLink.map(item => {
+                if (newSocialArrName.includes(item.name)) {
+                    return {
+                        name: item.name,
+                        value: modalSocialInput[newSocialArrName.indexOf(item.name)].value
+                    }
+                } else {
+                    return {
+                        name: item.name,
+                        value: item.link
+                    }
                 }
-            }).concat(modalSocialInput)
-            setUnUsedSocialLink(unUsedSocialLink.filter(item => newSocialArr.indexOf(item) === -1)) // Xóa link social chưa dùng khi thêm mới
+            })
+            modalSocialInput.forEach(item => {
+                if (newSocialLinkArr.findIndex(link => link.name === item.name) === -1) {
+                    newSocialLinkArr.push(item)
+                }
+            })
+            setUnUsedSocialLink(unUsedSocialLink.filter(item => newSocialArrName.indexOf(item) === -1)) // Xóa link social chưa dùng khi thêm mới
             setModalSocialInput([])
             dispatch({
                 type: 'ADD_SOCIALLINK',
@@ -80,7 +91,7 @@ export default function Modal() {
             dispatch({
                 type: 'EDIT_LINK',
                 newLink: modalInput,
-                linkEdit: {...linkEdit, isHide: isHide}
+                linkEdit: { ...linkEdit, isHide: isHide }
             })
         }
     }
@@ -88,11 +99,23 @@ export default function Modal() {
     const handleOnDragEnd = (res) => {
         if (!res.destination) return;
         modalSocialInput.forEach(item => {
-            socialLink.find(link => link.name === item.name).link = item.value
+            if (socialLink.find(link => link.name === item.name)) {
+                socialLink.find(link => link.name === item.name).link = item.value
+            }
         })
         const dragItem = socialLink.splice(res.source.index, 1);
         socialLink.splice(res.destination.index, 0, dragItem[0]);
         setSocialLink(socialLink)
+    }
+
+    const cancelModal = () => {
+        setModalInput()
+        setSocialLink([...socialList])
+        setUnUsedSocialLink(arr)
+        dispatch({
+            type: 'CLOSE_MODAL'
+        })
+
     }
 
     const renderInput = (isHeader, isSocial) => {
@@ -166,10 +189,7 @@ export default function Modal() {
                             <div className="font-inter font-semibold text-black text-base py-4" >{modalHeader}</div>
                         </div>
                         <div className="bl-modal-close cursor-pointer flex items-center" onClick={() => {
-                            setModalInput()
-                            dispatch({
-                                type: 'CLOSE_MODAL'
-                            })
+                            cancelModal()
                         }}>
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.3222 2.6665L2.66663 13.3221" stroke="#6E6D7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M13.3311 13.3332L2.66663 2.6665" stroke="#6E6D7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                             </svg>
@@ -181,7 +201,7 @@ export default function Modal() {
 
                     {addNew || isSocial ? '' :
                         <div className="flex justify-between w-full mt-8">
-                            <div className="text-sm font-inter font-normal cursor-pointer text-red-500" onClick={()=>{
+                            <div className="text-sm font-inter font-normal cursor-pointer text-red-500" onClick={() => {
                                 dispatch({
                                     type: 'DELETE_LINK',
                                     id: linkEdit.id
@@ -204,7 +224,7 @@ export default function Modal() {
                             </div>
                         </div>
                     }
-                    
+
                     <div className='absolute left-0 bottom-0 w-full'>
                         <button onClick={() => {
                             dispatch({

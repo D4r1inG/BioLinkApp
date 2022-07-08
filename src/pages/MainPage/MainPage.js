@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import './MainPage.css'
 
 export default function Mainpage() {
@@ -71,12 +72,12 @@ export default function Mainpage() {
                                 className={`${!isAnimate ? 'text-black' : ' text-white'} font-inter header_btn font-semibold cursor-pointer self-center duration-200 hover:text-gray-600`}>
                                 FAQ</div>
                             <div className="flex flex-grow flex-row-reverse">
-                                <a href="#" className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer  rounded-full py-2 px-6 duration-200  text-white hover:bg-gray-800`}>
+                                <NavLink to='/signup' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer  rounded-full py-2 px-6 duration-200  text-white hover:bg-gray-800`}>
                                     Sign up
-                                </a>
-                                <a href="#" className={`${!isAnimate ? 'text-black' : 'text-white'} font-inter header_btn font-semibold mr-8 cursor-pointer self-center duration-200 hover:text-gray-600`}>
+                                </NavLink>
+                                <NavLink to='/login' className={`${!isAnimate ? 'text-black' : 'text-white'} font-inter header_btn font-semibold mr-8 cursor-pointer self-center duration-200 hover:text-gray-600`}>
                                     Log in
-                                </a>
+                                </NavLink>
                             </div>
                         </div>
                     </div>

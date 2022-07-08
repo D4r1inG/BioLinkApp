@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Link.css'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useSelector, useDispatch } from 'react-redux'
 import { socialLinkList } from '../../utils/SocialLink'
+import { getLinkData } from '../../redux/Actions/LinkAction'
 
 export default function LinkCom() {
 
   const { linkList, socialList } = useSelector(state => state.LinkReducer)
   const dispatch = useDispatch()
+
+  // Skeleton data
+
+  useEffect(() => {
+    dispatch(getLinkData())
+  }, [])
 
   const handleOnDragEnd = (res) => {
     if (!res.destination) return;
@@ -21,8 +28,8 @@ export default function LinkCom() {
     })
   }
 
-  const renderLink = () => {
-    return linkList.map((item, index) => (
+  const renderLink = (list) => {
+    return list?.map((item, index) => (
       <Draggable key={item.id} draggableId={item.id} index={index} >
         {(provided) => (
           <div className='mb-4' key={index} {...provided.draggableProps} ref={provided.innerRef} onClick={() => {
@@ -70,7 +77,7 @@ export default function LinkCom() {
 
   const renderSocialLink = () => {
     return socialList.map((item, index) => {
-      return <div key={index} className="mr-3 mb-3 socio sociallink-each flex justify-center items-center bg-white hover:shadow-sm transform hover:scale-105 duration-50 rounded-full w-h-48 cursor-pointer last:mr-0" onClick={()=>{
+      return <div key={index} className="mr-3 mb-3 socio sociallink-each flex justify-center items-center bg-white hover:shadow-sm transform hover:scale-105 duration-50 rounded-full w-h-48 cursor-pointer last:mr-0" onClick={() => {
         dispatch({
           type: 'MODAL_SOCIAL',
           modalHeader: 'Socials',
@@ -114,7 +121,13 @@ export default function LinkCom() {
           <Droppable droppableId='draggable'>
             {(provided) => (
               <div className='mt-6' {...provided.droppableProps} ref={provided.innerRef}>
-                {renderLink()}
+                {linkList.length === 0 ?
+                  <div className='py-12 flex justify-center items-center'>
+                    <div className="grey-border-block w-2/5 mr-4"></div>
+                    <div className="text-gray-500 text-sm font-inter font-normal " style={{ userSelect: 'none' }}>No data</div>
+                    <div className="grey-border-block w-2/5 ml-4"></div>
+                  </div> :
+                  renderLink(linkList)}
                 {provided.placeholder}
               </div>
             )}
@@ -125,7 +138,7 @@ export default function LinkCom() {
       <div style={{ letterSpacing: '1px' }} className="mt-12  text-gray-500 text-sm font-inter font-bold mb-4">SOCIALS</div>
       <div className="flex flex-wrap">
         {renderSocialLink()}
-        <div className="cursor-pointer socio flex justify-center items-center bg-white rounded-full w-h-48 hover:shadow-sm duration-50" onClick={()=>{
+        <div className="cursor-pointer socio flex justify-center items-center bg-white rounded-full w-h-48 hover:shadow-sm duration-50" onClick={() => {
           dispatch({
             type: 'MODAL_SOCIAL',
             modalHeader: 'Socials',
@@ -133,7 +146,7 @@ export default function LinkCom() {
           })
         }}>
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.83807 14.0625H8.22443V8.22443H14.0625V5.83807H8.22443V0H5.83807V5.83807H0V8.22443H5.83807V14.0625Z" fill="#6E6D7A"></path></svg></div>
-          </div>
+      </div>
     </div>
   )
 }

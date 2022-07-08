@@ -10,7 +10,7 @@ export default function PhoneView() {
 
     let pageItem = {
         border: '0px solid #FFFFFF',
-        background: '#FFFFFF',
+        background: '#fff',
         borderRadius: '30px',
         boxShadow: '0px 6px 14px -6px rgb(24 39 75 / 12%), 0px 10px 32px -4px rgb(24 39 75 / 10%), inset 0px 0px 2px 1px rgb(24 39 75 / 5%)',
         position: 'absolute',
@@ -31,8 +31,7 @@ export default function PhoneView() {
     }
 
     const renderLink = (list) => {
-        return list.filter(item => !item.isHide).map((item, index) => {
-            console.log(item)
+        return list?.filter(item => !item.isHide).map((item, index) => {
             if (item.isHeader) {
 
                 return <div key={index} style={{ color: '#000' }} className="text-center font-bold text-base mt-8">

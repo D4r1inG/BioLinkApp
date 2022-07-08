@@ -1,56 +1,6 @@
 
 const initialState = {
-    linkList: [
-        {
-            id: '0',
-            linkHeader: 'Header',
-            link: '',
-            click: 0,
-            isHeader: true,
-            isHide: false,
-            isPlugIn: false
-        },
-        {
-            id: '1',
-            linkHeader: 'Link 2',
-            link: 'https://open.spotify.com/embed/track/0AJi38NumMDXqo8pRw6zdh?si=a998cb2d4fd242e2',
-            click: 2,
-            isHeader: false,
-            isHide: false,
-            isPlugIn: true
-
-        },
-        {
-            id: '2',
-            linkHeader: 'Header 2',
-            link: '',
-            click: 7,
-            isHeader: true,
-            isHide: false,
-            isPlugIn: false
-
-        },
-        {
-            id: '3',
-            linkHeader: 'Link 4',
-            link: 'https://www.youtube.com/embed/GsPUwnzbCkE',
-            click: 7,
-            isHeader: false,
-            isHide: false,
-            isPlugIn: true
-
-        },
-        {
-            id: '4',
-            linkHeader: 'Link 5',
-            link: 'https://www.facebook.com/',
-            click: 10,
-            isHeader: false,
-            isHide: false,
-            isPlugIn: false
-
-        }
-    ],
+    linkList: [],
     socialList: [
         {
             id: 0,

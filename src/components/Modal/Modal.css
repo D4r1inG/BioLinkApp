@@ -26,6 +26,7 @@ input:focus {
 .input-main-wrap,
 .input-main-wrap-with-border:focus-within {
     border: 1px solid transparent;
+    transition: all .5s;
 }
 
 .input-main-wrap:focus-within {

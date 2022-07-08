@@ -1,0 +1,49 @@
+.input-prefix{
+    top: 11px;
+    left: 16px;
+}
+
+.bl-input-with-prefix{
+    padding-left: 63px;
+}
+
+.bl-input-with-icon{
+    top: 15px;
+    right: 16px;
+}
+
+.grey-border-block{
+    background-color: rgba(13,12,34,.05);
+    height: 1px;
+}
+
+.btn-signup-social{
+    border: 1.5px solid #000;
+    transition: transform .15s cubic-bezier(.17,.67,.29,2.71) 0s;
+}
+
+.btn-signup-social:hover{
+    transform: scale(1.02);
+}
+
+.error {
+    position: absolute;
+    color: red;
+    font-size: 12px;
+    top: 28%;
+    right: 5%;
+    transition: .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    user-select: none;
+}
+
+.error.errorPass {
+    right: 12%;
+}
+
+.input-main-wrap.input-error:focus-within {
+    background: red;
+}
+
+.bl-input:focus+.error {
+    transform: translateY(-35px);
+}
