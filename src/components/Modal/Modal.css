@@ -159,3 +159,23 @@ input:focus {
 .transparent-scroll::-webkit-scrollbar-track {
     background: 0 0;
 }
+
+.img-upload-br{
+    border: 1px dashed #6e6d7a;
+    transition: all 1s ease-in;
+}
+
+.img-upload-br:hover {
+    border: 1px dotted #6e6d7a;
+    transition: all 1s ease-out;
+}
+
+.link-thumb-img-upload {
+    width: 96px;
+    height: 96px;
+}
+
+.img-close-btn {
+    right: -10px;
+    top: -9px;
+}

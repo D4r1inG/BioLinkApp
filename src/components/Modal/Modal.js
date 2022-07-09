@@ -16,6 +16,7 @@ export default function Modal() {
     const [modalInput, setModalInput] = useState()
     const [modalSocialInput, setModalSocialInput] = useState([])
     const [isHide, setIsHide] = useState()
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         setSocialLink([...socialList])
@@ -195,8 +196,28 @@ export default function Modal() {
                             </svg>
                         </div>
                     </div>
-                    <div className="flex mt-8 w-full">
+                    <div className="flex mt-8 w-full justify-between">
                         {renderInput(isHeader, isSocial)}
+
+                        {addNew && !isHeader ?
+                            <div className='ml-6 flex-shrink-0 relative'>
+                                <label htmlFor='img-input' className={`${selectedImage === null ? 'block' : 'hidden'} link-thumb-img-upload relative flex justify-center items-center rounded-sm cursor-pointer xs:mx-auto img-upload-br`}>
+                                    <div className="text-gray-400 font-inter text-xs text-center mt-2">
+                                        Insert
+                                        <p>Picture</p>
+                                    </div>
+                                </label>
+                                <input className='hidden' id='img-input' type='file' name='myImage' onChange={(e) => {
+                                    setSelectedImage(e.target.files[0]);
+                                    console.log(window.URL.createObjectURL(new Blob([e.target.files[0]], { type: "application/zip" })))
+                                    console.log(e.target.files[0])
+                                }} />
+                                <svg onClick={() => { setSelectedImage(null) }} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${selectedImage === null ? 'hidden' : 'block'} absolute img-close-btn cursor-pointer`}><circle cx="12" cy="12" r="11" fill="#0D0C22" stroke="white" strokeWidth="2"></circle> <g clipPath="url(#clip0)"><path d="M15.7766 8.21582L8.86487 15.1275" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M15.7823 15.1347L8.86487 8.21582" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></g> <defs><clipPath id="clip0"><rect width="10.3784" height="10.3784" fill="white" transform="translate(7.13513 6.48633)"></rect></clipPath></defs></svg>
+                                <img className={`${selectedImage === null ? 'hidden' : 'block'} link-thumb-img-upload`} alt="not fount" src={window.URL.createObjectURL(new Blob([selectedImage], { type: "application/zip" }))} />
+                            </div>
+                            : ''
+                        }
+
                     </div>
 
                     {addNew || isSocial ? '' :
