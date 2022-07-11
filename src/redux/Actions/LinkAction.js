@@ -38,7 +38,7 @@ export const addNewLink = (data) => {
         })
         try {
             const { data, status } = await linkManagement.addNewLink(newLink)
-            dispatch(getLinkData())
+            await dispatch(getLinkData())
         } catch (err) {
             console.log(err)
         }
@@ -56,7 +56,7 @@ export const editLink = (newLink) => {
         })
         try {
             const { data, status } = await linkManagement.editLink(newLink)
-            dispatch(getLinkData())
+            await dispatch(getLinkData())
         } catch (err) {
             console.log(err)
         }
@@ -73,7 +73,7 @@ export const deleteLink = (id) => {
         })
         try {
             const { data, status } = await linkManagement.deleteLink(id)
-            dispatch(getLinkData())
+            await dispatch(getLinkData())
         } catch (err) {
             console.log(err)
         }
