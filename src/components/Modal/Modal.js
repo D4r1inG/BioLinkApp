@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useDispatch, useSelector } from 'react-redux'
+import { addNewLink } from '../../redux/Actions/LinkAction'
 import { socialLinkList } from '../../utils/SocialLink'
 import './Modal.css'
 
@@ -84,10 +85,14 @@ export default function Modal() {
                 newLinkList: newSocialLinkArr,
             })
         } else if (addNew) {
-            dispatch({
-                type: 'ADD_NEW_LINK',
-                newLink: modalInput,
-            })
+
+            // console.log(modalInput)
+            dispatch(addNewLink(modalInput))
+
+            // dispatch({
+            //     type: 'ADD_NEW_LINK',
+            //     newLink: modalInput,
+            // })
         } else {
             dispatch({
                 type: 'EDIT_LINK',

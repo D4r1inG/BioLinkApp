@@ -10,7 +10,7 @@ export default function LinkCom() {
   const { linkList, socialList } = useSelector(state => state.LinkReducer)
   const dispatch = useDispatch()
 
-  // Skeleton data
+  //TODO: Skeleton data
 
   useEffect(() => {
     dispatch(getLinkData())

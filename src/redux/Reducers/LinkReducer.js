@@ -37,15 +37,15 @@ export const LinkReducer = (state = initialState, action) => {
         }
 
         case 'ADD_NEW_LINK': {
-            let newLink = {
-                id: Math.floor(Math.random() * 100).toString(),
-                linkHeader: action.newLink.title,
-                link: action.newLink.url || '',
-                click: 0,
-                isHeader: action.newLink.url ? false : true,
-                ishide: false
-            }
-            state.linkList.unshift(newLink)
+            // let newLink = {
+            //     id: Math.floor(Math.random() * 100).toString(),
+            //     linkHeader: action.newLink.title,
+            //     link: action.newLink.url || '',
+            //     click: 0,
+            //     isHeader: action.newLink.url ? false : true,
+            //     ishide: false
+            // }
+            state.linkList.unshift(action.newLink)
             return { ...state }
         }
 

@@ -7,6 +7,10 @@ class LinkManagement extends baseService {
         return this.Get('linklist')
     }
 
+    addNewLink = (newLink) => {
+        return this.Post('linklist', newLink)
+    }
+
 }
 
 

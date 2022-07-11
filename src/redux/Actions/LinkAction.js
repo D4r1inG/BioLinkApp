@@ -15,3 +15,27 @@ export const getLinkData = () => {
         }
     }
 }
+
+export const addNewLink = (data) => {
+    let newLink = {
+        linkHeader: data.title,
+        link: data.url || '',
+        click: 0,
+        isHeader: data.url ? false : true,
+        ishide: false
+    }
+
+    return async (dispatch) => {
+
+        try {
+            const { data, status } = await linkManagement.addNewLink(newLink)
+            dispatch({
+                type: 'ADD_NEW_LINK',
+                newLink
+            })
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
