@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useDispatch, useSelector } from 'react-redux'
-import { addNewLink } from '../../redux/Actions/LinkAction'
+import { addNewLink, deleteLink, editLink } from '../../redux/Actions/LinkAction'
 import { socialLinkList } from '../../utils/SocialLink'
 import './Modal.css'
 
@@ -94,11 +94,22 @@ export default function Modal() {
             //     newLink: modalInput,
             // })
         } else {
-            dispatch({
-                type: 'EDIT_LINK',
-                newLink: modalInput,
-                linkEdit: { ...linkEdit, isHide: isHide }
-            })
+            // console.log(modalInput, linkEdit)
+
+            let newLink = {
+                ...linkEdit,
+                linkHeader: modalInput?.title || linkEdit.linkHeader,
+                link: modalInput?.url || linkEdit.link,
+                isHide: isHide 
+            }
+
+            dispatch(editLink(newLink))
+
+            // dispatch({
+            //     type: 'EDIT_LINK',
+            //     newLink: modalInput,
+            //     linkEdit: { ...linkEdit, isHide: isHide }
+            // })
         }
     }
 
@@ -228,10 +239,11 @@ export default function Modal() {
                     {addNew || isSocial ? '' :
                         <div className="flex justify-between w-full mt-8">
                             <div className="text-sm font-inter font-normal cursor-pointer text-red-500" onClick={() => {
-                                dispatch({
-                                    type: 'DELETE_LINK',
-                                    id: linkEdit.id
-                                })
+                                // dispatch({
+                                //     type: 'DELETE_LINK',
+                                //     id: linkEdit.id
+                                // })
+                                dispatch(deleteLink(linkEdit.id))
                                 dispatch({
                                     type: 'CLOSE_MODAL'
                                 })

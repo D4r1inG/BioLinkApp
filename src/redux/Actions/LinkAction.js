@@ -36,3 +36,28 @@ export const addNewLink = (data) => {
         }
     }
 }
+
+
+export const editLink = (newLink) => {
+    return async (dispatch) => {
+
+        try {
+            const { data, status } = await linkManagement.editLink(newLink)
+            dispatch(getLinkData())
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export const deleteLink = (id) => {
+    return async (dispatch) => {
+
+        try {
+            const { data, status } = await linkManagement.deleteLink(id)
+            dispatch(getLinkData())
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}

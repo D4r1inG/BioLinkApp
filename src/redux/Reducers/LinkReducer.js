@@ -36,18 +36,18 @@ export const LinkReducer = (state = initialState, action) => {
             return { ...state, socialList: newList }
         }
 
-        case 'ADD_NEW_LINK': {
-            // let newLink = {
-            //     id: Math.floor(Math.random() * 100).toString(),
-            //     linkHeader: action.newLink.title,
-            //     link: action.newLink.url || '',
-            //     click: 0,
-            //     isHeader: action.newLink.url ? false : true,
-            //     ishide: false
-            // }
-            state.linkList.unshift(action.newLink)
-            return { ...state }
-        }
+        // case 'ADD_NEW_LINK': {
+        //     let newLink = {
+        //         id: Math.floor(Math.random() * 100).toString(),
+        //         linkHeader: action.newLink.title,
+        //         link: action.newLink.url || '',
+        //         click: 0,
+        //         isHeader: action.newLink.url ? false : true,
+        //         ishide: false
+        //     }
+        //     state.linkList.unshift(action.newLink)
+        //     return { ...state }
+        // }
 
         case 'ADD_SOCIALLINK': {
             let newSocialListArr = []
@@ -71,14 +71,14 @@ export const LinkReducer = (state = initialState, action) => {
             return { ...state, socialList: newSocialListArr }
         }
 
-        case 'EDIT_LINK': {
-            let newLink = {
-                ...action.linkEdit,
-                linkHeader: action.newLink?.title || action.linkEdit.linkHeader,
-                link: action.newLink?.url || action.linkEdit.link
-            }
-            return { ...state, linkList: state.linkList.map(item => item.id == action.linkEdit.id ? newLink : item) }
-        }
+        // case 'EDIT_LINK': {
+        //     let newLink = {
+        //         ...action.linkEdit,
+        //         linkHeader: action.newLink?.title || action.linkEdit.linkHeader,
+        //         link: action.newLink?.url || action.linkEdit.link
+        //     }
+        //     return { ...state, linkList: state.linkList.map(item => item.id == action.linkEdit.id ? newLink : item) }
+        // }
 
         case 'DELETE_LINK': {
             let newList = state.linkList.filter(item => item.id != action.id)

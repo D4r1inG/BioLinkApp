@@ -11,6 +11,14 @@ class LinkManagement extends baseService {
         return this.Post('linklist', newLink)
     }
 
+    editLink = (linkEdit) => {
+        return this.Put(`linklist/${linkEdit.id}`, linkEdit)
+    }
+
+    deleteLink = (id) => {
+        return this.Delete(`linklist/${id}`)
+    }
+
 }
 
 
