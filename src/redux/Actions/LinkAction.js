@@ -22,18 +22,15 @@ export const addNewLink = (data) => {
         link: data.url || '',
         click: 0,
         isHeader: data.url ? false : true,
-        ishide: false
+        ishide: false,
+        isPlugIn: false
     }
 
     return async (dispatch) => {
 
         try {
             const { data, status } = await linkManagement.addNewLink(newLink)
-            dispatch({
-                type: 'ADD_NEW_LINK',
-                newLink
-            })
-
+            dispatch(getLinkData())
         } catch (err) {
             console.log(err)
         }
