@@ -5,6 +5,7 @@ const initialState = {
   isHeader: false,
   isSocial: false,
   linkEdit: null,
+  loading: false
 }
 
 export const ModalReducer = (state = initialState, action) => {
@@ -33,6 +34,24 @@ export const ModalReducer = (state = initialState, action) => {
       }
       return { ...state }
     }
+
+    case "DISLAY_LOADING": {
+      return {...state, loading: true}
+    }
+
+    case "CLOSE_LOADING": {
+      state = {
+        isOpen: false,
+        modalHeader: '',
+        addNew: false,
+        isHeader: false,
+        isSocial: false,
+        linkEdit: null,
+        loading: false
+      }
+      return {...state}
+    }
+
 
     default:
       return state

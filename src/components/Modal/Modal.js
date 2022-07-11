@@ -7,7 +7,7 @@ import './Modal.css'
 
 export default function Modal() {
 
-    const { isOpen, modalHeader, addNew, isHeader, linkEdit, isSocial } = useSelector(state => state.ModalReducer)
+    const { isOpen, modalHeader, addNew, isHeader, linkEdit, isSocial, loading } = useSelector(state => state.ModalReducer)
     const { socialList } = useSelector(state => state.LinkReducer)
     let arr = Object.keys(socialLinkList.byName).filter(item => socialList.map(link => link.name).indexOf(item) === -1)
     const dispatch = useDispatch()
@@ -86,16 +86,13 @@ export default function Modal() {
             })
         } else if (addNew) {
 
-            // console.log(modalInput)
-            dispatch(addNewLink(modalInput))
-
             // dispatch({
             //     type: 'ADD_NEW_LINK',
             //     newLink: modalInput,
             // })
-        } else {
-            // console.log(modalInput, linkEdit)
 
+            dispatch(addNewLink(modalInput))
+        } else {
             let newLink = {
                 ...linkEdit,
                 linkHeader: modalInput?.title || linkEdit.linkHeader,
@@ -243,10 +240,8 @@ export default function Modal() {
                                 //     type: 'DELETE_LINK',
                                 //     id: linkEdit.id
                                 // })
+
                                 dispatch(deleteLink(linkEdit.id))
-                                dispatch({
-                                    type: 'CLOSE_MODAL'
-                                })
                             }}>
                                 Delete
                             </div>
@@ -265,13 +260,12 @@ export default function Modal() {
 
                     <div className='absolute left-0 bottom-0 w-full'>
                         <button onClick={() => {
-                            dispatch({
-                                type: 'CLOSE_MODAL'
-                            })
-                            setModalInput()
+
                             handleSave()
+                            setModalInput()
                         }} className="bl-btn bl-btn-md bl-bg font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
-                            <span className="">{isHeader ? 'Add header' : 'Save'}</span>
+                            <span className={`${loading ? 'hidden' : 'block'}`}>{isHeader ? 'Add header' : 'Save'}</span>
+                            <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span>
                         </button>
                     </div>
                 </div>

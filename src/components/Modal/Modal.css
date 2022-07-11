@@ -179,3 +179,25 @@ input:focus {
     right: -10px;
     top: -9px;
 }
+
+.bl-circle-loader{
+    border-right: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    border-color: #fff #fff transparent transparent;
+    border-style: solid;
+    border-width: 3px 3px 4px 4px;
+    width: 22px;
+    height: 22px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    
+    100% {
+        transform: rotate(1turn);
+    }
+}
