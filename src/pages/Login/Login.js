@@ -1,9 +1,27 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { login } from '../../redux/Actions/UserAction'
 
 export default function Login() {
 
     const [showPassWord, setShowPassWord] = useState(false)
+    const [formInput, setFormInput] = useState({
+        username: '',
+        password: ''
+    })
+
+    const dispatch = useDispatch()
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setFormInput({...formInput, [name]: value})
+    }
+
+    const handleSubmit = () => {
+        dispatch(login(formInput))
+    }
+
 
     return (
         <div style={{ paddingTop: '60px' }} className='min-h-screen bg-zinc-50 flex justify-center '  >
@@ -25,13 +43,13 @@ export default function Login() {
                     </div>
                     <div className='mt-6'>
                         <div className="input-main-wrap overflow-hidden	rounded-sm">
-                            <input type="text" name="userName" placeholder="User name" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                            <input type="text" name="username" placeholder="User name" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
                         </div>
                     </div>
 
                     <div className="relative bl-input-with-suffix-wrap mt-4">
                         <div className="input-main-wrap overflow-hidden	rounded-sm">
-                            <input name="password" placeholder="Password" type={showPassWord ? 'text' : 'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                            <input name="password" placeholder="Password" type={showPassWord ? 'text' : 'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
                         </div>
                         <div className="bl-input-with-icon enable-on-change absolute cursor-pointer">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginTop: '-2px', display: showPassWord ? 'block' : 'none' }} onClick={() => {
@@ -45,7 +63,7 @@ export default function Login() {
                             </svg>
                         </div>
 
-                        <button className="bl-btn bl-bg font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }}>
+                        <button className="bl-btn bl-bg font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }} onClick={handleSubmit}>
                             <span className="">Log in</span>
                             {/* <span className="bl-circle-loader absolute hidden"></span>  */}
                             {/* Loader */}

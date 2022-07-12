@@ -10,3 +10,20 @@
     background: linear-gradient(112.44deg,#ff5858 2.09%,#c058ff 75.22%);
     background-size: 165%;
 } */
+
+.theme-bg-box,
+.theme-btn-box {
+    height: 200px;
+}
+
+.br-grey {
+    border: 1px solid #e7e7e9;
+}
+
+.theme-btn {
+    height: 22px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-size: cover;
+    box-shadow: rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(24 39 75 / 5%) 0px 0px 2px 1px inset;
+}

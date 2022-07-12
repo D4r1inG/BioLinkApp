@@ -11,24 +11,25 @@ export default function Register() {
 
     const [formInput, setFormInput] = useState({
         values: {
+            username: '',
+            password: '',
             email: '',
-            userName: '',
-            password: ''
         },
         errors: {
             email: '',
-            userName: '',
+            username: '',
             password: ''
         }
     })
 
-    const handleChange = (e) => {
-        let { name, value, placeholder } = e.target
+    const handleChange = (target) => {
+        let { name, value, placeholder } = target
         let newValue = { ...formInput.values, [name]: value }
         let newError = { ...formInput.errors }
 
+
         if (value.trim() === '') {
-            newError[name] = placeholder + ' is required!'
+            newError[name] = `${placeholder} is required!`
         } else {
             newError[name] = ''
         }
@@ -43,20 +44,26 @@ export default function Register() {
         }
 
         setFormInput({
-            values: newValue,
-            errors: newError
+            values: {...newValue},
+            errors: {...newError}
         })
-
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        for (let key in Object.keys(formInput.errors)) {
-            if (!formInput.errors[key]) {
-                return
+        let valid = true
+
+        for (let key of Object.keys(formInput.errors)) {
+            if (formInput.errors[key]) {
+                valid = false
             }
         }
-        // dispatch(register(formInput.values))
+
+        if (valid) {
+            dispatch(register(formInput.values))
+        }else{
+            return
+        }
     }
 
     return (
@@ -78,25 +85,25 @@ export default function Register() {
                         <div className=" font-bold text-xl w-full">Sign up</div>
                     </div>
                     <div className='mt-6'>
-                        <div className={` rounded-sm input-main-wrap relative ${formInput.errors.email !== '' ? 'input-error' : ''}`}>
-                            <input type="text" name="email" placeholder="Email" className='bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white' onChange={handleChange} />
-                            <span className="error">{formInput.errors.email}</span>
+                        <div className={` rounded-sm input-main-wrap relative ${formInput.errors?.email !== '' ? 'input-error' : ''}`}>
+                            <input type="text" name="email" placeholder="Email" className='bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white' onChange={(e) => { handleChange(e.target) }} />
+                            <span className="error">{formInput.errors?.email}</span>
                         </div>
 
                         <div className="relative mt-6">
                             <div className="input-prefix text-sm text-blDark font-inter font-normal absolute">bio.link/</div>
-                            <div className={`input-main-wrap ${formInput.errors.userName !== '' ? 'input-error' : ''} rounded-sm`}>
-                                <input type="text" name='userName' placeholder="Username" className="bl-input-with-prefix bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
-                                <span className="error">{formInput.errors.userName}</span>
+                            <div className={`input-main-wrap ${formInput.errors?.username !== '' ? 'input-error' : ''} rounded-sm`}>
+                                <input type="text" name='username' placeholder="username" className="bl-input-with-prefix bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={(e) => { handleChange(e.target) }} />
+                                <span className="error">{formInput.errors?.username}</span>
 
                             </div>
                         </div>
                     </div>
 
                     <div className="relative bl-input-with-suffix-wrap mt-6">
-                        <div className={`input-main-wrap relative rounded-sm ${formInput.errors.password !== '' ? 'input-error' : ''}`}>
-                            <input name="password" placeholder="Password" type={showPassWord ? 'text' : 'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
-                            <span className="error errorPass">{formInput.errors.password}</span>
+                        <div className={`input-main-wrap relative rounded-sm ${formInput.errors?.password !== '' ? 'input-error' : ''}`}>
+                            <input name="password" placeholder="Password" type={showPassWord ? 'text' : 'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={(e) => { handleChange(e.target) }} />
+                            <span className="error errorPass">{formInput.errors?.password}</span>
                         </div>
                         <div className="bl-input-with-icon enable-on-change absolute cursor-pointer">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginTop: '-2px', display: showPassWord ? 'block' : 'none' }} onClick={() => {

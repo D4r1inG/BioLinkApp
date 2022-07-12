@@ -3,7 +3,6 @@ import './Link.css'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useSelector, useDispatch } from 'react-redux'
 import { socialLinkList } from '../../utils/SocialLink'
-import { getLinkData } from '../../redux/Actions/LinkAction'
 
 export default function LinkCom() {
 
@@ -11,10 +10,6 @@ export default function LinkCom() {
   const dispatch = useDispatch()
 
   //TODO: Skeleton data
-
-  useEffect(() => {
-    dispatch(getLinkData())
-  }, [])
 
   const handleOnDragEnd = (res) => {
     if (!res.destination) return;

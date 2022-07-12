@@ -6,9 +6,10 @@ import './Design.css'
 export default function Design() {
 
   const { loading } = useSelector(state => state.ModalReducer)
-  const { name, bio, image } = useSelector(state => state.ProfileReducer)
-  const [displayBtn, setDisplayBtn] = useState(false)
+  const { name, bio, image, themes, activeTheme } = useSelector(state => state.ProfileReducer)
   const dispatch = useDispatch()
+
+  const [displayBtn, setDisplayBtn] = useState(false)
   const [valueInput, setValueInput] = useState({
     name: '',
     bio: ''
@@ -20,9 +21,34 @@ export default function Design() {
     setValueInput({ ...valueInput, [name]: value })
   }
 
+  const selectTheme = (id) => {
+    dispatch({
+      type: 'SELECT_THEME',
+      id
+    })
+  }
+
+  const renderThemes = () => {
+    return themes.map((item) => {
+      return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={()=>{selectTheme(item.id)}}>
+        <div className='rounded-xl relative p-1 transition-all' style={{ border: activeTheme === item.id ? '2px solid #0095f6' : '2px solid transparent' }}>
+          <div style={{ backgroundColor: item.background }} className='theme-bg-box br-grey rounded-lg overflow-hidden flex flex-col justify-between relative'>
+            <div className='pt-10 px-4 pb-0 w-full z-10 relative'>
+              <div className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
+              <div className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
+              <div className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
+              <div className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
+            </div>
+          </div>
+        </div>
+        <div className="text-sm text-black font-inter font-normal text-center mt-2">{item.name}</div>
+      </div>
+    })
+  }
+
   return (
     <div>
-      <div className="bg-white rounded-sm shadow-sm p-8 ">
+      <div className="bg-white rounded-sm shadow-sm p-8 mb-8">
         <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16">Profile</div>
         <div className="mt-8">
           <div className="flex">
@@ -58,6 +84,15 @@ export default function Design() {
             <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
             <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span>
           </button>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-sm shadow-sm p-8 ">
+        <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16">Themes</div>
+        <div className='mt-8'>
+          <div className='grid grid-cols-3 gap-6 gap-x-8'>
+            {renderThemes()}
+          </div>
         </div>
       </div>
     </div>
