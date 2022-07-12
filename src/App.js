@@ -10,6 +10,7 @@ import Modal from "./components/Modal/Modal";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 
+
 export const history = createBrowserHistory();
 
 function App() {  

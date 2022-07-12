@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { register } from '../../redux/Actions/UserAction'
 import './Register.css'
 
 export default function Register() {
 
     const [showPassWord, setShowPassWord] = useState(false)
+    const dispatch = useDispatch()
 
     const [formInput, setFormInput] = useState({
         values: {
@@ -20,7 +23,7 @@ export default function Register() {
     })
 
     const handleChange = (e) => {
-        let { name, value , placeholder} = e.target
+        let { name, value, placeholder } = e.target
         let newValue = { ...formInput.values, [name]: value }
         let newError = { ...formInput.errors }
 
@@ -48,7 +51,12 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        for (let key in Object.keys(formInput.errors)) {
+            if (!formInput.errors[key]) {
+                return
+            }
+        }
+        // dispatch(register(formInput.values))
     }
 
     return (

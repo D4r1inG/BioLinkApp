@@ -6,7 +6,9 @@ import './PhoneView.css'
 export default function PhoneView() {
 
     const { linkList, socialList } = useSelector(state => state.LinkReducer)
+    const { name, bio, image } = useSelector(state => state.ProfileReducer)
     const [idVisible, setIdVisible] = useState([])
+
 
     let pageItem = {
         border: '0px solid #FFFFFF',
@@ -24,7 +26,7 @@ export default function PhoneView() {
     const renderSocialList = (list) => {
         return list.map((item, index) => {
             return <div key={index} className="page-social relative mx-3 mb-3">
-                <a className="absolute h-full inset-0 w-full" href={`https://${item.name}.com/${item.link}`}></a>
+                <a className="absolute h-full inset-0 w-full" href={`https://${item.name}.com/${item.link}`} ></a>
                 {socialLinkList.byName[item.name].svg}
             </div>
         })
@@ -84,12 +86,12 @@ export default function PhoneView() {
             <div className=' w-full min-h-full flex justify-center relative'>
                 <div className='absolute inset-0 w-full -z-10 h-full' style={{ background: '#fff' }}></div>
                 <div style={{ width: '90%' }} className='mt-12 pb-32'>
-                    <img style={{ width: '96px', height: '96px' }} className="display-image m-auto rounded-full" src="https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png" alt="D4rl1nG" />
+                    <img style={{ width: '96px', height: '96px' }} className="display-image m-auto rounded-full" src={image} alt="D4rl1nG" />
                     <h2 style={{ fontSize: '18px' }} className="font-semibold mt-4 text-center">
-                        D4rl1nG
+                        {name}
                     </h2>
                     <div className="text-base font-normal mt-3 text-center">
-                        abc
+                        {bio}
                     </div>
                     <div className="flex justify-center items-center flex-wrap mt-4">
                         {renderSocialList(socialList)}

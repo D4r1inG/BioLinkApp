@@ -1,7 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import './Design.css'
 
 export default function Design() {
+
+  const { loading } = useSelector(state => state.ModalReducer)
+  const { name, bio, image } = useSelector(state => state.ProfileReducer)
+  const [displayBtn, setDisplayBtn] = useState(false)
+  const dispatch = useDispatch()
+  const [valueInput, setValueInput] = useState({
+    name: '',
+    bio: ''
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setDisplayBtn(true)
+    setValueInput({ ...valueInput, [name]: value })
+  }
+
   return (
     <div>
       <div className="bg-white rounded-sm shadow-sm p-8 ">
@@ -10,12 +28,13 @@ export default function Design() {
           <div className="flex">
             <div className="w-full"><div>
               <div className="input-main-wrap overflow-hidden	rounded-sm">
-                <input type="text" name="title" placeholder="Name" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                <input defaultValue={name} type="text" name="name" placeholder="Name" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
               </div>
             </div>
               <div className="mt-6">
                 <div className="input-main-wrap overflow-hidden	rounded-sm">
-                  <input type="text" maxLength="80" name="bio_line" placeholder="Bio" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" /></div>
+                  <input defaultValue={bio} type="text" maxLength="80" name="bio" placeholder="Bio" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
+                </div>
               </div>
             </div>
             <div className="flex items-center flex-shrink-0 ml-8">
@@ -23,14 +42,22 @@ export default function Design() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute pro-img-close-btn cursor-pointer z-10 right-0"><circle cx="12" cy="12" r="11" fill="#0D0C22" stroke="white" strokeWidth="2"></circle><g clipPath="url(#clip0)"><path d="M15.7766 8.21582L8.86487 15.1275" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path d="M15.7823 15.1347L8.86487 8.21582" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></g><defs><clipPath id="clip0"><rect width="10.3784" height="10.3784" fill="white" transform="translate(7.13513 6.48633)"></rect></clipPath></defs></svg> <div alt="Quân Nguyễn Thế" className="bl-user-pic object-cover rounded-52 profile-img-up image-loader-wrap flex-shrink-0" style={{ position: 'relative', paddingBottom: '0px', transitionDuration: '0.5s' }}>
                   <span mode="in-out" style={{ height: '100%', width: '100%', position: 'absolute', inset: '0px' }}>
                     <canvas width="128" height="128" style={{ height: '100%', width: '100%', position: 'absolute', inset: '0px', display: 'none' }}></canvas>
-                    <img src="https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png" alt="Quân Nguyễn Thế" style={{ height: '100%', width: '100%', position: 'absolute', inset: '0px', width: '115px', height: '115px' }} />
+                    <img src={image} alt="Quân Nguyễn Thế" style={{ height: '100%', width: '100%', position: 'absolute', inset: '0px', width: '115px', height: '115px' }} />
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          <button className="bl-btn bl-btn-md text-white rounded-sm leading-4 relative flex items-center justify-center mt-8 w-full uppercase tracking-2">
-            <span className="bl-circle-loader ">Save</span></button>
+          <button className={`${displayBtn ? 'block' : 'hidden'} bl-bg bl-btn-md text-white rounded-sm leading-4 relative flex items-center justify-center mt-8 w-full uppercase font-bold tracking-wider`} onClick={() => {
+            dispatch({
+              type: 'EDIT_VALUE',
+              payload: valueInput
+            })
+            setDisplayBtn(false)
+          }}>
+            <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
+            <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span>
+          </button>
         </div>
       </div>
     </div>

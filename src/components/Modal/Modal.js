@@ -7,6 +7,8 @@ import './Modal.css'
 
 export default function Modal() {
 
+    //TODO: chuyển sang HOC => 
+
     const { isOpen, modalHeader, addNew, isHeader, linkEdit, isSocial, loading } = useSelector(state => state.ModalReducer)
     const { socialList } = useSelector(state => state.LinkReducer)
     let arr = Object.keys(socialLinkList.byName).filter(item => socialList.map(link => link.name).indexOf(item) === -1)
@@ -17,7 +19,7 @@ export default function Modal() {
     const [modalInput, setModalInput] = useState()
     const [modalSocialInput, setModalSocialInput] = useState([])
     const [isHide, setIsHide] = useState()
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null)
 
     useEffect(() => {
         setSocialLink([...socialList])
@@ -129,7 +131,6 @@ export default function Modal() {
         dispatch({
             type: 'CLOSE_MODAL'
         })
-
     }
 
     const renderInput = (isHeader, isSocial) => {

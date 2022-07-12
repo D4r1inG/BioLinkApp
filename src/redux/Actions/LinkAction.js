@@ -3,9 +3,7 @@ import { linkManagement } from "../../services/LinkService";
 
 export const getLinkData = () => {
     return async (dispatch) => {
-        dispatch({
-            type: 'DISLAY_LOADING',
-        })
+       
         try {
             const { data, status } = await linkManagement.getLinkData()
             dispatch({
@@ -16,9 +14,7 @@ export const getLinkData = () => {
         } catch (err) {
             console.log(err)
         }
-        dispatch({
-            type: 'CLOSE_LOADING',
-        })
+        
     }
 }
 
