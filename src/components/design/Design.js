@@ -9,6 +9,8 @@ export default function Design() {
   const { name, bio, image, themes, activeTheme } = useSelector(state => state.ProfileReducer)
   const dispatch = useDispatch()
 
+  //TODO: Skeleton data cho mỗi theme
+
   const [displayBtn, setDisplayBtn] = useState(false)
   const [valueInput, setValueInput] = useState({
     name: '',

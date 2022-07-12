@@ -68,7 +68,6 @@ export const ProfileReducer = (state = initialState, action) => {
             return {...state, activeTheme: action.id}
         }
 
-
         default:
             return state
     }
