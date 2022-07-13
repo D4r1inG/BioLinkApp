@@ -1,6 +1,10 @@
 
 const initialState = {
-    linkList: [],
+    linkList: [
+        {id: '1'},
+        {id: '2'},
+        {id: '3'},
+    ],
     socialList: [
         {
             id: 0,

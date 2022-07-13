@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { getLinkData } from '../../redux/Actions/LinkAction'
+import {  getLinkDataFirstTime } from '../../redux/Actions/LinkAction'
 import { socialLinkList } from '../../utils/SocialLink'
 import './PhoneView.css'
 
@@ -15,7 +15,7 @@ export default function PhoneView() {
     const [theme, setTheme] = useState()
 
     useEffect(() => {
-        dispatch(getLinkData())
+        dispatch(getLinkDataFirstTime())
       }, [])
 
     useEffect(() => {

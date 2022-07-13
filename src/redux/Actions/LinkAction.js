@@ -1,9 +1,11 @@
 import { linkManagement } from "../../services/LinkService";
 
 
-export const getLinkData = () => {
+export const getLinkDataFirstTime = () => {
     return async (dispatch) => {
-       
+        dispatch({
+            type: 'SHOW_SKELETON'
+        })
         try {
             const { data, status } = await linkManagement.getLinkData()
             dispatch({
@@ -14,7 +16,24 @@ export const getLinkData = () => {
         } catch (err) {
             console.log(err)
         }
-        
+        dispatch({
+            type: 'HIDE_SKELETON'
+        })
+    }
+}
+
+export const getLinkData = () => {
+    return async (dispatch) => {
+        try {
+            const { data, status } = await linkManagement.getLinkData()
+            dispatch({
+                type: 'SET_LIST',
+                linkList: data
+            })
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
 
