@@ -3,12 +3,12 @@ import { DashBoard } from "./templates/DashBoardTemplate/DashBoard";
 import { Route, Router, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history"
 import LinkCom from "./components/Link/LinkCom";
-import Design from "./components/Design/Design";
-import Setting from "./components/Setting/Setting";
 import Stat from "./components/Stat/Stat";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import ModalHOC from "./HOC/Modal/ModalHOC";
+import DesignCom from "./components/Design/DesignCom";
+import SettingCom from "./components/Setting/SettingCom";
 
 
 export const history = createBrowserHistory();
@@ -23,9 +23,9 @@ function App() {
         <Route path="/signup" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <DashBoard path="/link" exact Component={LinkCom} />
-        <DashBoard path="/design" exact Component={Design} />
+        <DashBoard path="/design" exact Component={DesignCom} />
         <DashBoard path="/stat" exact Component={Stat} />
-        <DashBoard path="/setting" exact Component={Setting} />
+        <DashBoard path="/setting" exact Component={SettingCom} />
       </Switch>
     </Router>
   )

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import './Design.css'
+import './DesignCom.css'
 
-export default function Design() {
+export default function DesignCom() {
 
   const { loading } = useSelector(state => state.ModalReducer)
   const { name, bio, image, themes, activeTheme } = useSelector(state => state.ProfileReducer)
