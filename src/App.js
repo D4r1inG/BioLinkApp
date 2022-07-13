@@ -6,9 +6,9 @@ import LinkCom from "./components/Link/LinkCom";
 import Design from "./components/Design/Design";
 import Setting from "./components/Setting/Setting";
 import Stat from "./components/Stat/Stat";
-import Modal from "./components/Modal/Modal";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
+import ModalHOC from "./HOC/Modal/ModalHOC";
 
 
 export const history = createBrowserHistory();
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <Router history={history}>
-      <Modal />
+      <ModalHOC />
       <Switch>
         <Route path="/" exact component={MainPage} />
         <Route path="/signup" exact component={Register} />

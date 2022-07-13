@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Link.css'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useSelector, useDispatch } from 'react-redux'
 import { socialLinkList } from '../../utils/SocialLink'
+import ModalAddNewLink from '../Modal/ModalAddNewLink'
+import ModalAddNewHeader from '../Modal/ModalAddNewHeader'
+import ModalEdit from '../Modal/ModalEdit'
+import ModalSocial from '../Modal/ModalSocial'
 
 export default function LinkCom() {
 
@@ -32,7 +36,7 @@ export default function LinkCom() {
               type: 'MODAL_EDIT',
               modalHeader: `Edit ${item.isHeader ? 'header' : ''}`,
               linkEdit: item,
-              isHeader: item.isHeader
+              component: <ModalEdit />
             })
           }}>
             <div className="py-6 pl-6 pr-16 bg-white shadow-sm relative cursor-pointer rounded-sm ">
@@ -74,9 +78,9 @@ export default function LinkCom() {
     return socialList.map((item, index) => {
       return <div key={index} className="mr-3 mb-3 socio sociallink-each flex justify-center items-center bg-white hover:shadow-sm transform hover:scale-105 duration-50 rounded-full w-h-48 cursor-pointer last:mr-0" onClick={() => {
         dispatch({
-          type: 'MODAL_SOCIAL',
+          type: 'MODAL_ADD_NEW',
           modalHeader: 'Socials',
-          isSocial: true
+          component: <ModalSocial />
         })
       }}>
         <span>
@@ -93,7 +97,7 @@ export default function LinkCom() {
           dispatch({
             type: 'MODAL_ADD_NEW',
             modalHeader: 'Add',
-            isHeader: false
+            component: <ModalAddNewLink />
           })
         }}>
           <span className="font-bold">+ ADD LINK</span>
@@ -107,7 +111,7 @@ export default function LinkCom() {
         dispatch({
           type: 'MODAL_ADD_NEW',
           modalHeader: 'Add header',
-          isHeader: true
+          component: <ModalAddNewHeader />
         })
       }}>+ Add header</div>
       <div className='mt-8'>
@@ -135,9 +139,9 @@ export default function LinkCom() {
         {renderSocialLink()}
         <div className="cursor-pointer socio flex justify-center items-center bg-white rounded-full w-h-48 hover:shadow-sm duration-50" onClick={() => {
           dispatch({
-            type: 'MODAL_SOCIAL',
+            type: 'MODAL_ADD_NEW',
             modalHeader: 'Socials',
-            isSocial: true
+            component: <ModalSocial />
           })
         }}>
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.83807 14.0625H8.22443V8.22443H14.0625V5.83807H8.22443V0H5.83807V5.83807H0V8.22443H5.83807V14.0625Z" fill="#6E6D7A"></path></svg></div>
