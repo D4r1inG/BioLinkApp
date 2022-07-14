@@ -11,7 +11,7 @@ import ModalSocial from '../Modal/ModalSocial'
 export default function LinkCom() {
 
   const { linkList, socialList } = useSelector(state => state.LinkReducer)
-  const { visible } = useSelector(state => state.SkeletonReducer)
+  const { visibleSkeleton } = useSelector(state => state.SkeletonReducer)
   const dispatch = useDispatch()
 
   const handleOnDragEnd = (res) => {
@@ -27,7 +27,7 @@ export default function LinkCom() {
   }
 
   const renderLink = (list) => {
-    return visible ?
+    return visibleSkeleton ?
       Array(3).fill(0)
         .map((item, index) => (
           <div key={index} className="py-6 pl-6 pr-16 bg-white shadow-sm relative cursor-pointer rounded-sm mb-4">

@@ -3,6 +3,7 @@ const initialState = {
     bio: 'Stupid data',
     image: 'https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png',
     activeTheme: 0,
+    showLogo: true,
     themes: [
         {
             id: 0,
@@ -66,6 +67,10 @@ export const ProfileReducer = (state = initialState, action) => {
 
         case 'SELECT_THEME': {
             return {...state, activeTheme: action.id}
+        }
+
+        case 'TOGGLE_LOGO': {
+            return {...state, showLogo: !state.showLogo}
         }
 
         default:

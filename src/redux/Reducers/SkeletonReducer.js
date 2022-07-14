@@ -1,16 +1,16 @@
 const initialState = {
-    visible: null
+    visibleSkeleton: null
 }
 
 export const SkeletonReducer = (state = initialState, { type, payload }) => {
     switch (type) {
 
         case 'SHOW_SKELETON': {
-            return {...state, visible: true}
+            return {...state, visibleSkeleton: true}
         }
 
         case 'HIDE_SKELETON': {
-            return {...state, visible: false}
+            return {...state, visibleSkeleton: false}
         }
 
         default:

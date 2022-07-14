@@ -9,7 +9,7 @@ export default function DesignCom() {
   const { name, bio, image, themes, activeTheme } = useSelector(state => state.ProfileReducer)
   const dispatch = useDispatch()
 
-  //TODO: Skeleton data cho mỗi theme
+  //TODO: Skeleton data cho mỗi theme 
 
   const [displayBtn, setDisplayBtn] = useState(false)
   const [valueInput, setValueInput] = useState({
@@ -32,14 +32,14 @@ export default function DesignCom() {
 
   const renderThemes = () => {
     return themes.map((item) => {
-      return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={()=>{selectTheme(item.id)}}>
+      return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={() => { selectTheme(item.id) }}>
         <div className='rounded-xl relative p-1 transition-all' style={{ border: activeTheme === item.id ? '2px solid #0095f6' : '2px solid transparent' }}>
           <div style={{ backgroundColor: item.background }} className='theme-bg-box br-grey rounded-lg overflow-hidden flex flex-col justify-between relative'>
             <div className='pt-10 px-4 pb-0 w-full z-10 relative'>
-              <div className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
-              <div className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
-              <div className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
-              <div className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
+              {Array(4).fill(0)
+                .map((_, index) => (
+                  <div key={index} className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
+                ))}
             </div>
           </div>
         </div>
@@ -54,11 +54,12 @@ export default function DesignCom() {
         <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16">Profile</div>
         <div className="mt-8">
           <div className="flex">
-            <div className="w-full"><div>
-              <div className="input-main-wrap overflow-hidden	rounded-sm">
-                <input defaultValue={name} type="text" name="name" placeholder="Name" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
+            <div className="w-full">
+              <div>
+                <div className="input-main-wrap overflow-hidden	rounded-sm">
+                  <input defaultValue={name} type="text" name="name" placeholder="Name" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
+                </div>
               </div>
-            </div>
               <div className="mt-6">
                 <div className="input-main-wrap overflow-hidden	rounded-sm">
                   <input defaultValue={bio} type="text" maxLength="80" name="bio" placeholder="Bio" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './Modal.css'
 
@@ -10,7 +10,7 @@ export default function ModalHOC() {
     const myModal = useRef(null)
 
     window.onclick = (e) => {
-        if (e.target === myModal.current) { 
+        if (e.target === myModal.current) {
             cancelModal()
         }
     }

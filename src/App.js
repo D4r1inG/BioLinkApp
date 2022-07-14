@@ -15,6 +15,13 @@ export const history = createBrowserHistory();
 
 function App() {  
 
+  //TODO: custom hook => lưu cache
+  // Web component
+  // Model view controller
+  // One way data binding
+  // Babel, Flux
+  // useMemo, useCallback
+
   return (
     <Router history={history}>
       <ModalHOC />

@@ -1,0 +1,40 @@
+.stat-toolbar {
+    color: #6e6d7a
+}
+
+.stat-toolbar.active {
+    color: #000
+}
+
+.stat-toolbar.active:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: inline-block;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(112.44deg, #ff5858 2.09%, #c058ff 75.22%);
+    background-size: 165%;
+}
+
+.stat-progress-each {
+    height: 62px;
+    background: rgba(13, 12, 34, .03);
+    box-shadow: inset 0 0 8px hsl(0deg 0% 100% / 20%);
+}
+
+.limit-one-line{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.stat-progress-bar {
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: linear-gradient(90deg,rgba(0,149,246,.25),rgba(5,223,126,.25));
+}

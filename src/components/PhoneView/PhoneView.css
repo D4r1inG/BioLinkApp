@@ -37,3 +37,9 @@
     top: 0;
     z-index: -1
 }
+
+.page-logo {
+    bottom: 32px;
+    left: calc(50% - 15px);
+    position: absolute;
+}

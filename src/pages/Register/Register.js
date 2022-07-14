@@ -14,11 +14,13 @@ export default function Register() {
             username: '',
             password: '',
             email: '',
+            passwordConfirm: ''
         },
         errors: {
             email: '',
             username: '',
-            password: ''
+            password: '',
+            passwordConfirm: ''
         }
     })
 
@@ -39,6 +41,14 @@ export default function Register() {
             if (!re.test(value)) {
                 newError[name] = 'Email is invalid!'
             } else {
+                newError[name] = ''
+            }
+        }
+
+        if(name === 'passwordConfirm'){
+            if(value !== formInput.values.password){
+                newError[name] = 'Password does not match!'
+            }else{
                 newError[name] = ''
             }
         }
@@ -100,6 +110,7 @@ export default function Register() {
                         </div>
                     </div>
 
+                    
                     <div className="relative bl-input-with-suffix-wrap mt-6">
                         <div className={`input-main-wrap relative rounded-sm ${formInput.errors?.password !== '' ? 'input-error' : ''}`}>
                             <input name="password" placeholder="Password" type={showPassWord ? 'text' : 'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={(e) => { handleChange(e.target) }} />
@@ -115,6 +126,13 @@ export default function Register() {
                                 setShowPassWord(!showPassWord)
                             }}><path fillRule="evenodd" clipRule="evenodd" d="M5.74805 7.00018C5.74805 8.77796 7.20333 10.2244 9.00008 10.2244C10.7887 10.2244 12.244 8.77796 12.244 7.00018C12.244 5.21432 10.7887 3.76786 9.00008 3.76786C7.20333 3.76786 5.74805 5.21432 5.74805 7.00018ZM13.7806 2.03855C15.2033 3.13754 16.4147 4.74562 17.2846 6.75774C17.3497 6.91127 17.3497 7.08905 17.2846 7.23451C15.5448 11.2587 12.4472 13.6668 9.00008 13.6668H8.99195C5.55293 13.6668 2.45537 11.2587 0.715529 7.23451C0.650488 7.08905 0.650488 6.91127 0.715529 6.75774C2.45537 2.7335 5.55293 0.333496 8.99195 0.333496H9.00008C10.7237 0.333496 12.3578 0.931476 13.7806 2.03855ZM9.00106 9.01049C10.1149 9.01049 11.0254 8.10544 11.0254 6.99837C11.0254 5.88321 10.1149 4.97816 9.00106 4.97816C8.9035 4.97816 8.80594 4.98625 8.71651 5.00241C8.68399 5.8913 7.95228 6.60241 7.04984 6.60241H7.00919C6.9848 6.7317 6.96854 6.86099 6.96854 6.99837C6.96854 8.10544 7.87911 9.01049 9.00106 9.01049Z" fill="#230B34"></path>
                             </svg>
+                        </div>
+                    </div>
+
+                    <div className="relative bl-input-with-suffix-wrap mt-6">
+                        <div className={`input-main-wrap relative rounded-sm ${formInput.errors?.password !== '' ? 'input-error' : ''}`}>
+                            <input name="passwordConfirm" placeholder="Password confirm" type={showPassWord ? 'text' : 'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={(e) => { handleChange(e.target) }} />
+                            <span className="error">{formInput.errors?.passwordConfirm}</span>
                         </div>
 
                         <button type='submit' className="bl-btn bl-bg font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }}>

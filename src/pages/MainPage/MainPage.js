@@ -72,7 +72,7 @@ export default function Mainpage() {
                                 className={`${!isAnimate ? 'text-black' : ' text-white'} font-inter header_btn font-semibold cursor-pointer self-center duration-200 hover:text-gray-600`}>
                                 FAQ</div>
                             <div className="flex flex-grow flex-row-reverse">
-                                <NavLink to='/signup' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer  rounded-full py-2 px-6 duration-200  text-white hover:bg-gray-800`}>
+                                <NavLink to='/signup' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer  rounded-full py-2 px-6 duration-200 hover:bg-gray-800`}>
                                     Sign up
                                 </NavLink>
                                 <NavLink to='/login' className={`${!isAnimate ? 'text-black' : 'text-white'} font-inter header_btn font-semibold mr-8 cursor-pointer self-center duration-200 hover:text-gray-600`}>
@@ -513,10 +513,10 @@ export default function Mainpage() {
                                         </svg>
                                     </a>
                                 </div>
-                                <div className="font-inter font-medium mt-8 text-right text-black">© This page is made by
-                                    <a href="https://www.facebook.com/profile.php?id=100005135208157"
-                                        className="text-gradient">
-                                        D4rl1ng - quannt86</a> base on bio.link
+                                <div className="font-inter font-medium mt-8 text-right text-black">
+                                    © This page is made by <a href="https://www.facebook.com/profile.php?id=100005135208157" className="text-gradient">
+                                        D4rl1ng - quannt86
+                                    </a> base on bio.link
                                 </div>
                             </div>
                         </div>
