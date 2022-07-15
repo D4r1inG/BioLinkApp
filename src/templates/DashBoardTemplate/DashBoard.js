@@ -23,7 +23,7 @@ export const DashBoard = (props) => {
                     </div>
                     <div className='pt-8 pr-40 pb-24 w-full flex' style={{ paddingLeft: 'calc(40vw + 16px)' }}>
                         <div>
-                            <Navigation />
+                            <Navigation {...routeProps} />
                         </div>
                         <div className='ml-12 mt-4 w-full'>
                             <Component {...routeProps} />

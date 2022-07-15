@@ -131,7 +131,7 @@ export default function Register() {
 
                     <div className="relative bl-input-with-suffix-wrap mt-6">
                         <div className={`input-main-wrap relative rounded-sm ${formInput.errors?.password !== '' ? 'input-error' : ''}`}>
-                            <input name="passwordConfirm" placeholder="Password confirm" type={showPassWord ? 'text' : 'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={(e) => { handleChange(e.target) }} />
+                            <input name="passwordConfirm" placeholder="Password confirm" type={'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={(e) => { handleChange(e.target) }} />
                             <span className="error">{formInput.errors?.passwordConfirm}</span>
                         </div>
 

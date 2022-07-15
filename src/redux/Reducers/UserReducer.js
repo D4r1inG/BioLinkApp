@@ -1,5 +1,5 @@
-const initialState = {
 
+const initialState = {
 }
 
 export const UserReducer = (state = initialState, action) => {
@@ -8,7 +8,7 @@ export const UserReducer = (state = initialState, action) => {
         case 'LOGIN_ACTION': {
             const { accessToken } = action.data
             localStorage.setItem('accessToken', accessToken)
-            return state
+            return {state}
         }
 
         default:

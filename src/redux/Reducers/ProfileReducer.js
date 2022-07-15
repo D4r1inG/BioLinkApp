@@ -4,6 +4,7 @@ const initialState = {
     image: 'https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png',
     activeTheme: 0,
     showLogo: true,
+    showWarning: false,
     themes: [
         {
             id: 0,
@@ -15,16 +16,16 @@ const initialState = {
             boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(24 39 75 / 5%) 0px 0px 2px 1px inset',
             color: '#000000'
         },
-        {
-            id: 1,
-            name: 'Carbon',
-            background: '#131212',
-            btnRadius: '8px',
-            btnBg: '#212121',
-            btnBorder: '0px solid #ffffff',
-            boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(255 255 255 / 5%) 0px 0px 2px 1px inset',
-            color: '#ffffff'
-        },
+        // {
+        //     id: 1,
+        //     name: 'Carbon',
+        //     background: '#131212',
+        //     btnRadius: '8px',
+        //     btnBg: '#212121',
+        //     btnBorder: '0px solid #ffffff',
+        //     boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(255 255 255 / 5%) 0px 0px 2px 1px inset',
+        //     color: '#ffffff'
+        // },
         {
             id: 2,
             name: 'Sunny',
@@ -71,6 +72,10 @@ export const ProfileReducer = (state = initialState, action) => {
 
         case 'TOGGLE_LOGO': {
             return {...state, showLogo: !state.showLogo}
+        }
+
+        case 'TOGGLE_WARNING': {
+            return {...state, showWarning: !state.showWarning}
         }
 
         default:

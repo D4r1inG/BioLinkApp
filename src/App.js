@@ -9,12 +9,12 @@ import Login from "./pages/Login/Login";
 import ModalHOC from "./HOC/Modal/ModalHOC";
 import DesignCom from "./components/Design/DesignCom";
 import SettingCom from "./components/Setting/SettingCom";
+import Profile from "./pages/Profile/Profile";
 
 
 export const history = createBrowserHistory();
 
 function App() {  
-
   //TODO: custom hook => lưu cache
   // Web component
   // Model view controller
@@ -27,12 +27,13 @@ function App() {
       <ModalHOC />
       <Switch>
         <Route path="/" exact component={MainPage} />
+        <Route path="/profile/:username" exact component={Profile} />
         <Route path="/signup" exact component={Register} />
         <Route path="/login" exact component={Login} />
-        <DashBoard path="/link" exact Component={LinkCom} />
-        <DashBoard path="/design" exact Component={DesignCom} />
-        <DashBoard path="/stat" exact Component={Stat} />
-        <DashBoard path="/setting" exact Component={SettingCom} />
+        <DashBoard path="/dashboard/link" exact Component={LinkCom} />
+        <DashBoard path="/dashboard/design" exact Component={DesignCom} />
+        <DashBoard path="/dashboard/stat" exact Component={Stat} />
+        <DashBoard path="/dashboard/setting" exact Component={SettingCom} />
       </Switch>
     </Router>
   )

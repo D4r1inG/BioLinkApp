@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { getProfile } from '../../redux/Actions/ProfileAction'
 import { useSelector } from 'react-redux'
 import { getLinkDataFirstTime } from '../../redux/Actions/LinkAction'
 import { socialLinkList } from '../../utils/SocialLink'
-import './PhoneView.css'
 
-export default function PhoneView() {
+export default function Profile(props) {
+
+    // console.log(props.match)
 
     const { linkList, socialList } = useSelector(state => state.LinkReducer)
-    const { name, bio, image, activeTheme, themes, showLogo } = useSelector(state => state.ProfileReducer)
+    const { name, bio, image, activeTheme, themes, showLogo, showWarning } = useSelector(state => state.ProfileReducer)
     const dispatch = useDispatch()
 
     const [idVisible, setIdVisible] = useState([])
     const [theme, setTheme] = useState()
+    const [warning, setWarning]= useState(showWarning)
 
     useEffect(() => {
         dispatch(getLinkDataFirstTime())
+        // dispatch(getProfile(props.match.params.username))
     }, [])
 
     useEffect(() => {
@@ -88,10 +92,22 @@ export default function PhoneView() {
     }
 
     return (
-        <div className='overflow-auto phone_view transparent-scroll'>
+        <div>
+            <div className={`${warning ? 'flex' : 'hidden'} page-overlay justify-center items-center flex-col text-center`}>
+                <svg width="81" height="70" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M31.445 44.048a12.672 12.672 0 01-3.753-9.043A12.818 12.818 0 0140.53 22.159c3.517 0 6.755 1.424 9.047 3.753M53.13 37.281a12.812 12.812 0 01-10.294 10.314" stroke="#0D0C22" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M18.844 56.647C12.404 51.592 6.952 44.207 3 35.002c3.992-9.247 9.482-16.672 15.962-21.768C25.4 8.138 32.829 5.371 40.53 5.371c7.745 0 15.17 2.808 21.65 7.94M70.751 22.236c2.792 3.709 5.246 7.99 7.311 12.765-7.98 18.489-22.083 29.626-37.53 29.626a32.38 32.38 0 01-10.273-1.676M72.531 3l-64 64" stroke="#0D0C22" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                <h1 className="page-text-color mt-8 text-center page-overlay-title" >Sensitive Content</h1>
+                <div className="text-lg page-text-color mt-2 text-center page-overlay-text" >You must be of a legal age to
+                    view this content
+                </div>
+                <button className="mt-8 page-text-color page-overlay-btn" onClick={() => {
+                    setWarning(false)
+                }}>
+                    Yes, I’m 18 or older
+                </button>
+            </div>
             <div className=' w-full min-h-full flex justify-center relative'>
                 <div className='absolute inset-0 w-full -z-10 h-full' style={{ background: theme?.background }}></div>
-                <div style={{ width: '90%' }} className='mt-12 pb-32'>
+                <div style={{ width: '670px' }} className='mt-12 pb-32'>
                     <img style={{ width: '96px', height: '96px' }} className="display-image m-auto rounded-full" src={image} alt="D4rl1nG" />
                     <h2 style={{ fontSize: '18px', color: theme?.color }} className="font-semibold mt-4 text-center">
                         {name}
@@ -116,5 +132,6 @@ export default function PhoneView() {
                 </div>
             </div>
         </div>
+
     )
 }

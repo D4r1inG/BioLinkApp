@@ -12,6 +12,10 @@ export default function LinkCom() {
 
   const { linkList, socialList } = useSelector(state => state.LinkReducer)
   const { visibleSkeleton } = useSelector(state => state.SkeletonReducer)
+  const { userId } = useSelector(state => state.UserReducer)
+
+  console.log(userId)
+
   const dispatch = useDispatch()
 
   const handleOnDragEnd = (res) => {

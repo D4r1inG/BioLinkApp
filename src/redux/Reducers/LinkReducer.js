@@ -64,7 +64,7 @@ export const LinkReducer = (state = initialState, action) => {
                     newSocialListArr.push(updateSocialLink)
                 } else {
                     let newSocialLink = {
-                        id: Math.floor(Math.random() * 100),
+                        id: Math.floor(Math.random() * 10000),
                         link: value,
                         click: 0,
                         name: name

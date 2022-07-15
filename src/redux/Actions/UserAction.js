@@ -9,7 +9,8 @@ export const login = (infoUser) => {
                 type: 'LOGIN_ACTION',
                 data
             })
-            history.push('/link')
+
+            history.push('/dashboard/link')
 
         } catch (err) {
             console.log(err)

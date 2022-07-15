@@ -5,14 +5,16 @@ import { useDispatch } from 'react-redux'
 export default function SettingCom() {
 
   const dispatch = useDispatch()
-  const { showLogo } = useSelector(state => state.ProfileReducer)
+  const { showLogo, showWarning } = useSelector(state => state.ProfileReducer)
 
   const [displayBtn, setDisplayBtn] = useState(false)
   const [isHide, setIsHide] = useState()
+  const [warning, setWarning] = useState()
 
   useEffect(() => {
-      setIsHide(showLogo)
-  }, [showLogo])
+    setIsHide(showLogo)
+    setWarning(showWarning)
+  }, [showLogo, showWarning])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -21,6 +23,7 @@ export default function SettingCom() {
 
   return (
     <div>
+      <div className="font-inter font-semibold text-blDark text-2xl leading-6 flex items-center">Setting</div>
       <div className='bg-white round-sm shadow-sm p-8 mt-6'>
         <div>
           <div className="border-b-gray-100 border-b-2 py-8"><div className="flex justify-between"><div className="w-11/12 pr-24">
@@ -32,7 +35,7 @@ export default function SettingCom() {
           </div>
             <div>
               <label className="bl-toggle-btn relative inline-block ring-opacity-0">
-                <input  checked={isHide || false} type="checkbox" className="bl-toggle-input" onChange={() => { dispatch({ type: 'TOGGLE_LOGO' }) }} />
+                <input checked={isHide || false} type="checkbox" className="bl-toggle-input" onChange={() => { dispatch({ type: 'TOGGLE_LOGO' }) }} />
                 <span className="bl-toggle-slider absolute cursor-pointer rounded-52" >
                 </span>
               </label>
@@ -43,14 +46,14 @@ export default function SettingCom() {
         </div>
 
         <div>
-          <div className="border-b-gray-100 border-b-2 py-8"><div className="flex justify-between"><div className="w-11/12 pr-24">
+          <div className="py-8"><div className="flex justify-between"><div className="w-11/12 pr-24">
             <div className="font-inter font-semibold text-black text-xl leading-6 flex ">
               NSFW warning
             </div>
           </div>
             <div>
               <label className="bl-toggle-btn relative inline-block ring-opacity-0">
-                <input type="checkbox" className="bl-toggle-input" />
+                <input checked={warning || false} type="checkbox" className="bl-toggle-input" onClick={() => { dispatch({ type: 'TOGGLE_WARNING' }) }} />
                 <span className="bl-toggle-slider absolute cursor-pointer rounded-52" >
                 </span>
               </label>

@@ -10,25 +10,53 @@ export default function Mainpage() {
 
     window.onscroll = () => {
         if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-            header.current.classList.add('active')
+            header?.current.classList.add('active')
         } else {
-            header.current.classList.remove('active')
+            header?.current.classList.remove('active')
         }
 
         if ((document.body.scrollTop > 200 && document.body.scrollTop < 1000)
             || (document.documentElement.scrollTop > 200 && document.documentElement.scrollTop < 1000)) {
             setIsAnimate(true)
-            for (let item of svgHeader.current.children) {
+            for (let item of svgHeader?.current.children) {
                 item.attributes[1].value = 'white'
             }
         } else {
             setIsAnimate(false)
-            for (let item of svgHeader.current.children) {
+            for (let item of svgHeader?.current.children) {
                 item.attributes[1].value = 'black'
             }
         }
     }
 
+    // useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll)
+    //     return (
+    //         window.removeEventListener('scroll', handleScroll)
+    //     )
+    // })
+
+    // const handleScroll = (e) => {
+    //     console.log(e)
+    //     if (e.srcElement.body.scrollTop > 10 || e.srcElement.body.scrollTop > 10) {
+    //         header?.current.classList.add('active')
+    //     } else {
+    //         header?.current.classList.remove('active')
+    //     }
+
+    //     if ((document.body.scrollTop > 200 && document.body.scrollTop < 1000)
+    //         || (e.srcElement.body.scrollTop > 200 && e.srcElement.body.scrollTop < 1000)) {
+    //         setIsAnimate(true)
+    //         for (let item of svgHeader?.current.children) {
+    //             item.attributes[1].value = 'white'
+    //         }
+    //     } else {
+    //         setIsAnimate(false)
+    //         for (let item of svgHeader?.current.children) {
+    //             item.attributes[1].value = 'black'
+    //         }
+    //     }
+    // }
 
     return (
         <div>

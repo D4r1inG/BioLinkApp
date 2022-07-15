@@ -10,6 +10,7 @@ export default function DesignCom() {
   const dispatch = useDispatch()
 
   //TODO: Skeleton data cho mỗi theme 
+  //TODO: Người dùng tự tạo theme và có thể xóa được 
 
   const [displayBtn, setDisplayBtn] = useState(false)
   const [valueInput, setValueInput] = useState({

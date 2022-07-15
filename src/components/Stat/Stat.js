@@ -22,7 +22,7 @@ export default function Stat() {
             <div className="text-black text-sm font-inter font-semibold text-center">{item.click}</div>
             <div className="text-gray-500 text-sm font-inter font-normal">clicks</div>
           </div>
-          <div className="absolute stat-progress-bar" style={{ width: '10%' }}></div>
+          <div className="absolute stat-progress-bar" style={{ width: '70%' }}></div>
           {/* TODO: thay đổi width theo từng click count */}
         </div>
       </div>
@@ -44,7 +44,7 @@ export default function Stat() {
             <div className="text-black text-sm font-inter font-semibold text-center">{item.click}</div>
             <div className="text-gray-500 text-sm font-inter font-normal">clicks</div>
           </div>
-          <div className="absolute stat-progress-bar" style={{ width: '10%' }}></div>
+          <div className="absolute stat-progress-bar" style={{ width: '50%' }}></div>
           {/* TODO: thay đổi width theo từng click count */}
         </div>
       </div>
@@ -67,11 +67,23 @@ export default function Stat() {
 
       <div className='bg-white round-sm shadow-sm p-8 mt-6'>
         <div className="font-inter font-semibold text-black text-xl leading-6 mb-6">Top Links</div>
+        {linkList.length === 0 &&
+          <div className='flex justify-center items-center'>
+            <div className="grey-border-block w-2/5 mr-4"></div>
+            <div className="text-gray-500 text-sm font-inter font-normal " style={{ userSelect: 'none' }}>No data</div>
+            <div className="grey-border-block w-2/5 ml-4"></div>
+          </div>}
         {renderLink}
       </div>
 
       <div className='bg-white round-sm shadow-sm p-8 mt-6'>
         <div className="font-inter font-semibold text-black text-xl leading-6 mb-6">Top Socials</div>
+        {socialList.length === 0 &&
+          <div className='flex justify-center items-center'>
+            <div className="grey-border-block w-2/5 mr-4"></div>
+            <div className="text-gray-500 text-sm font-inter font-normal " style={{ userSelect: 'none' }}>No data</div>
+            <div className="grey-border-block w-2/5 ml-4"></div>
+          </div>}
         {renderSocialLink}
       </div>
     </div>
