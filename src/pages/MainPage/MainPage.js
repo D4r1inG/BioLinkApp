@@ -8,15 +8,23 @@ export default function Mainpage() {
     const header = useRef(null)
     const svgHeader = useRef(null)
 
-    window.onscroll = () => {
-        if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    useEffect(() => {
+        const onScroll = () => handleScroll(window.pageYOffset);
+        
+        // window.removeEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    const handleScroll = (offset) => {
+        if (offset > 10 || offset > 10) {
             header?.current.classList.add('active')
         } else {
             header?.current.classList.remove('active')
         }
 
         if ((document.body.scrollTop > 200 && document.body.scrollTop < 1000)
-            || (document.documentElement.scrollTop > 200 && document.documentElement.scrollTop < 1000)) {
+            || (offset > 200 && offset < 1000)) {
             setIsAnimate(true)
             for (let item of svgHeader?.current.children) {
                 item.attributes[1].value = 'white'
@@ -29,37 +37,8 @@ export default function Mainpage() {
         }
     }
 
-    // useEffect(() => {
-    //     window.addEventListener('scroll', handleScroll)
-    //     return (
-    //         window.removeEventListener('scroll', handleScroll)
-    //     )
-    // })
-
-    // const handleScroll = (e) => {
-    //     console.log(e)
-    //     if (e.srcElement.body.scrollTop > 10 || e.srcElement.body.scrollTop > 10) {
-    //         header?.current.classList.add('active')
-    //     } else {
-    //         header?.current.classList.remove('active')
-    //     }
-
-    //     if ((document.body.scrollTop > 200 && document.body.scrollTop < 1000)
-    //         || (e.srcElement.body.scrollTop > 200 && e.srcElement.body.scrollTop < 1000)) {
-    //         setIsAnimate(true)
-    //         for (let item of svgHeader?.current.children) {
-    //             item.attributes[1].value = 'white'
-    //         }
-    //     } else {
-    //         setIsAnimate(false)
-    //         for (let item of svgHeader?.current.children) {
-    //             item.attributes[1].value = 'black'
-    //         }
-    //     }
-    // }
-
     return (
-        <div>
+        <>
             <div id="parentSection" className={`${!isAnimate ? '' : 'bg_dark'} pt-24 bg_landing overflow-hidden`}>
                 <div ref={header} className="fixed top-0 left-0 right-0 z-40 nav-smooth text-white">
                     <div className="mx-8">
@@ -100,10 +79,10 @@ export default function Mainpage() {
                                 className={`${!isAnimate ? 'text-black' : ' text-white'} font-inter header_btn font-semibold cursor-pointer self-center duration-200 hover:text-gray-600`}>
                                 FAQ</div>
                             <div className="flex flex-grow flex-row-reverse">
-                                <NavLink to='/signup' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer  rounded-full py-2 px-6 duration-200 hover:bg-gray-800`}>
+                                <NavLink to='/signup' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer rounded-full py-2 px-6 `}>
                                     Sign up
                                 </NavLink>
-                                <NavLink to='/login' className={`${!isAnimate ? 'text-black' : 'text-white'} font-inter header_btn font-semibold mr-8 cursor-pointer self-center duration-200 hover:text-gray-600`}>
+                                <NavLink to='/login' className={`${!isAnimate ? 'text-black' : 'text-white'} font-inter header_btn font-semibold mr-8 cursor-pointer self-center`}>
                                     Log in
                                 </NavLink>
                             </div>
@@ -551,6 +530,6 @@ export default function Mainpage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

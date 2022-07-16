@@ -4,11 +4,11 @@ import { history } from '../../App'
 export const login = (infoUser) => {
     return async (dispatch) => {
         try {
-            const { data } = await userService.login(infoUser)
-            dispatch({
-                type: 'LOGIN_ACTION',
-                data
-            })
+            // const { data } = await userService.login(infoUser)
+            // dispatch({
+            //     type: 'LOGIN_ACTION',
+            //     data
+            // })
 
             history.push('/dashboard/link')
 

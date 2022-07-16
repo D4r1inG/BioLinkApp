@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useDispatch, useSelector } from 'react-redux'
 import { socialLinkList } from '../../utils/SocialLink'
+import Svg from '../Svg/Svg'
 
 export default function ModalSocial() {
 
@@ -92,7 +93,7 @@ export default function ModalSocial() {
                                         {(provided) => (
                                             <div key={index} {...provided.draggableProps} ref={provided.innerRef} className="relative input-main-wrap-with-border rounded-md overflow-hidden mb-3">
                                                 <span className="modal-logo-holder social-link-dark absolute">
-                                                    {socialLinkList.byName[item.name].svg}
+                                                    <Svg name={item.name} color={'black'} />
                                                 </span>
                                                 <input type="text" name={item.name} placeholder={socialLinkList.byName[item.name].placeHolder} defaultValue={item.link} maxLength="200" className="modal-input-box w-full py-2 font-normal font-inter placeholder-grey" onChange={handleChange} />
                                                 <div className="flex absolute right-0 top-0 modal-right-opt" {...provided.dragHandleProps}>
@@ -116,7 +117,7 @@ export default function ModalSocial() {
                     {unUsedSocialLink.map((item, index) => {
                         return <div key={index} className="relative input-main-wrap-with-border rounded-md overflow-hidden mb-3">
                             <span className="modal-logo-holder social-link-dark absolute">
-                                {socialLinkList.byName[item].svg}
+                                <Svg name={item} color={'black'} />
                             </span>
                             <input type="text" name={item} placeholder={`${socialLinkList.byName[item].placeHolder}`} maxLength="200" className="modal-input-box w-full py-2 font-normal font-inter placeholder-grey" onChange={handleChange} />
                         </div>

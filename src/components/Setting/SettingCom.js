@@ -53,7 +53,7 @@ export default function SettingCom() {
           </div>
             <div>
               <label className="bl-toggle-btn relative inline-block ring-opacity-0">
-                <input checked={warning || false} type="checkbox" className="bl-toggle-input" onClick={() => { dispatch({ type: 'TOGGLE_WARNING' }) }} />
+                <input checked={warning || false} type="checkbox" className="bl-toggle-input" onChange={() => { dispatch({ type: 'TOGGLE_WARNING' }) }} />
                 <span className="bl-toggle-slider absolute cursor-pointer rounded-52" >
                 </span>
               </label>

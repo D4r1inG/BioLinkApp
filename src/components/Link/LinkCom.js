@@ -7,15 +7,12 @@ import ModalAddNewLink from '../Modal/ModalAddNewLink'
 import ModalAddNewHeader from '../Modal/ModalAddNewHeader'
 import ModalEdit from '../Modal/ModalEdit'
 import ModalSocial from '../Modal/ModalSocial'
+import Svg from '../Svg/Svg'
 
 export default function LinkCom() {
 
   const { linkList, socialList } = useSelector(state => state.LinkReducer)
   const { visibleSkeleton } = useSelector(state => state.SkeletonReducer)
-  const { userId } = useSelector(state => state.UserReducer)
-
-  console.log(userId)
-
   const dispatch = useDispatch()
 
   const handleOnDragEnd = (res) => {
@@ -101,7 +98,7 @@ export default function LinkCom() {
         })
       }}>
         <span>
-          {socialLinkList.byName[item.name].svg}
+          <Svg name={item.name} color={'black'} />
         </span>
       </div>
     })
