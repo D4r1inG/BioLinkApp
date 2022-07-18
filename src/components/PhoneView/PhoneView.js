@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { getLinkDataFirstTime } from '../../redux/Actions/LinkAction'
 import { socialLinkList } from '../../utils/SocialLink'
+import MediaEmbed from '../MediaEmbed/MediaEmbed'
 import Svg from '../Svg/Svg'
 import './PhoneView.css'
 
@@ -58,18 +59,17 @@ export default function PhoneView() {
                     }
                 }}>
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
-                    <div style={{ minHeight: '60px' }} className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
-                        {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
-                        <span className="item-title text-center limit-one-line break-all overflow-hidden" style={{ color: theme?.colorLink }}>{item.linkHeader}</span>
+                    <div style={{ minHeight: '60px' }} className="z-10 py-2 cursor-pointer flex justify-between items-center relative">
+                        <img className='ml-3 rounded-full' src={item.imgSrc} alt={item.plugInName} style={{ width: '40px', height: '40px' }} />
+                        <span className="item-title limit-one-line break-all overflow-hidden pl-3 pr-12 flex-1 text-center" style={{ color: theme?.colorLink }}>{item.linkHeader}</span>
                         <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)' }} className="embed-ind-arrow-icon embed-ind-arrow" fill="#0D0C22" viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
                     </div>
                     <div className="transition-all" style={{ height: idVisible.indexOf(item.id) !== -1 ? '100%' : '0' }}>
-                        <div className="embed-wrap  relative">
-                            <div className=" embed-wrap-preview ">
-                                {/* <iframe style={{ height: idVisible.indexOf(item.id) !== -1 ? '80px' : '0' }} className='w-full transition-all' src={item.link} title="Player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
-                                {/*TODO: Thay đổi height theo mỗi plugin khác nhau */}
+                        <div className="embed-wrap relative">
+                            <div className={`${idVisible.indexOf(item.id) !== -1 ? 'block' : 'hidden'}`}>
+                                <MediaEmbed url={item.link} name={item.plugInName} />
                             </div>
                         </div>
                     </div>
@@ -89,10 +89,10 @@ export default function PhoneView() {
     }
 
     return (
-        <div className='overflow-auto phone_view transparent-scroll'>
+        <div className='overflow-auto phone_view transparent-scroll '>
             <div className=' w-full min-h-full flex justify-center relative'>
-                <img className={`pride-page-image ${!theme?.backgroundImg ? 'hidden' : 'block'}`} style={{zIndex: -1}} src={theme?.backgroundImg} alt="background" />
                 <div className='absolute inset-0 w-full -z-10 h-full ' style={{ background: theme?.background }}></div>
+                <img className={`pride-page-image ${!theme?.backgroundImg ? 'hidden' : 'block'}`} style={{ zIndex: -1 }} src={theme?.backgroundImg} alt="background" />
                 <div style={{ width: '90%' }} className='mt-12 pb-32'>
                     <img style={{ width: '96px', height: '96px' }} className="display-image m-auto rounded-full" src={image} alt="D4rl1nG" />
                     <h2 style={{ fontSize: '18px', color: theme?.colorHeader }} className="font-semibold mt-4 text-center">

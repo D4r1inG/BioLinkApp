@@ -22,7 +22,8 @@ export default function ModalAddNewHeader() {
             isHeader: true,
             isHide: false,
             isPlugIn: false,
-            imgSrc: ''
+            imgSrc: '',
+            plugInName: ''
         }
         dispatch(addNewLink(newLink))
     }

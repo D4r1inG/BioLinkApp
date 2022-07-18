@@ -4,7 +4,6 @@
 
 .embed-ind-arrow {
     height: 14px;
-    margin-bottom: 16px;
     position: absolute;
     right: 24px;
     top: calc(50% - 7px);
@@ -78,9 +77,8 @@
 
 .pride-page-image{
     height: 100%;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
     width: 100vw;
+    object-fit: cover;
+    position: fixed;
+    inset: 0;
 }

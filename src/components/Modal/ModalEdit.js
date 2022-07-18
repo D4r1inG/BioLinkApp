@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addNewLink, deleteLink, editLink } from '../../redux/Actions/LinkAction'
+import { deleteLink, editLink } from '../../redux/Actions/LinkAction'
+import MediaEmbed from '../MediaEmbed/MediaEmbed'
 
 export default function ModalAddNewHeader() {
 
@@ -40,7 +41,7 @@ export default function ModalAddNewHeader() {
                 <div className="input-main-wrap overflow-hidden	rounded-sm w-full">
                     <input defaultValue={linkEdit.linkHeader} onChange={handleChange} type="text" name="title" placeholder="Title" className="bl-input w-full p-4 text-sm font-normal font-inter tracking-wider placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
                 </div>
-                <div className="input-main-wrap overflow-hidden	rounded-sm w-full mt-2">
+                <div className="input-main-wrap overflow-hidden	rounded-sm w-full my-2">
                     <input defaultValue={linkEdit.link} onChange={handleChange} type="text" name="url" placeholder="URL" className="bl-input w-full p-4 text-sm font-normal font-inter tracking-wider placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
                 </div>
             </div>
@@ -51,7 +52,13 @@ export default function ModalAddNewHeader() {
         <div>
             <div className='flex mt-8 w-full justify-between'>
                 {renderInput()}
+                {linkEdit.isPlugIn ?
+                    <div className='ml-6 flex-shrink-0 relative'>
+                        <img src={linkEdit.imgSrc} style={{ width: '90px', height: '90px' }} alt={linkEdit.plugInName} />
+                    </div> : ''}
             </div>
+
+            {linkEdit.isPlugIn ? <MediaEmbed name={linkEdit.plugInName} url={linkEdit.link} /> : ''}
 
             <div className="flex justify-between w-full mt-8">
                 <div className="text-sm font-inter font-normal cursor-pointer text-red-500" onClick={() => {

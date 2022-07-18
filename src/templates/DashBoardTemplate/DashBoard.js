@@ -1,16 +1,14 @@
-import { Fragment } from 'react'
 import './DashBoard.css'
 import { Route } from "react-router-dom";
 import Header from '../../components/Header/Header';
 import Navigation from '../../components/Navigation/Navigation';
 import PhoneView from '../../components/PhoneView/PhoneView';
 
-
 export const DashBoard = (props) => {
     const { Component, ...rest } = props
 
     return <Route {...rest} render={(routeProps) => {
-        return <Fragment>
+        return <>
             <div className='-z-1' style={{ backgroundColor: 'rgba(0,0,0,.025)', minHeight: '100vh' }}>
                 <Header />
                 <div className='flex ' style={{ paddingTop: '60px' }}>
@@ -31,7 +29,7 @@ export const DashBoard = (props) => {
                     </div>
                 </div>
             </div>
-        </Fragment>
+        </>
     }} />
 }
 

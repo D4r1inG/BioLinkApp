@@ -22,7 +22,8 @@ export default function ModalAddNewLink() {
             isHeader: modalInput.url ? false : true,
             isHide: false,
             isPlugIn: false,
-            imgSrc: ''
+            imgSrc: '',
+            plugInName: ''
         }
         dispatch(addNewLink(newLink))
     }

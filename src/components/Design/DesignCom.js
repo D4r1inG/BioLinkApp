@@ -36,7 +36,7 @@ export default function DesignCom() {
       return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={() => { selectTheme(item.id) }}>
         <div className='rounded-xl relative p-1 transition-all' style={{ border: activeTheme === item.id ? '2px solid #0095f6' : '2px solid transparent' }}>
           <div style={{ backgroundColor: item.background }} className='theme-bg-box br-grey rounded-lg overflow-hidden flex flex-col justify-between relative'>
-            <img className="pride-page-image" src={item.backgroundImg || '1'} alt="background" onError={({ currentTarget }) => {
+            <img style={{position: 'absolute'}} className="pride-page-image" src={item.backgroundImg || '1'} alt="background" onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
               currentTarget.classList = "hidden";
             }} />
