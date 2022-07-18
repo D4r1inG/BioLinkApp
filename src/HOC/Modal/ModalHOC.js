@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useDetectClickOutside } from '../../utils/CustomHook'
 import './Modal.css'
 
 export default function ModalHOC() {
@@ -9,17 +10,13 @@ export default function ModalHOC() {
     const dispatch = useDispatch()
     const myModal = useRef(null)
 
-    window.onclick = (e) => {
-        if (e.target === myModal.current) {
-            cancelModal()
-        }
-    }
-
     const cancelModal = () => {
         dispatch({
             type: 'CLOSE_MODAL'
         })
     }
+
+    useDetectClickOutside(myModal, cancelModal)
 
     return (
         <div className={`${visible ? '' : 'hidden'} fixed w-screen z-50 h-screen inset-0  transition-all`} style={{ background: 'rgba(0, 0, 0, 0.8)' }} >

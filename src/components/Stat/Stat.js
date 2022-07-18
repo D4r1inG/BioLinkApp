@@ -13,7 +13,7 @@ export default function Stat() {
         <div className="font-inter font-bold text-xl text-gray-400 flex items-center flex-shrink-0">{index + 1}</div>
         <div className='stat-progress-each flex justify-between py-3 px-6 ml-4 w-full relative '>
           <div className="pr-8">
-            <div className="text-black text-sm font-inter font-semibold">{item.linkHeader}</div>
+            <div className="text-black text-sm font-inter font-semibold limit-one-line break-all">{item.linkHeader}</div>
             <div className="text-gray-500 text-sm font-inter font-normal limit-one-line break-all pr-8">
               {item.link}
             </div>

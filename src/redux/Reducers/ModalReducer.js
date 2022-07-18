@@ -1,5 +1,6 @@
 const initialState = {
   visible: false,
+  pluginVisible: false,
   modalHeader: '',
   component: null,
   loading: false,
@@ -31,6 +32,13 @@ export const ModalReducer = (state = initialState, action) => {
       return { ...state, visible: false, loading: false, component: null  }
     }
 
+    case "OPEN_PLUGIN": {
+      return {...state, pluginVisible: true}
+    }
+
+    case "CLOSE_PLUGIN": {
+      return {...state, pluginVisible: false}
+    }
 
     default:
       return state

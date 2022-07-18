@@ -47,7 +47,7 @@ export default function Profile(props) {
         return list?.filter(item => !item.isHide).map((item, index) => {
             if (item.isHeader) {
 
-                return <div key={index} style={{ color: theme?.colorHeader }} className="text-center font-bold text-base mt-9">
+                return <div key={index} style={{ color: theme?.colorHeader }} className="text-center font-bold text-base mt-9 limit-one-line break-all overflow-hidden">
                     {item.linkHeader}
                 </div>
 
@@ -64,7 +64,7 @@ export default function Profile(props) {
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
                     <div style={{ minHeight: '60px' }} className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
                         {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
-                        <span className="item-title text-center" style={{ color: theme?.colorLink }}>{item.linkHeader}</span>
+                        <span className="item-title text-center limit-one-line break-all" style={{ color: theme?.colorLink }}>{item.linkHeader}</span>
                         <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)' }} className="embed-ind-arrow-icon embed-ind-arrow" fill="#0D0C22" viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
@@ -85,7 +85,7 @@ export default function Profile(props) {
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
                     <a style={{ minHeight: '60px' }} href={item.link} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
                         {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
-                        <span className="item-title text-center" style={{ color: theme?.colorLink }}>{item.linkHeader}</span>
+                        <span className="item-title text-center limit-one-line break-all overflow-hidden px-4" style={{ color: theme?.colorLink }}>{item.linkHeader}</span>
                     </a>
                 </div>
             }

@@ -10,6 +10,7 @@ import ModalHOC from "./HOC/Modal/ModalHOC";
 import DesignCom from "./components/Design/DesignCom";
 import SettingCom from "./components/Setting/SettingCom";
 import Profile from "./pages/Profile/Profile";
+import ModalSelectPlugin from "./components/Modal/ModalSelectPlugin";
 
 
 export const history = createBrowserHistory();
@@ -25,6 +26,7 @@ function App() {
   return (
     <Router history={history}>
       <ModalHOC />
+      <ModalSelectPlugin />
       <Switch>
         <Route path="/" exact component={MainPage} />
         <Route path="/profile/:username" exact component={Profile} />
