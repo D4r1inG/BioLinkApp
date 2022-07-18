@@ -12,7 +12,7 @@ export const ModalReducer = (state = initialState, action) => {
 
     case "MODAL_ADD_NEW": {
       state.component = action.component
-      return { ...state, visible: true, modalHeader: action.modalHeader}
+      return { ...state, visible: true, modalHeader: action.modalHeader, pluginVisible: false}
     }
 
     case "MODAL_EDIT": {

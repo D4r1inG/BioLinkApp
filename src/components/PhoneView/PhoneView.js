@@ -68,7 +68,7 @@ export default function PhoneView() {
                     <div className="transition-all" style={{ height: idVisible.indexOf(item.id) !== -1 ? '100%' : '0' }}>
                         <div className="embed-wrap  relative">
                             <div className=" embed-wrap-preview ">
-                                <iframe style={{ height: idVisible.indexOf(item.id) !== -1 ? '80px' : '0' }} className='w-full transition-all' src={item.link} title="Player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                                {/* <iframe style={{ height: idVisible.indexOf(item.id) !== -1 ? '80px' : '0' }} className='w-full transition-all' src={item.link} title="Player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
                                 {/*TODO: Thay đổi height theo mỗi plugin khác nhau */}
                             </div>
                         </div>

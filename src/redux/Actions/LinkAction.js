@@ -37,16 +37,7 @@ export const getLinkData = () => {
     }
 }
 
-export const addNewLink = (data) => {
-    let newLink = {
-        linkHeader: data.title,
-        link: data.url || '',
-        click: 0,
-        isHeader: data.url ? false : true,
-        ishide: false,
-        isPlugIn: false
-    }
-
+export const addNewLink = (newLink) => {
     return async (dispatch) => {
         dispatch({
             type: 'DISLAY_LOADING',

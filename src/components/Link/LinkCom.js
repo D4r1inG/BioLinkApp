@@ -60,13 +60,16 @@ export default function LinkCom() {
                   </div>
                   :
                   <div className="flex items-center justify-between">
-                    <div className="flex">
-                      <div className="py-2 flex justify-between flex-col">
-                        <div className="text-sm font-inter font-bold text-black leading-6 overflow-hidden break-all limit-one-line">
-                          {item.linkHeader}
-                        </div>
-                        <div className="text-sm font-inter font-normal overflow-hidden break-all cursor-pointer limit-one-line">
-                          {item.link}
+                    <div className='flex items-center'>
+                      {item.imgSrc ? <img className='w-full h-full mr-3' src={item.imgSrc} alt={item.linkHeader} style={{width: '52px', height: '52px'}} /> : ""}
+                      <div className="flex">
+                        <div className="py-2 flex justify-between flex-col">
+                          <div className="text-sm font-inter font-bold text-black leading-6 overflow-hidden break-all limit-one-line">
+                            {item.linkHeader}
+                          </div>
+                          <div className="text-sm font-inter font-normal overflow-hidden break-all cursor-pointer limit-one-line">
+                            {item.link}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -116,8 +119,8 @@ export default function LinkCom() {
         }}>
           <span className="font-bold">+ ADD LINK</span>
         </button>
-        <div style={{ whiteSpace: 'nowrap' }} className="px-8 uppercase tracking-wide bg-blPrimary w-165 rounded-md select-none cursor-pointer hover:opacity-95 font-inter text-sm font-semibold text-white flex flex-col justify-center items-center text-center" onClick={()=>{
-          dispatch({type: 'OPEN_PLUGIN'})
+        <div style={{ whiteSpace: 'nowrap' }} className="px-8 uppercase tracking-wide bg-blPrimary w-165 rounded-md select-none cursor-pointer hover:opacity-95 font-inter text-sm font-semibold text-white flex flex-col justify-center items-center text-center" onClick={() => {
+          dispatch({ type: 'OPEN_PLUGIN' })
         }}>
           + ADD EMBED
         </div>

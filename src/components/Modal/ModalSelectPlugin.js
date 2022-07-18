@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useDetectClickOutside } from '../../utils/CustomHook'
+import ModalAddNewPlugin from './ModalAddNewPlugin'
 
 export default function ModalSelectPlugin() {
 
@@ -41,9 +42,15 @@ export default function ModalSelectPlugin() {
                                 </div>
                                 <div className='grid grid-cols-2 items-center'>
                                     <div>
-                                        <div className="flex items-center justify-betweeen px-3  h-20 cursor-pointer rounded-lg hover:bg-gray-100 justify-between" >
+                                        <div className="flex items-center justify-betweeen px-3  h-20 cursor-pointer rounded-lg hover:bg-gray-100 justify-between" onClick={() => {
+                                            dispatch({
+                                                type: "MODAL_ADD_NEW",
+                                                modalHeader: 'Youtube',
+                                                component: <ModalAddNewPlugin />
+                                            })
+                                        }}>
                                             <div className="" style={{ flex: '0 0 48px' }}>
-                                                <img src="https://cdn.bio.link/biolink/icons/embed-youtube-new.png" alt="youtube" />
+                                                <img src={`/assets/Imgs/embed-youtube-new.png`} alt="youtube" />
                                             </div>
                                             <div className="flex w-full items-center ml-3 pr-3 justify-between" >
                                                 <div>
@@ -66,9 +73,15 @@ export default function ModalSelectPlugin() {
                                     </div>
 
                                     <div>
-                                        <div className="flex items-center justify-betweeen px-3  h-20 cursor-pointer rounded-lg hover:bg-gray-100 justify-between" >
+                                        <div className="flex items-center justify-betweeen px-3  h-20 cursor-pointer rounded-lg hover:bg-gray-100 justify-between" onClick={() => {
+                                            dispatch({
+                                                type: "MODAL_ADD_NEW",
+                                                modalHeader: 'Spotify',
+                                                component: <ModalAddNewPlugin />
+                                            })
+                                        }}>
                                             <div className="" style={{ flex: '0 0 48px' }}>
-                                                <img src="https://cdn.bio.link/biolink/icons/embed-spotify-new.png" alt="spotify" />
+                                                <img src={`/assets/Imgs/embed-spotify-new.png`} alt="spotify" />
                                             </div>
                                             <div className="flex w-full items-center ml-3 pr-3 justify-between" >
                                                 <div>
@@ -98,7 +111,7 @@ export default function ModalSelectPlugin() {
                                 <div>
                                     <div className="flex items-center justify-betweeen px-3  h-20 cursor-pointer rounded-lg hover:bg-gray-100 justify-between" >
                                         <div className="" style={{ flex: '0 0 48px' }}>
-                                            <img src="https://cdn.bio.link/biolink/icons/embed-contactform-new.png" alt="forms" />
+                                            <img src={`/assets/Imgs/embed-contactform-new.png`} alt="forms" />
                                         </div>
                                         <div className="flex w-full items-center ml-3 pr-3 justify-between" >
                                             <div>
@@ -123,7 +136,7 @@ export default function ModalSelectPlugin() {
                                 <div>
                                     <div className="flex items-center justify-betweeen px-3  h-20 cursor-pointer rounded-lg hover:bg-gray-100 justify-between" >
                                         <div className="" style={{ flex: '0 0 48px' }}>
-                                            <img src="https://cdn.bio.link/biolink/icons/embed-story-new.png" alt="spotify" />
+                                            <img src={`/assets/Imgs/embed-story-new.png`} alt="spotify" />
                                         </div>
                                         <div className="flex w-full items-center ml-3 pr-3 justify-between" >
                                             <div>
