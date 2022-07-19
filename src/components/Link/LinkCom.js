@@ -44,7 +44,7 @@ export default function LinkCom() {
       list.map((item, index) => (
         <Draggable key={item.id} draggableId={item.id} index={index} >
           {(provided) => (
-            <div className='mb-4 relative' key={index} {...provided.draggableProps} ref={provided.innerRef} onClick={() => {
+            <div className={`mb-4 relative ${item.isHide ? 'opacity-60' : ''}`} key={index} {...provided.draggableProps} ref={provided.innerRef} onClick={() => {
               dispatch({
                 type: 'MODAL_EDIT',
                 modalHeader: `Edit ${item.isHeader ? 'header' : ''}`,
