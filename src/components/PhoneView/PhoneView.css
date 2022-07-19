@@ -20,7 +20,6 @@
 
 .embed-wrap {
     height: 100%;
-    padding: 8px;
     width: 100%;
 }
 
@@ -59,7 +58,7 @@
     font-size: 30px;
 }
 
-.page-text-color{
+.page-text-color {
     color: #0D0C22;
 }
 
@@ -68,14 +67,14 @@
     border-radius: 6px;
     cursor: pointer;
     display: inline-block;
-    font-family: Inter,sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1.2em;
     padding: 10px 30px;
     text-decoration: none;
     border: 2px solid #0D0C22;
 }
 
-.pride-page-image{
+.pride-page-image {
     height: 100%;
     width: 100vw;
     object-fit: cover;

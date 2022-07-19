@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 
 export function useDetectClickOutside(ref, callback) {
@@ -13,4 +14,9 @@ export function useDetectClickOutside(ref, callback) {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [ref, callback]);
+}
+
+export function useQuery() {
+    const { search } = useLocation();
+    return React.useMemo(() => new URLSearchParams(search), [search]);
 }

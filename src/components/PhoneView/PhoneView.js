@@ -66,12 +66,8 @@ export default function PhoneView() {
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
                     </div>
-                    <div className="transition-all" style={{ height: idVisible.indexOf(item.id) !== -1 ? '100%' : '0' }}>
-                        <div className="embed-wrap relative">
-                            <div className={`${idVisible.indexOf(item.id) !== -1 ? 'block' : 'hidden'}`}>
-                                <MediaEmbed url={item.link} name={item.plugInName} />
-                            </div>
-                        </div>
+                    <div className={`embed-wrap relative ${idVisible.indexOf(item.id) !== -1 ? 'py-4' : 'py-0'} px-4 transition-all duration-200 `}>
+                        <MediaEmbed url={item.link} name={item.plugInName} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
                     </div>
                 </div>
 
@@ -92,7 +88,7 @@ export default function PhoneView() {
         <div className='overflow-auto phone_view transparent-scroll '>
             <div className=' w-full min-h-full flex justify-center relative'>
                 <div className='absolute inset-0 w-full -z-10 h-full ' style={{ background: theme?.background }}></div>
-                <img className={`pride-page-image ${!theme?.backgroundImg ? 'hidden' : 'block'}`} style={{ zIndex: -1 }} src={theme?.backgroundImg} alt="background" />
+                <img className={`pride-page-image ${!theme?.backgroundImg ? 'hidden' : 'block'} `} style={{ zIndex: -1, position: 'absolute' }} src={theme?.backgroundImg} alt="background" />
                 <div style={{ width: '90%' }} className='mt-12 pb-32'>
                     <img style={{ width: '96px', height: '96px' }} className="display-image m-auto rounded-full" src={image} alt="D4rl1nG" />
                     <h2 style={{ fontSize: '18px', color: theme?.colorHeader }} className="font-semibold mt-4 text-center">

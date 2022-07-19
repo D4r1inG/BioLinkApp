@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { register } from '../../redux/Actions/UserAction'
@@ -7,6 +8,8 @@ import './Register.css'
 export default function Register() {
 
     const [showPassWord, setShowPassWord] = useState(false)
+    const { loading } = useSelector(state => state.ModalReducer)
+    const { registerStatus } = useSelector(state => state.UserReducer)
     const dispatch = useDispatch()
 
     const [formInput, setFormInput] = useState({
@@ -45,17 +48,17 @@ export default function Register() {
             }
         }
 
-        if(name === 'passwordConfirm'){
-            if(value !== formInput.values.password){
+        if (name === 'passwordConfirm') {
+            if (value !== formInput.values.password) {
                 newError[name] = 'Password does not match!'
-            }else{
+            } else {
                 newError[name] = ''
             }
         }
 
         setFormInput({
-            values: {...newValue},
-            errors: {...newError}
+            values: { ...newValue },
+            errors: { ...newError }
         })
     }
 
@@ -64,14 +67,28 @@ export default function Register() {
         let valid = true
 
         for (let key of Object.keys(formInput.errors)) {
-            if (formInput.errors[key]) {
+            if (formInput.errors[key] !== '') {
                 valid = false
             }
         }
 
         if (valid) {
             dispatch(register(formInput.values))
-        }else{
+        } else {
+            return
+        }
+    }
+
+    const renderMessage = () => {
+        if (registerStatus.success === 1) {
+            return <div className='mb-4 bg-green-100 p-6 text-center' >
+                <p className='text-gray-600'>An confirmation email has been send to your email.</p>
+            </div>
+        } else if (registerStatus.success === 0) {
+            return <div className='mb-4 bg-red-100 p-6 text-center' >
+                <p className='text-red-500 font-semibold'>{registerStatus.message}</p>
+            </div>
+        } else {
             return
         }
     }
@@ -89,7 +106,8 @@ export default function Register() {
                     </div>
                 </div>
             </div>
-            <div className='mt-16  h-full' style={{ width: '400px' }}>
+            <div className='mt-8  h-full' style={{ width: '400px' }}>
+                {renderMessage()}
                 <form className='bg-white p-8 rounded-md' onSubmit={handleSubmit}>
                     <div className="flex w-full">
                         <div className=" font-bold text-xl w-full">Sign up</div>
@@ -110,7 +128,7 @@ export default function Register() {
                         </div>
                     </div>
 
-                    
+
                     <div className="relative bl-input-with-suffix-wrap mt-6">
                         <div className={`input-main-wrap relative rounded-sm ${formInput.errors?.password !== '' ? 'input-error' : ''}`}>
                             <input name="password" placeholder="Password" type={showPassWord ? 'text' : 'password'} className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={(e) => { handleChange(e.target) }} />
@@ -136,8 +154,9 @@ export default function Register() {
                         </div>
 
                         <button type='submit' className="bl-btn bl-bg font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }}>
-                            <span className="">sign up with email</span>
-                            {/* <span className="bl-circle-loader absolute hidden"></span>  */}
+                            <span className={`${!loading ? 'block' : 'hidden'}`}>sign up with email</span>
+                            <span className={`bl-circle-loader absolute ${loading ? 'block' : 'hidden'}`}>
+                            </span>
                             {/* Loader */}
                         </button>
                     </div>
@@ -157,8 +176,7 @@ export default function Register() {
                                 </span>
                                 <span className="w-155 text-left">Sign up with Facebook</span>
                             </span>
-                            <span className="bl-circle-loader absolute hidden">
-                            </span>
+
                         </button>
                     </a>
                 </form>

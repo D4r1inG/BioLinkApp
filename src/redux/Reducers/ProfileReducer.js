@@ -4,7 +4,7 @@ const initialState = {
     image: 'https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png',
     activeTheme: 2,
     showLogo: true,
-    showWarning: true,
+    showWarning: false,
     themes: [
         {
             id: 0,

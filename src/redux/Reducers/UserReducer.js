@@ -1,5 +1,9 @@
 
 const initialState = {
+    registerStatus: {
+        message: null,
+        success: null
+    }
 }
 
 export const UserReducer = (state = initialState, action) => {
@@ -8,7 +12,11 @@ export const UserReducer = (state = initialState, action) => {
         case 'LOGIN_ACTION': {
             const { accessToken } = action.data
             localStorage.setItem('accessToken', accessToken)
-            return {state}
+            return { ...state }
+        }
+
+        case 'SET_REGISTER_STATUS': {
+            return { ...state, registerStatus: action.data }
         }
 
         default:

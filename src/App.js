@@ -11,6 +11,7 @@ import DesignCom from "./components/Design/DesignCom";
 import SettingCom from "./components/Setting/SettingCom";
 import Profile from "./pages/Profile/Profile";
 import ModalSelectPlugin from "./components/Modal/ModalSelectPlugin";
+import ConfirmPage from "./pages/ConfirmPage/ConfirmPage";
 
 
 export const history = createBrowserHistory();
@@ -22,6 +23,8 @@ function App() {
   // One way data binding
   // Babel, Flux
   // useMemo, useCallback
+  //Uncontrolled component
+  //Form => use uncontrolled component
 
   return (
     <Router history={history}>
@@ -37,6 +40,7 @@ function App() {
         <DashBoard path="/dashboard/stat" exact Component={Stat} />
         <DashBoard path="/dashboard/setting" exact Component={SettingCom} />
       </Switch>
+      {/* <ConfirmPage /> */}
     </Router>
   )
 }
