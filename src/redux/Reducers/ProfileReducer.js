@@ -1,10 +1,10 @@
 const initialState = {
     name: 'Daling',
-    bio: 'Stupid data',
+    bio: 'Xin chao mng',
     image: 'https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png',
-    activeTheme: 2,
+    activeTheme: 5,
     showLogo: true,
-    showWarning: false,
+    showWarning: true,
     themes: [
         {
             id: 0,

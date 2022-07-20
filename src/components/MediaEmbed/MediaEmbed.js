@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import AnimateHeight from 'react-animate-height';
 
-
 const youtubeURLRegex = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 
 export default function MediaEmbed(props) {
 
     const [height, setHeight] = useState(0)
-    const { url, name, hide } = props
+    const { url, name, hide, isAnimated } = props
 
     useEffect(() => {
         switch (name) {
@@ -46,8 +45,15 @@ export default function MediaEmbed(props) {
     }
 
     return (
-        <AnimateHeight className='rounded-3xl' duration={500} height={hide ? 0 : height}>
-            {renderIframe()}
-        </AnimateHeight>
+        <>
+            {
+                isAnimated ? <AnimateHeight className='rounded-3xl' duration={500} height={hide ? 0 : height}>
+                    {renderIframe()}
+                </AnimateHeight> :
+                <>
+                    {renderIframe()}
+                </>
+            }
+        </>
     )
 }

@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useQuery } from '../../utils/CustomHook'
 
 export default function ConfirmPage() {
 
     let query = useQuery()
-
     console.log(query.get('code'))
+
+    useEffect(()=>{
+        // TODO: Đưa token lên backend để verify
+    },[])
 
     return (
         <>

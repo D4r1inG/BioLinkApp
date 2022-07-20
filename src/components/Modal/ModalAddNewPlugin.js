@@ -117,7 +117,7 @@ export default function ModalAddNewPlugin() {
 
     const renderIframe = () => {
         if (modalInput.url !== '' && error.url === '') {
-            return <MediaEmbed name={modalHeader} url={modalInput.url} />
+            return <MediaEmbed name={modalHeader} url={modalInput.url} isAnimated={true} />
         }
     }
 

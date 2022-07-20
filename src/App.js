@@ -35,12 +35,13 @@ function App() {
         <Route path="/profile/:username" exact component={Profile} />
         <Route path="/signup" exact component={Register} />
         <Route path="/login" exact component={Login} />
-        <DashBoard path="/dashboard/link" exact Component={LinkCom} />
-        <DashBoard path="/dashboard/design" exact Component={DesignCom} />
-        <DashBoard path="/dashboard/stat" exact Component={Stat} />
-        <DashBoard path="/dashboard/setting" exact Component={SettingCom} />
+        <DashBoard path="/dashboard/link" exact ComponentRender={LinkCom} />
+        <DashBoard path="/dashboard/design" exact ComponentRender={DesignCom} />
+        <DashBoard path="/dashboard/stat" exact ComponentRender={Stat} />
+        <DashBoard path="/dashboard/setting" exact ComponentRender={SettingCom} />
       </Switch>
-      {/* <ConfirmPage /> */}
+      {/* <ConfirmPage />  */}
+      {/* TODO: Sửa layout  */}
     </Router>
   )
 }

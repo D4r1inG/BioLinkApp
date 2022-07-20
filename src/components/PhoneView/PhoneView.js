@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { getLinkDataFirstTime } from '../../redux/Actions/LinkAction'
-import { socialLinkList } from '../../utils/SocialLink'
 import MediaEmbed from '../MediaEmbed/MediaEmbed'
 import Svg from '../Svg/Svg'
 import './PhoneView.css'
@@ -67,7 +66,7 @@ export default function PhoneView() {
                         </svg>
                     </div>
                     <div className={`embed-wrap relative ${idVisible.indexOf(item.id) !== -1 ? 'py-4' : 'py-0'} px-4 transition-all duration-200 `}>
-                        <MediaEmbed url={item.link} name={item.plugInName} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
+                        <MediaEmbed url={item.link} name={item.plugInName} isAnimated={true} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
                     </div>
                 </div>
 

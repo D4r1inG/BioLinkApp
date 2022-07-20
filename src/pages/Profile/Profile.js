@@ -71,7 +71,7 @@ export default function Profile(props) {
                         </svg>
                     </div>
                     <div className={`embed-wrap relative ${idVisible.indexOf(item.id) !== -1 ? 'py-4' : 'py-0'} px-4 transition-all duration-200`}>
-                        <MediaEmbed url={item.link} name={item.plugInName} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
+                        <MediaEmbed isAnimated={true} url={item.link} name={item.plugInName} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
                     </div>
                 </div>
 

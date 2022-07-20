@@ -3,10 +3,9 @@ import { Route } from "react-router-dom";
 import Header from '../../components/Header/Header';
 import Navigation from '../../components/Navigation/Navigation';
 import PhoneView from '../../components/PhoneView/PhoneView';
-import Profile from '../../pages/Profile/Profile';
 
 export const DashBoard = (props) => {
-    const { Component, ...rest } = props
+    const { ComponentRender, ...rest } = props
 
     return <Route {...rest} render={(routeProps) => {
         return <>
@@ -28,7 +27,7 @@ export const DashBoard = (props) => {
                             <Navigation {...routeProps} />
                         </div>
                         <div className='ml-12 mt-4 w-full'>
-                            <Component {...routeProps} />
+                            <ComponentRender {...routeProps} />
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 
 
 export function useDetectClickOutside(ref, callback) {
-    useEffect(() => {
+    React.useEffect(() => {
         function handleClickOutside(e) {
             if (ref.current && ref.current === e.target) {
                 callback()

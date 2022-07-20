@@ -58,7 +58,7 @@ export default function ModalAddNewHeader() {
                     </div> : ''}
             </div>
 
-            {linkEdit.isPlugIn ? <MediaEmbed name={linkEdit.plugInName} url={linkEdit.link} /> : ''}
+            {linkEdit.isPlugIn ? <MediaEmbed name={linkEdit.plugInName} url={linkEdit.link} hide={false} isAnimated={false} /> : ''}
 
             <div className="flex justify-between w-full mt-8">
                 <div className="text-sm font-inter font-normal cursor-pointer text-red-500" onClick={() => {

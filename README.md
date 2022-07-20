@@ -1,4 +1,4 @@
-# Getting Started with BioLink app
+# BioLink app project by Sieu nhan cuong phong
 This project was built base on bio.link
 
 ## Available Scripts
@@ -22,10 +22,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Chức năng đang thực hiện 
 * Tự tạo theme 
-* Ảnh cho mỗi link (chưa có server để lưu huhuh)
-* Cập nhật sắp xếp link trên database 
-* Thay dummy data bằng data lấy từ Api từ backend cho các chức năng (Hiện tại mới lấy data link từ mockApi)
-* Chức năng logout
-* Performent !!! IMPORTANT
-* OATH2 with github
 * Comment profile
+* Rating profile
+* Ảnh cho mỗi link (chưa có server để lưu huhu)
+* Cập nhật sắp xếp link trên database 
+* Thay dummy data bằng data lấy từ Api từ backend cho các chức năng (Hiện tại mới lấy data cho link từ mockApi)
+* Chức năng logout
+* Performent !!!IMPORTANT
+* OATH2 with github
