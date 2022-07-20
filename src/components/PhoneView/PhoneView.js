@@ -49,7 +49,7 @@ export default function PhoneView() {
         return list?.filter(item => !item.isHide).map((item, index) => {
             if (item.isHeader) {
 
-                return <div key={index} style={{ color: theme?.colorHeader, fontFamily: theme?.fontFamily }} className="text-center font-bold text-base mt-9 limit-one-line break-all overflow-hidden">
+                return <div key={index} style={{ color: theme?.colorHeader, fontFamily: theme?.fontFamily }} className="transition-all text-center font-bold text-base mt-9 limit-one-line break-all overflow-hidden">
                     {item.linkHeader}
                 </div>
 
@@ -63,11 +63,11 @@ export default function PhoneView() {
                         setIdVisible([...idVisible.filter(id => id !== item.id)])
                     }
                 }}>
-                    <div style={pageItem} className="flex justify-center items-center pill-item"></div>
+                    <div style={pageItem} className="flex justify-center items-center pill-item transition-all"></div>
                     <div style={{ minHeight: '60px' }} className="z-10 py-2 cursor-pointer flex justify-between items-center relative">
                         <img className='ml-3 rounded-full' src={item.imgSrc} alt={item.plugInName} style={{ width: '40px', height: '40px' }} />
-                        <span className="item-title limit-one-line break-all overflow-hidden pl-3 pr-12 flex-1 text-center" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
-                        <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)' }} className="embed-ind-arrow-icon embed-ind-arrow" fill="#0D0C22" viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
+                        <span className="item-title limit-one-line break-all overflow-hidden pl-3 pr-12 flex-1 text-center transition-all" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
+                        <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)' }} className="embed-ind-arrow-icon embed-ind-arrow" fill={theme?.colorLink} viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
                     </div>
@@ -79,10 +79,10 @@ export default function PhoneView() {
             } else {
 
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" >
-                    <div style={pageItem} className="flex justify-center items-center pill-item"></div>
+                    <div style={pageItem} className="flex justify-center items-center pill-item transition-all"></div>
                     <a style={{ minHeight: '60px' }} href={item.link} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
                         {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
-                        <span className="item-title text-center limit-one-line break-all overflow-hidden px-4" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
+                        <span className="item-title text-center limit-one-line break-all overflow-hidden px-4 transition-all" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
                     </a>
                 </div>
             }
@@ -96,10 +96,10 @@ export default function PhoneView() {
                 <img className={`pride-page-image ${!theme?.backgroundImg ? 'hidden' : 'block'} `} style={{ zIndex: -1, position: 'absolute' }} src={theme?.backgroundImg} alt="background" />
                 <div style={{ width: '90%' }} className='mt-12 pb-32'>
                     <img style={{ width: '96px', height: '96px' }} className="display-image m-auto rounded-full" src={image} alt="D4rl1nG" />
-                    <h2 style={{ fontSize: '18px', color: theme?.colorHeader, fontFamily: theme?.fontFamily }} className="font-semibold mt-4 text-center">
+                    <h2 style={{ fontSize: '18px', color: theme?.colorHeader, fontFamily: theme?.fontFamily }} className="font-semibold mt-4 text-center transition-all">
                         {name}
                     </h2>
-                    <div className="text-base font-normal mt-3 text-center" style={{ color: theme?.colorHeader, fontFamily: theme?.fontFamily }}>
+                    <div className="text-base font-normal mt-3 text-center transition-all" style={{ color: theme?.colorHeader, fontFamily: theme?.fontFamily }}>
                         {bio}
                     </div>
                     <div className="flex justify-center items-center flex-wrap mt-4">

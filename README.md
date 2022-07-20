@@ -21,7 +21,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 * Page profile 
 
 ## Chức năng đang thực hiện 
-* Tự tạo theme 
+* Tự tạo theme (Done)
 * Comment profile
 * Rating profile
 * Ảnh cho mỗi link (chưa có server để lưu huhu)

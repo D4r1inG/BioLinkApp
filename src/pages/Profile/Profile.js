@@ -67,8 +67,8 @@ export default function Profile(props) {
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
                     <div style={{ minHeight: '60px' }} className="z-10 py-2 cursor-pointer flex justify-between items-center relative">
                         <img className='ml-3 rounded-full' src={item.imgSrc} alt="youtube" style={{ width: '40px', height: '40px' }} />
-                        <span className="item-title text-center limit-one-line break-all pl-3 pr-12" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
-                        <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)', position: 'relative', marginBottom: 0 }} className="embed-ind-arrow-icon embed-ind-arrow" fill="#0D0C22" viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
+                        <span className="item-title text-center limit-one-line break-all pl-3 pr-12 " style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
+                        <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)', position: 'relative', marginBottom: 0 }} className="embed-ind-arrow-icon embed-ind-arrow" fill={theme?.colorLink} viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
                     </div>
