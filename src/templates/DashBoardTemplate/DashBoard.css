@@ -1,10 +1,12 @@
 .navigation {
-    position: relative;
+    position: sticky;
+    top: 10%;
     width: 70px;
     height: 280px;
     background: #fff;
     border-radius: 35px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, .1);
+    z-index: 49;
 }
 
 .navigation ul {

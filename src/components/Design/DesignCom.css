@@ -27,3 +27,23 @@
     background-size: cover;
     box-shadow: rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(24 39 75 / 5%) 0px 0px 2px 1px inset;
 }
+
+.border-dash{
+    border: 1.5px dashed #6e6d7a;   
+}
+
+.theme-gradient-btn {
+    background: linear-gradient(180deg,#000,rgba(0,0,0,.25));
+}
+
+.theme-default-border {
+    border: 2px solid transparent;
+}
+
+.theme-select-border {
+    border: 2px solid #0095f6;
+}
+
+.theme-bordered-btn {
+    border: 2px solid #000;
+}

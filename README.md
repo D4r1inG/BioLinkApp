@@ -1,4 +1,4 @@
-# BioLink app project by Sieu nhan cuong phong
+# BioLink project by Sieu nhan cuong phong
 This project was built base on bio.link
 
 ## Available Scripts

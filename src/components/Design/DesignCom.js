@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import './DesignCom.css'
+import DesignTheme from './DesignTheme'
 
 export default function DesignCom() {
 
   const { loading } = useSelector(state => state.ModalReducer)
-  const { name, bio, image, themes, activeTheme } = useSelector(state => state.ProfileReducer)
+  const { name, bio, image, themes, activeTheme, isCreating } = useSelector(state => state.ProfileReducer)
   const dispatch = useDispatch()
 
   //TODO: Skeleton data cho mỗi theme 
@@ -26,6 +27,9 @@ export default function DesignCom() {
 
   const selectTheme = (id) => {
     dispatch({
+      type: 'COLSE_CREATE_THEME'
+    })
+    dispatch({
       type: 'SELECT_THEME',
       id
     })
@@ -34,9 +38,9 @@ export default function DesignCom() {
   const renderThemes = () => {
     return themes.map((item) => {
       return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={() => { selectTheme(item.id) }}>
-        <div className='rounded-xl relative p-1 transition-all' style={{ border: activeTheme === item.id ? '2px solid #0095f6' : '2px solid transparent' }}>
+        <div className={`rounded-xl relative p-1 transition-all ${activeTheme === item.id && !isCreating ? 'theme-select-border ' : 'theme-default-border'}`} >
           <div style={{ backgroundColor: item.background }} className='theme-bg-box br-grey rounded-lg overflow-hidden flex flex-col justify-between relative'>
-            <img style={{position: 'absolute'}} className="pride-page-image" src={item.backgroundImg || '1'} alt="background" onError={({ currentTarget }) => {
+            <img style={{ position: 'absolute' }} className="pride-page-image" src={item.backgroundImg || '1'} alt="background" onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
               currentTarget.classList = "hidden";
             }} />
@@ -100,9 +104,18 @@ export default function DesignCom() {
         <div className='mt-8'>
           <div className='grid grid-cols-3 gap-6 gap-x-8'>
             {renderThemes()}
+            <div className="theme-bg-box rounded-md flex justify-center items-center cursor-pointer border-dash col-span-1" onClick={() => {
+              dispatch({
+                type: 'CREATE_THEME'
+              })
+            }}>
+              <div className="font-inter font-bold text-sm text-black px-4">Create your own</div>
+            </div>
           </div>
         </div>
       </div>
+
+      {isCreating ? <DesignTheme /> : ''}
     </div>
   )
 }
