@@ -1,6 +1,6 @@
 const initialState = {
     name: 'Daling',
-    bio: 'Xin chao mng',
+    bio: 'Xin chao mng, chuc vui ve hanh phuc',
     image: 'https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png',
     activeTheme: 5,
     showLogo: true,

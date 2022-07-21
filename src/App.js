@@ -17,7 +17,6 @@ import ConfirmPage from "./pages/ConfirmPage/ConfirmPage";
 export const history = createBrowserHistory();
 
 function App() {  
-  //TODO: custom hook => lưu cache
   // Web component
   // Model view controller
   // One way data binding
@@ -26,6 +25,10 @@ function App() {
   //Uncontrolled component
   //Form => use uncontrolled component
 
+
+
+
+  //TODO: custom hook => lưu cache
   return (
     <Router history={history}>
       <ModalHOC />
@@ -40,8 +43,9 @@ function App() {
         <DashBoard path="/dashboard/stat" exact ComponentRender={Stat} />
         <DashBoard path="/dashboard/setting" exact ComponentRender={SettingCom} />
       </Switch>
-      {/* <ConfirmPage />  */}
+      {/* <ConfirmPage />   */}
       {/* TODO: Sửa layout  */}
+      {/* Private router & public router */}
     </Router>
   )
 }

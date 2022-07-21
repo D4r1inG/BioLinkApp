@@ -47,7 +47,13 @@ export default function DesignCom() {
             <div className='pt-10 px-4 pb-0 w-full z-10 relative'>
               {Array(4).fill(0)
                 .map((_, index) => (
-                  <div key={index} className='mb-2 w-full theme-btn' style={{ backgroundColor: item.btnBg, borderRadius: item.btnRadius, border: item.btnBorder }}></div>
+                  <div key={index} className='mb-2 w-full theme-btn' style={{
+                    backgroundColor: item.btnBg,
+                    borderRadius: item.btnRadius, 
+                    borderStyle: item.btnBdStyle,
+                    borderWidth: item.btnBdWidth,
+                    borderColor: item.btnBdColor,
+                  }}></div>
                 ))}
             </div>
           </div>

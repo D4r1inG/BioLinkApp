@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-let bgColorOptions = ['rgb(133, 107, 255)', 'rgb(255, 46, 150)', 'rgb(0, 136, 115)', 'rgb(255, 31, 84)', 'rgb(0, 0, 0)', 'rgb(255, 255, 255)']
+let bgColorOptions = ['rgb(133, 107, 255)', 'rgb(0, 136, 115)', 'rgb(255, 31, 84)', 'rgb(0, 0, 0)', 'rgb(255, 255, 255)']
 let btnRadiusOptions = ['30px', '8px', '0px']
 let fontOptions = [
     {
@@ -152,6 +152,14 @@ export default function DesignTheme() {
         })
     }
 
+    const handleChangeColor = (e) => {
+        const { name, value } = e.target
+        dispatch({
+            type: 'UPDATE_NEW_THEME',
+            [name]: value
+        })
+    }
+
 
     return (
         <div className='p-8 bg-white rounded-sm mt-8 shadow-sm'>
@@ -181,7 +189,13 @@ export default function DesignTheme() {
                             </div>
                         </div>
                     </div>
-                    <div className='pt-8 grid grid-cols-6 '>
+                    <div className='pt-8 grid grid-cols-6 items-center'>
+                        <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
+                            <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
+                                <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
+                            </div>
+                            <input type="color" name='background' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeColor} />
+                        </div>
                         {renderBgColor()}
                     </div>
                 </div>
@@ -206,6 +220,12 @@ export default function DesignTheme() {
                 <div className="font-inter font-semibold text-black text-lg text-center "> Border color</div>
                 <div className='pb-8 mt-3'>
                     <div className='pt-3 grid grid-cols-6'>
+                        <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
+                            <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
+                                <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
+                            </div>
+                            <input type="color" name='btnBdColor' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeColor} />
+                        </div>
                         {renderBtnBdColor()}
                     </div>
                 </div>
@@ -213,6 +233,12 @@ export default function DesignTheme() {
                 <div className="font-inter font-semibold text-black text-lg text-center "> Background color</div>
                 <div className='pb-8 mt-3'>
                     <div className='pt-3 grid grid-cols-6'>
+                        <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
+                            <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
+                                <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
+                            </div>
+                            <input type="color" name='btnBg' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeColor} />
+                        </div>
                         {renderBtnBgColor()}
                     </div>
                 </div>
@@ -224,6 +250,12 @@ export default function DesignTheme() {
                 <div className="font-inter font-semibold text-black text-lg text-center ">Link color</div>
                 <div className='pb-8 mt-3'>
                     <div className='pt-3 grid grid-cols-6'>
+                        <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
+                            <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
+                                <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
+                            </div>
+                            <input type="color" name='colorLink' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeColor} />
+                        </div>
                         {renderLinkColor()}
                     </div>
                 </div>
@@ -231,6 +263,12 @@ export default function DesignTheme() {
                 <div className="font-inter font-semibold text-black text-lg text-center " >Header color</div>
                 <div className='pb-8 mt-3'>
                     <div className='pt-3 grid grid-cols-6'>
+                        <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
+                            <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
+                                <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
+                            </div>
+                            <input type="color" name='colorHeader' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeColor} />
+                        </div>
                         {renderHeaderColor()}
                     </div>
                 </div>
