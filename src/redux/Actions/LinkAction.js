@@ -44,7 +44,7 @@ export const addNewLink = (newLink) => {
         })
         try {
             const { data, status } = await linkManagement.addNewLink(newLink)
-            await dispatch(getLinkData())
+            // await dispatch(getLinkData())
         } catch (err) {
             console.log(err)
         }

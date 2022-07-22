@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { getTheme, getUserProfile } from '../../redux/Actions/ProfileAction'
 import './DesignCom.css'
 import DesignTheme from './DesignTheme'
 
@@ -18,6 +19,11 @@ export default function DesignCom() {
     name: '',
     bio: ''
   })
+
+  useEffect(() => {
+      dispatch(getTheme())
+      // dispatch(getUserProfile())
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -49,7 +55,7 @@ export default function DesignCom() {
                 .map((_, index) => (
                   <div key={index} className='mb-2 w-full theme-btn' style={{
                     backgroundColor: item.btnBg,
-                    borderRadius: item.btnRadius, 
+                    borderRadius: item.btnRadius,
                     borderStyle: item.btnBdStyle,
                     borderWidth: item.btnBdWidth,
                     borderColor: item.btnBdColor,

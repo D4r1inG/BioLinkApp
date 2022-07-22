@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 let myList = [
@@ -29,6 +29,16 @@ let myList = [
 ]
 
 export default function Navigation(props) {
+
+    // let [state, setState] = useState()
+    // let linkCom = document.getElementsByClassName('navigation')
+
+    // useEffect(() => {
+    //     setState(linkCom[0]?.getBoundingClientRect())
+
+    // },[linkCom])
+
+    // console.log(state)
 
     return (
         <div className='navigation'>

@@ -7,7 +7,7 @@ export class baseService {
             url: `${DOMAIN}/${url}`,
             method: 'PUT',
             data: model,
-            // headers: {'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)}
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('accessToken')}
         })
     }
 
@@ -16,7 +16,7 @@ export class baseService {
             url: `${DOMAIN}/${url}`,
             method: 'POST',
             data: model,
-            // headers: {'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)}
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('accessToken')}
         })
     }
 
@@ -24,7 +24,7 @@ export class baseService {
         return  Axios({
             url: `${DOMAIN}/${url}`,
             method: 'GET',
-            // headers: {'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)}
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('accessToken')}
         })
     }
 
@@ -32,7 +32,7 @@ export class baseService {
         return  Axios({
             url: `${DOMAIN}/${url}`,
             method: 'DELETE',
-            // headers: {'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)}
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('accessToken')}
         })  
     }
 }

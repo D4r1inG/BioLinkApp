@@ -4,19 +4,19 @@ import { baseService } from "./BaseService";
 class LinkManagement extends baseService {
 
     getLinkData = () => {
-        return this.Get('linklist')
+        return this.Get('user/plugins')
     }
 
     addNewLink = (newLink) => {
-        return this.Post('linklist', newLink)
+        return this.Post(`user/plugins/`, newLink)
     }
 
     editLink = (linkEdit) => {
-        return this.Put(`linklist/${linkEdit.id}`, linkEdit)
+        return this.Put(`user/plugins/updateContent/${linkEdit.id}`, linkEdit)
     }
 
     deleteLink = (id) => {
-        return this.Delete(`linklist/${id}`)
+        return this.Delete(`user/plugins/${id}`)
     }
 
 }

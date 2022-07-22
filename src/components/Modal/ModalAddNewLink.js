@@ -15,16 +15,11 @@ export default function ModalAddNewLink() {
     }
 
     const handleSubmit = () => {
-        let newLink = {
-            linkHeader: modalInput?.title,
-            link: modalInput.url || '',
-            click: 0,
-            isHeader: modalInput.url ? false : true,
-            isHide: false,
-            isPlugIn: false,
-            imgSrc: '',
-            plugInName: ''
-        }
+        let newLink = new FormData()
+        newLink.append('title', modalInput?.title)
+        newLink.append('url', modalInput?.url)
+        newLink.append('image', selectedImage)
+
         dispatch(addNewLink(newLink))
     }
 

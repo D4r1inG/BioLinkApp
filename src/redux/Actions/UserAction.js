@@ -8,12 +8,15 @@ export const login = (infoUser) => {
         })
         try {
             const { data } = await userService.login(infoUser)
-            // dispatch({
-            //     type: 'LOGIN_ACTION',
-            //     data
-            // })
-            console.log(data)
-            history.push('/dashboard/link')
+            dispatch({
+                type: 'LOGIN_ACTION',
+                data
+            })
+            if (data.firstLogin) {
+                history.push('/firstlogin')
+            } else {
+                history.push('/dashboard/link')
+            }
         } catch (err) {
             console.log(err)
         }
@@ -43,5 +46,16 @@ export const register = (infoUser) => {
         dispatch({
             type: 'CLOSE_LOADING',
         })
+    }
+}
+
+export const verifyAcc = (token) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await userService.verify(token)
+            console.log(data)
+        } catch (err) {
+            console.log(err)
+        }
     }
 }

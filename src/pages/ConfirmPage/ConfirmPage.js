@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { verifyAcc } from '../../redux/Actions/UserAction'
 import { useQuery } from '../../utils/CustomHook'
 
 export default function ConfirmPage() {
 
     let query = useQuery()
-    console.log(query.get('code'))
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        // TODO: Đưa token lên backend để verify
+        let token = query.get('code')
+        console.log(token)
+        dispatch(verifyAcc(token))
     }, [])
 
     return (
