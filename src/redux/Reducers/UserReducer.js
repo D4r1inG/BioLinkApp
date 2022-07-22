@@ -1,6 +1,6 @@
 
 const initialState = {
-    registerStatus: {
+    tempStatus: {
         message: null,
         success: null
     }
@@ -15,8 +15,8 @@ export const UserReducer = (state = initialState, action) => {
             return { ...state }
         }
 
-        case 'SET_REGISTER_STATUS': {
-            return { ...state, registerStatus: action.data }
+        case 'SET_STATUS': {
+            return { ...state, tempStatus: action.data }
         }
 
         default:

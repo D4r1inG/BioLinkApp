@@ -9,7 +9,7 @@ export default function Register() {
 
     const [showPassWord, setShowPassWord] = useState(false)
     const { loading } = useSelector(state => state.ModalReducer)
-    const { registerStatus } = useSelector(state => state.UserReducer)
+    const { tempStatus } = useSelector(state => state.UserReducer)
     const dispatch = useDispatch()
 
     const [formInput, setFormInput] = useState({
@@ -80,13 +80,13 @@ export default function Register() {
     }
 
     const renderMessage = () => {
-        if (registerStatus.success === 1) {
+        if (tempStatus.success === 1) {
             return <div className='mb-4 bg-green-100 p-6 text-center' >
-                <p className='text-gray-600'>An confirmation email has been send to your email.</p>
+                <p className='text-gray-600'>{tempStatus.message}</p>
             </div>
-        } else if (registerStatus.success === 0) {
+        } else if (tempStatus.success === 0) {
             return <div className='mb-4 bg-red-100 p-6 text-center' >
-                <p className='text-red-500 font-semibold'>{registerStatus.message}</p>
+                <p className='text-red-500 font-semibold'>{tempStatus.message}</p>
             </div>
         } else {
             return
@@ -102,7 +102,15 @@ export default function Register() {
                     </NavLink>
                     <div className='flex items-center'>
                         <p className='text-sm'>Already have an account? </p>
-                        <NavLink className='text-sm underline text-blue-500 ml-1' to='/login' >Login</NavLink>
+                        <NavLink className='text-sm underline text-blue-500 ml-1' to='/login' onClick={() => {
+                            dispatch({
+                                type: 'SET_STATUS',
+                                data: {
+                                    message: null,
+                                    success: null
+                                }
+                            })
+                        }}>Login</NavLink>
                     </div>
                 </div>
             </div>

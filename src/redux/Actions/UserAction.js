@@ -37,7 +37,7 @@ export const register = (infoUser) => {
             // history.push('/login')
             // console.log(data)
             dispatch({
-                type: 'SET_REGISTER_STATUS',
+                type: 'SET_STATUS',
                 data
             })
         } catch (err) {
@@ -57,5 +57,46 @@ export const verifyAcc = (token) => {
         } catch (err) {
             console.log(err)
         }
+    }
+}
+
+export const forgotPass = (email) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await userService.checkEmail(email)
+            dispatch({
+                type: 'SET_STATUS',
+                data
+            })
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }
+}
+
+export const forgotPassProcess = (token, newPass) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await userService.forgotPass(token, newPass)
+            dispatch({
+                type: 'SET_STATUS',
+                data
+            })
+            history.push('/login')
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
     }
 }

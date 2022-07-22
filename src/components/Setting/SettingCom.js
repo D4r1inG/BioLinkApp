@@ -22,7 +22,7 @@ export default function SettingCom() {
   }
 
   return (
-    <div>
+    <div className='setting_tour'>
       <div className="font-inter font-semibold text-blDark text-2xl leading-6 flex items-center">Setting</div>
       <div className='bg-white round-sm shadow-sm p-8 mt-6'>
         <div>

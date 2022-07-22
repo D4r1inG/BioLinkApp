@@ -13,6 +13,14 @@ class UserService extends baseService {
     verify = (token) => {
         return this.Get(`verify/?code=${token}`)
     }
+
+    checkEmail = (email) => {
+        return this.Post(`forgotPassword/?email=${email}`)
+    }
+
+    forgotPass = (token, newPass) => {
+        return this.Post(`processForgot/?token=${token}`, { password: newPass })
+    }
 }
 
 export const userService = new UserService()

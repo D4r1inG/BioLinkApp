@@ -70,7 +70,7 @@ export default function DesignCom() {
   }
 
   return (
-    <div>
+    <div className='design_tour relative'>
       <div className="bg-white rounded-sm shadow-sm p-8 mb-8">
         <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16">Profile</div>
         <div className="mt-8">
@@ -111,7 +111,7 @@ export default function DesignCom() {
         </div>
       </div>
 
-      <div className="bg-white rounded-sm shadow-sm p-8 ">
+      <div className="bg-white rounded-sm shadow-sm p-8 theme_tour">
         <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16">Themes</div>
         <div className='mt-8'>
           <div className='grid grid-cols-3 gap-6 gap-x-8'>
@@ -121,7 +121,7 @@ export default function DesignCom() {
                 type: 'CREATE_THEME'
               })
             }}>
-              <div className="font-inter font-bold text-sm text-black px-4">Create your own</div>
+              <div className="font-inter font-bold text-sm text-black px-4 themeCreate_tour">Create your own</div>
             </div>
           </div>
         </div>

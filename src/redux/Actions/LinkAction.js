@@ -12,7 +12,6 @@ export const getLinkDataFirstTime = () => {
                 type: 'SET_LIST',
                 linkList: data
             })
-
         } catch (err) {
             console.log(err)
         }

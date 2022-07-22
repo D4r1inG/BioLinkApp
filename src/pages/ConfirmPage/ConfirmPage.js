@@ -11,7 +11,6 @@ export default function ConfirmPage() {
 
     useEffect(() => {
         let token = query.get('code')
-        console.log(token)
         dispatch(verifyAcc(token))
     }, [])
 

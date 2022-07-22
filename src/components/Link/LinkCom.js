@@ -115,7 +115,7 @@ export default function LinkCom() {
 
   return (
     <div className='linkcomponent'>
-      <div className='flex '>
+      <div className='flex add_link_tour relative'>
         <button className="bl-btn bl-btn-md bl-bg text-white rounded-md relative mr-4 uppercase tracking-wide btn-h-48 bl-bg" onClick={() => {
           dispatch({
             type: 'MODAL_ADD_NEW',
@@ -132,15 +132,14 @@ export default function LinkCom() {
         </div>
       </div>
 
-      <div className="font-inter text-gray-500 mt-6 inline-flex items-center cursor-pointer select-none hover:text-black font-semibold" onClick={() => {
+      <div className="header_tour font-inter text-gray-500 mt-6 inline-flex items-center cursor-pointer select-none hover:text-black font-semibold" onClick={() => {
         dispatch({
           type: 'MODAL_ADD_NEW',
           modalHeader: 'Add header',
           component: <ModalAddNewHeader />
         })
       }}>+ Add header</div>
-      <div className='mt-8'>
-
+      <div className='mt-8 link_tour'>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId='draggable'>
             {(provided) => (
@@ -159,17 +158,19 @@ export default function LinkCom() {
         </DragDropContext>
 
       </div>
-      <div style={{ letterSpacing: '1px' }} className="mt-12  text-gray-500 text-sm font-inter font-bold mb-4">SOCIALS</div>
-      <div className="flex flex-wrap">
-        {renderSocialLink()}
-        <div className="cursor-pointer socio flex justify-center items-center bg-white rounded-full w-h-48 hover:shadow-sm duration-50" onClick={() => {
-          dispatch({
-            type: 'MODAL_ADD_NEW',
-            modalHeader: 'Socials',
-            component: <ModalSocial />
-          })
-        }}>
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.83807 14.0625H8.22443V8.22443H14.0625V5.83807H8.22443V0H5.83807V5.83807H0V8.22443H5.83807V14.0625Z" fill="#6E6D7A"></path></svg></div>
+      <div className='social_tour'>
+        <div style={{ letterSpacing: '1px' }} className="mt-12  text-gray-500 text-sm font-inter font-bold mb-4">SOCIALS</div>
+        <div className="flex flex-wrap">
+          {renderSocialLink()}
+          <div className="cursor-pointer socio flex justify-center items-center bg-white rounded-full w-h-48 hover:shadow-sm duration-50" onClick={() => {
+            dispatch({
+              type: 'MODAL_ADD_NEW',
+              modalHeader: 'Socials',
+              component: <ModalSocial />
+            })
+          }}>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.83807 14.0625H8.22443V8.22443H14.0625V5.83807H8.22443V0H5.83807V5.83807H0V8.22443H5.83807V14.0625Z" fill="#6E6D7A"></path></svg></div>
+        </div>
       </div>
     </div>
   )
