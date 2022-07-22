@@ -31,7 +31,7 @@ function App() {
     <Router history={history}>
       <ModalHOC />
       <ModalSelectPlugin />
-      {/* <WebTour /> */}
+      <WebTour />
       <Switch>
 
         {Object.keys(PrivateRoutes).map((item, index) => {

@@ -7,32 +7,36 @@
     z-index: 9999;
 }
 
-.tour_overlay {
-    /* background: rgba(0, 0, 0, 0.8); */
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 9999;
-}
-
 .modal_tour {
-    width: 300px;
-    border-radius: 5px;
+    width: 450px;
+    border-radius: 10px;
     background-color: #fff;
     padding: 24px 30px;
     top: 0;
     left: 0;
     z-index: 10000;
-    transition: all .5s;
     position: fixed;
     color: rgb(102, 102, 102);
 }
 
-.tour_target {
-    transition: all .5s;
+.tour_overlay {
     border-radius: 10px;
     position: absolute;
     background-color: transparent;
     z-index: 10000;
     box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.8);
+}
+
+.step_index{
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    z-index: 10001;
+    width: 30px;
+    height: 30px;
+}
+
+.tour_dot{
+    width: 6px;
+    height: 6px;
 }
