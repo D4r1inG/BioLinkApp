@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { checkAuth } from '../../utils/CheckAuth'
 import './MainPage.css'
@@ -8,6 +10,9 @@ export default function Mainpage() {
     const [isAnimate, setIsAnimate] = useState(false)
     const header = useRef(null)
     const svgHeader = useRef(null)
+    const { isTouring } = useSelector(state => state.UserReducer)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         const onScroll = () => handleScroll(window.pageYOffset);
 
@@ -16,8 +21,18 @@ export default function Mainpage() {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    const isAuthenticated = checkAuth()
+    useEffect(() => {
+        if (isTouring) {
+            dispatch({
+                type: 'ADD_DUMMY_DATA'
+            })
+            dispatch({
+                type: 'SET_DUMMY_THEME'
+            })
+        }
+    }, [isTouring])
 
+    const isAuthenticated = checkAuth()
 
     const handleScroll = (offset) => {
         if (offset > 10 || offset > 10) {
@@ -92,7 +107,7 @@ export default function Mainpage() {
                                         </NavLink>
                                     </>
                                     :
-                                    <NavLink to='/dashboard/link' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer rounded-full py-2 px-6 `}>
+                                    <NavLink to='/dashboard/link' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium cursor-pointer rounded-full py-2 px-6 dashboard_tour`}>
                                         DashBoard
                                     </NavLink>
                                 }

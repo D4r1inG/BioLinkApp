@@ -9,6 +9,7 @@ import './PhoneView.css'
 export default function PhoneView() {
 
     const { linkList, socialList } = useSelector(state => state.LinkReducer)
+    const { isTouring } = useSelector(state => state.UserReducer)
     const { name, bio, image, activeTheme, themes, showLogo, isCreating, newTheme } = useSelector(state => state.ProfileReducer)
     const dispatch = useDispatch()
 
@@ -16,16 +17,17 @@ export default function PhoneView() {
     const [theme, setTheme] = useState()
 
     useEffect(() => {
-        dispatch(getLinkDataFirstTime())
-    }, [])
+        if (!isTouring) {
+            dispatch(getLinkDataFirstTime())
+        }
 
-    useEffect(() => {
         if (!isCreating) {
             setTheme(themes.find(item => item.id === activeTheme))
         } else {
             setTheme(newTheme)
         }
-    }, [activeTheme, themes, newTheme, isCreating])
+    }, [activeTheme, themes, newTheme, isCreating, isTouring])
+    
 
     let pageItem = {
         borderStyle: theme?.btnBdStyle,
@@ -90,7 +92,7 @@ export default function PhoneView() {
     }
 
     return (
-        <div className='overflow-auto phone_view transparent-scroll '>
+        <div className='overflow-auto phone_view transparent-scroll phone_tour'>
             <div className=' w-full min-h-full flex justify-center relative'>
                 <div className='absolute inset-0 w-full -z-10 h-full ' style={{ background: theme?.background }}></div>
                 <img className={`pride-page-image ${!theme?.backgroundImg ? 'hidden' : 'block'} `} style={{ zIndex: -1, position: 'absolute' }} src={theme?.backgroundImg} alt="background" />

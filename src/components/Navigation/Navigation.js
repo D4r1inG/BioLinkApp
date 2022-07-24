@@ -30,16 +30,6 @@ let myList = [
 
 export default function Navigation(props) {
 
-    // let [state, setState] = useState()
-    // let linkCom = document.getElementsByClassName('navigation')
-
-    // useEffect(() => {
-    //     setState(linkCom[0]?.getBoundingClientRect())
-
-    // },[linkCom])
-
-    // console.log(state)
-
     return (
         <div className='navigation'>
             <ul>

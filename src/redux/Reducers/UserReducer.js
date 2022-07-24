@@ -3,7 +3,8 @@ const initialState = {
     tempStatus: {
         message: null,
         success: null
-    }
+    },
+    isTouring: false
 }
 
 export const UserReducer = (state = initialState, action) => {
@@ -17,6 +18,10 @@ export const UserReducer = (state = initialState, action) => {
 
         case 'SET_STATUS': {
             return { ...state, tempStatus: action.data }
+        }
+
+        case "TOGGLE_TOUR": {
+            return {...state, isTouring: !state.isTouring}
         }
 
         default:

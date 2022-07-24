@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Tour from './Tour'
 
 
@@ -6,7 +8,12 @@ const steps = [
     {
         selector: '',
         content: 'Chào cậu! mình là Khanh Noi >_< - hướng dẫn viên tại GHTKlink! Mình sẽ hướng dẫn cậu đi thăm quan và giới thiệu cho cậu hiểu rõ hơn về GHTKlink nhé! Được rồi đi thôi!',
-        path: ''
+        path: '/'
+    },
+    {
+        selector: 'dashboard_tour',
+        content: 'Để truy cập Dashboard hãy bấm vào nút nèy nha!',
+        path: '/'
     },
     {
         selector: 'navigation',
@@ -55,27 +62,48 @@ const steps = [
     },
     {
         selector: 'setting_tour',
-        content: 'Và cuối cùng là một số cài đặt cho tài khoản của cậu.',
+        content: 'Phần setting sẽ cho phép cậu cài đặt cho tài khoản của mình.',
         path: '/dashboard/setting'
     },
     {
-        selector: '',
-        content: 'Chuyến thăm quan được thực hiện bởi Khanh Noi đến đây kết thúc rùi :( Noi hy vọng cậu sẽ có một khoảng thời gian vui vẻ khi trải nghiệm GHTKlink được thực hiện bởi sieu nhan cuong phong! nha.',
+        selector: 'phone_tour',
+        content: 'Các thay đổi của cậu sẽ được hiển thị tại đây.',
         path: '/dashboard/link'
+    },
+    {
+        selector: 'profile_tour',
+        content: 'Đây là nơi bạn có thể xem profile của mình trên toàn màn hình >_<.',
+        path: '/dashboard/link'
+    },
+    {
+        selector: 'instruc_tour',
+        content: 'Nên nhớ là Khanh Noi luôn ở đây nha.',
+        path: '/dashboard/link'
+    },
+    {
+        selector: '',
+        content: 'Vậy là chuyến thăm quan được thực hiện bởi Khanh Noi đến đây kết thúc rùi :( Noi hy vọng cậu sẽ có một khoảng thời gian vui vẻ khi trải nghiệm GHTKlink được thực hiện bởi sieu nhan cuong phong! nha.',
+        path: '/'
     },
 ]
 
 export default function WebTour() {
 
-    const [isTouring, setIsTouring] = useState(true)
+    const { isTouring } = useSelector(state => state.UserReducer)
+    const dispatch = useDispatch()
 
     return (
-        <Tour
-            steps={steps}
-            isOpen={isTouring}
-            onRequestClose={
-                () => { setIsTouring(false) }
-            }
-        />
+        <>
+            {isTouring ?
+                <Tour
+                    steps={steps}
+                    onRequestClose={() => {
+                        dispatch({
+                            type: 'TOGGLE_TOUR'
+                        })
+                    }}
+                /> : ''}
+        </>
+
     )
 }

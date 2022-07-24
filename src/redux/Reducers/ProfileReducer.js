@@ -2,89 +2,89 @@ const initialState = {
     name: 'Daling',
     bio: 'Xin chao mng, chuc vui ve hanh phuc',
     image: 'https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png',
-    activeTheme: 5,
+    activeTheme: 0,
     showLogo: true,
     showWarning: true,
     themes: [
-        // {
-        //     id: 0,
-        //     name: 'Basics',
-        //     background: '#ffffff',
-        //     btnRadius: '30px',
-        //     btnBg: '#ffffff',
-        //     btnBdWidth: '0px',
-        //     btnBdColor: '#fff',
-        //     btnBdStyle: 'solid',
-        //     boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(24 39 75 / 5%) 0px 0px 2px 1px inset',
-        //     colorHeader: '#000000',
-        //     colorLink: '#000000'
-        // },
-        // {
-        //     id: 1,
-        //     name: 'Carbon',
-        //     background: '#131212',
-        //     btnRadius: '8px',
-        //     btnBg: '#212121',
-        //     btnBdWidth: '0px',
-        //     btnBdColor: '#fff',
-        //     btnBdStyle: 'solid',
-        //     boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(255 255 255 / 5%) 0px 0px 2px 1px inset',
-        //     colorHeader: '#ffffff',
-        //     colorLink: '#ffffff'
-        // },
-        // {
-        //     id: 2,
-        //     name: 'Pride',
-        //     backgroundImg: 'https://cdn.bio.link/themes/backgrounds/pride-desktop.png',
-        //     background: '#ffffff',
-        //     btnRadius: '30px',
-        //     btnBg: '#ffffff',
-        //     btnBdWidth: '0px',
-        //     btnBdColor: '#fff',
-        //     btnBdStyle: 'solid',
-        //     boxShadow: '',
-        //     colorHeader: '#ffffff',
-        //     colorLink: '#000000'
-        // },
-        // {
-        //     id: 3,
-        //     name: 'Sunny',
-        //     background: '#fefceb',
-        //     btnRadius: '30px',
-        //     btnBg: '#FFDD00',
-        //     btnBdWidth: '0px',
-        //     btnBdColor: '#FFDD00',
-        //     btnBdStyle: 'solid',
-        //     boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(255 255 255 / 5%) 0px 0px 2px 1px inset',
-        //     colorHeader: '#000000',
-        //     colorLink: '#000000'
-        // },
-        // {
-        //     id: 4,
-        //     name: 'Leaf',
-        //     background: '#f5fdf4',
-        //     btnRadius: '30px',
-        //     btnBg: '#A6EB99',
-        //     btnBdWidth: '0px',
-        //     btnBdColor: '#FF9877',
-        //     btnBdStyle: 'solid',
-        //     boxShadow: '',
-        //     colorHeader: '#000000',
-        //     colorLink: '#000000'
-        // },
-        // {
-        //     id: 5,
-        //     name: 'Unicorn',
-        //     background: '#f8f8fe',
-        //     btnRadius: '12px',
-        //     btnBg: '#BFB9FA',
-        //     btnBdWidth: '0px',
-        //     btnBdColor: '#FF9877',
-        //     btnBdStyle: 'solid',
-        //     boxShadow: '',
-        //     colorHeader: '#000000',
-        //     colorLink: '#000000'
-        // },
+        {
+            id: 0,
+            name: 'Basics',
+            background: '#ffffff',
+            btnRadius: '30px',
+            btnBg: '#ffffff',
+            btnBdWidth: '0px',
+            btnBdColor: '#fff',
+            btnBdStyle: 'solid',
+            boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(24 39 75 / 5%) 0px 0px 2px 1px inset',
+            colorHeader: '#000000',
+            colorLink: '#000000'
+        },
+        {
+            id: 1,
+            name: 'Carbon',
+            background: '#131212',
+            btnRadius: '8px',
+            btnBg: '#212121',
+            btnBdWidth: '0px',
+            btnBdColor: '#fff',
+            btnBdStyle: 'solid',
+            boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(255 255 255 / 5%) 0px 0px 2px 1px inset',
+            colorHeader: '#ffffff',
+            colorLink: '#ffffff'
+        },
+        {
+            id: 2,
+            name: 'Pride',
+            backgroundImg: 'https://cdn.bio.link/themes/backgrounds/pride-desktop.png',
+            background: '#ffffff',
+            btnRadius: '30px',
+            btnBg: '#ffffff',
+            btnBdWidth: '0px',
+            btnBdColor: '#fff',
+            btnBdStyle: 'solid',
+            boxShadow: '',
+            colorHeader: '#ffffff',
+            colorLink: '#000000'
+        },
+        {
+            id: 3,
+            name: 'Sunny',
+            background: '#fefceb',
+            btnRadius: '30px',
+            btnBg: '#FFDD00',
+            btnBdWidth: '0px',
+            btnBdColor: '#FFDD00',
+            btnBdStyle: 'solid',
+            boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(255 255 255 / 5%) 0px 0px 2px 1px inset',
+            colorHeader: '#000000',
+            colorLink: '#000000'
+        },
+        {
+            id: 4,
+            name: 'Leaf',
+            background: '#f5fdf4',
+            btnRadius: '30px',
+            btnBg: '#A6EB99',
+            btnBdWidth: '0px',
+            btnBdColor: '#FF9877',
+            btnBdStyle: 'solid',
+            boxShadow: '',
+            colorHeader: '#000000',
+            colorLink: '#000000'
+        },
+        {
+            id: 5,
+            name: 'Unicorn',
+            background: '#f8f8fe',
+            btnRadius: '12px',
+            btnBg: '#BFB9FA',
+            btnBdWidth: '0px',
+            btnBdColor: '#FF9877',
+            btnBdStyle: 'solid',
+            boxShadow: '',
+            colorHeader: '#000000',
+            colorLink: '#000000'
+        },
     ],
     newTheme: {
         name: '',
@@ -111,6 +111,23 @@ export const ProfileReducer = (state = initialState, action) => {
 
         case 'SET_THEMES': {
             return {...state, themes: action.data}
+        }
+
+        case 'SET_DUMMY_THEME':{
+            let dummyTheme =  {
+                id: 0,
+                name: 'Basics',
+                background: '#ffffff',
+                btnRadius: '30px',
+                btnBg: '#ffffff',
+                btnBdWidth: '0px',
+                btnBdColor: '#fff',
+                btnBdStyle: 'solid',
+                boxShadow: 'rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(24 39 75 / 5%) 0px 0px 2px 1px inset',
+                colorHeader: '#000000',
+                colorLink: '#000000'
+            }
+            return {...state, themes: [dummyTheme], activeTheme: 0}
         }
 
         case 'SELECT_THEME': {

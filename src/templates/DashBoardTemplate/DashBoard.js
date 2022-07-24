@@ -1,5 +1,5 @@
+import React from 'react';
 import './DashBoard.css'
-import { Route } from "react-router-dom";
 import Header from '../../components/Header/Header';
 import Navigation from '../../components/Navigation/Navigation';
 import PhoneView from '../../components/PhoneView/PhoneView';
@@ -32,7 +32,7 @@ export const DashBoard = (props) => {
             </div>
         </div>
     </>
-
 }
+
 
 

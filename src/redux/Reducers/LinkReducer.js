@@ -1,9 +1,9 @@
 
 const initialState = {
     linkList: [
-        // {id: '1'},
-        // {id: '2'},
-        // {id: '3'},
+        { id: '1' },
+        { id: '2' },
+        { id: '3' },
     ],
     socialList: [
         {
@@ -40,18 +40,27 @@ export const LinkReducer = (state = initialState, action) => {
             return { ...state, socialList: newList }
         }
 
-        // case 'ADD_NEW_LINK': {
-        //     let newLink = {
-        //         id: Math.floor(Math.random() * 100).toString(),
-        //         linkHeader: action.newLink.title,
-        //         link: action.newLink.url || '',
-        //         click: 0,
-        //         isHeader: action.newLink.url ? false : true,
-        //         ishide: false
-        //     }
-        //     state.linkList.unshift(action.newLink)
-        //     return { ...state }
-        // }
+        case 'ADD_DUMMY_DATA': {
+            let newList = [
+                {
+                    id: '1',
+                    linkHeader: 'My header',
+                    link: 'http://Mylink.com/',
+                    click: 0,
+                    isHeader: true,
+                    ishide: false
+                },
+                {
+                    id: '2',
+                    linkHeader: 'My Link',
+                    link: 'http://Mylink.com/',
+                    click: 69,
+                    isHeader: false,
+                    ishide: false
+                }
+            ]
+            return { ...state, linkList: newList }
+        }
 
         case 'ADD_SOCIALLINK': {
             let newSocialListArr = []

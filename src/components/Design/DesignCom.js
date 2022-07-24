@@ -8,6 +8,7 @@ import DesignTheme from './DesignTheme'
 export default function DesignCom() {
 
   const { loading } = useSelector(state => state.ModalReducer)
+  const { isTouring } = useSelector(state => state.UserReducer)
   const { name, bio, image, themes, activeTheme, isCreating } = useSelector(state => state.ProfileReducer)
   const dispatch = useDispatch()
 
@@ -21,9 +22,11 @@ export default function DesignCom() {
   })
 
   useEffect(() => {
-      dispatch(getTheme())
+    if(!isTouring){
+      // dispatch(getTheme())
       // dispatch(getUserProfile())
-  },[])
+    }
+  }, [isTouring])
 
   const handleChange = (e) => {
     const { name, value } = e.target
