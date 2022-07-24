@@ -7,21 +7,23 @@ In the root directory, you can run:
 
 To install dependencies and run `npm start` in project directory
 <br/>
-The app will run in the development mode.\
+<br/>
+The app will run in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Các chức năng chính 
+* Web tour with Khanh Noi
 * Login, Sign up (with JWT token)
 * Thêm, sửa, xóa, ẩn, sắp xếp link, Header, plugin(Youtube, Spotify) 
-* Thêm, sửa, xóa, sắp xếp social link
+* Thêm, sửa, xóa social link
 * Chọn theme sẵn có
 * Sửa tên profile, bio
 * Toggle Logo
 * Toggle NSFW (Not Safe For Work) 
 * Page profile 
+* Tự tạo theme (Done)
 
 ## Chức năng đang thực hiện 
-* Tự tạo theme (Done)
 * Comment profile
 * Rating profile
 * Ảnh cho mỗi link (chưa có server để lưu huhu)

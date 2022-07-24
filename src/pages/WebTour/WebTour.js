@@ -62,7 +62,7 @@ const steps = [
     },
     {
         selector: 'setting_tour',
-        content: 'Phần setting sẽ cho phép cậu cài đặt cho tài khoản của mình.',
+        content: 'Phần setting sẽ cho phép cậu cài đặt tài khoản của mình.',
         path: '/dashboard/setting'
     },
     {
