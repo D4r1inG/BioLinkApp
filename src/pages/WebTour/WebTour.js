@@ -7,6 +7,11 @@ import Tour from './Tour'
 const steps = [
     {
         selector: '',
+        content: 'Trang web được thực hiện bởi Sieu nhan cuong phong! Nếu bạn thấy thú vị đừng ngần ngại cho những con người ở đáy xã hội này 1 lời khen nha.',
+        path: '/'
+    },
+    {
+        selector: '',
         content: 'Chào cậu! mình là Khanh Noi >_< - hướng dẫn viên tại GHTKlink! Mình sẽ hướng dẫn cậu đi thăm quan và giới thiệu cho cậu hiểu rõ hơn về GHTKlink nhé! Được rồi đi thôi!',
         path: '/'
     },
@@ -22,27 +27,22 @@ const steps = [
     },
     {
         selector: 'add_link_tour',
-        content: 'Trong Link, cậu có thể thêm link hoặc plugin mới tại đây.',
-        path: '/dashboard/link'
-    },
-    {
-        selector: 'header_tour',
-        content: 'Thêm Header của cho link cũng được nha.',
+        content: 'Trong Link, cậu có thể thêm link, plugin hoặc header mới.',
         path: '/dashboard/link'
     },
     {
         selector: 'link_tour',
-        content: 'Các link của cậu sẽ hiển thị ở đây.',
+        content: 'Các link của cậu sẽ được hiển thị ở đây.',
         path: '/dashboard/link'
     },
     {
         selector: 'social_tour',
-        content: 'Cậu có thể quản lý các social link ở đây.',
+        content: 'Cậu cũng có thể quản lý các social link của mình.',
         path: '/dashboard/link'
     },
     {
         selector: 'design_tour',
-        content: 'Trong phần Design, cậu cũng có thể sửa tên và mô tả của mình.',
+        content: 'Trong phần Design, cậu có thể sửa tên và mô tả của mình.',
         path: '/dashboard/design'
     },
     {
@@ -52,7 +52,7 @@ const steps = [
     },
     {
         selector: 'themeCreate_tour',
-        content: 'Tạo mới theme cũng là một sự lựa chọn không tồi (Khanh Noi recommend cậu tạo thật nhiều theme nha).',
+        content: 'Tạo mới theme cũng là một sự lựa chọn không tồi (Khanh Noi recommend cậu tạo thật nhiều theme nha ^^).',
         path: '/dashboard/design'
     },
     {
@@ -72,17 +72,18 @@ const steps = [
     },
     {
         selector: 'profile_tour',
-        content: 'Đây là nơi bạn có thể xem profile của mình trên toàn màn hình >_<.',
+        content: 'Đây là nơi cậu có thể xem profile của mình trên toàn màn hình >_<.',
         path: '/dashboard/link'
     },
     {
         selector: 'instruc_tour',
-        content: 'Nên nhớ là Khanh Noi luôn ở đây nha.',
-        path: '/dashboard/link'
+        content: 'Nên nhớ là Khanh Noi luôn ở đây nha <3.',
+        path: '/dashboard/link',
+        quote: "Em bảo tôi nói xấu sau lưng ư? Xin lỗi, tôi còn chưa biết đâu là lưng em."
     },
     {
         selector: '',
-        content: 'Vậy là chuyến thăm quan được thực hiện bởi Khanh Noi đến đây kết thúc rùi :( Noi hy vọng cậu sẽ có một khoảng thời gian vui vẻ khi trải nghiệm GHTKlink được thực hiện bởi sieu nhan cuong phong! nha.',
+        content: 'Vậy là chuyến thăm quan được thực hiện bởi Khanh Noi đến đây kết thúc rùi (T . T) Noi hy vọng cậu sẽ có một khoảng thời gian vui vẻ khi trải nghiệm GHTKlink được thực hiện bởi sieu nhan cuong phong! nha.',
         path: '/'
     },
 ]

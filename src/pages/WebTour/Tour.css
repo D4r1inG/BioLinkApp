@@ -22,19 +22,23 @@
     user-select: none;
 }
 
+.index0{
+    width: 260px;
+}
+
 .tour_overlay {
     border-radius: 10px;
     position: absolute;
     background-color: transparent;
     z-index: 10000;
-    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.75);
 }
 
 .step_index {
     position: absolute;
     top: -10px;
-    left: 27px;
-    z-index: 10001;
+    left: 10px;
+    z-index: 10010;
     width: 30px;
     height: 30px;
     transform: rotate(15deg);
@@ -47,8 +51,8 @@
 }
 
 .tour_close {
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -59,32 +63,92 @@
     position: absolute;
     width: 85px;
     height: 85px;
-    top: -45px;
-    left: -45px;
     border-radius: 9999px;
-    transform: rotate(-15deg);
-    z-index: 10001;
-    display: inline-block;
     border: 5px solid #fff;
 }
 
-.tour_close:hover{
-    transform: scale(130%);
+.quan_noi {
+    top: -70px;
+    left: -20%;
+    transform: rotate(-30deg);
+    z-index: 10001;
 }
 
-.tour_img:hover {
-    transform: scale(130%);
+.quan_noi:hover{
+    transform: rotate(-60deg) scale(1.2);
+}
+
+
+.khanh_noi {
+    top: -80px;
+    left: 0%;
+    transform: rotate(-15deg) scale(1.2);
+    z-index: 10002;
+}
+
+.khanh_noi:hover{
+    transform: rotate(-30deg) scale(1.4);
+}
+
+
+.lam_noi {
+    top: -90px;
+    left: 30%;
+    transform: scale(1.5);
+    z-index: 10003;
+}
+
+.lam_noi:hover{
+    transform: scale(1.7);
+}
+
+.hieu_noi {
+    top: -80px;
+    left: 60%;
+    transform: rotate(15deg) scale(1.2);
+    z-index: 10002;
+}
+
+.hieu_noi:hover{
+    transform: rotate(30deg) scale(1.4);
+}
+
+
+.ngocanh_noi {
+    top: -70px;
+    left: 80%;
+    transform: rotate(-0deg);
+    z-index: 10001;
+}
+
+.ngocanh_noi:hover{
+    transform: rotate(30deg) scale(1.2);
+}
+
+.tour_close:hover {
+    transform: scale(1.5);
 }
 
 .step_index:hover {
-    transform: scale(130%);
+    transform: scale(1.5);
 }
 
-.tour_img.active {
+.khanh_noi.active {
     top: -55px;
     left: -55px;
     animation: scale infinite;
     animation-duration: 1s;
+}
+
+.img_left.khanh_noi{
+    top: -55px;
+    left: -55px;
+    transform: rotate(-15deg) scale(1);
+}
+
+.img_left:hover{
+    transform: scale(1.4);
+
 }
 
 @keyframes scale {

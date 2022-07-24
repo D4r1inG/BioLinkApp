@@ -115,30 +115,32 @@ export default function LinkCom() {
 
   return (
     <div className='linkcomponent'>
-      <div className='flex add_link_tour relative'>
-        <button className="bl-btn bl-btn-md bl-bg text-white rounded-md relative mr-4 uppercase tracking-wide btn-h-48 bl-bg" onClick={() => {
+      <div className='add_link_tour'>
+        <div className='flex  relative'>
+          <button className="bl-btn bl-btn-md bl-bg text-white rounded-md relative mr-4 uppercase tracking-wide btn-h-48 bl-bg" onClick={() => {
+            dispatch({
+              type: 'MODAL_ADD_NEW',
+              modalHeader: 'Add',
+              component: <ModalAddNewLink />
+            })
+          }}>
+            <span className="font-bold">+ ADD LINK</span>
+          </button>
+          <div style={{ whiteSpace: 'nowrap' }} className="px-8 uppercase tracking-wide bg-blPrimary w-165 rounded-md select-none cursor-pointer hover:opacity-95 font-inter text-sm font-semibold text-white flex flex-col justify-center items-center text-center" onClick={() => {
+            dispatch({ type: 'OPEN_PLUGIN' })
+          }}>
+            + ADD EMBED
+          </div>
+        </div>
+
+        <div className="font-inter text-gray-500 mt-6 inline-flex items-center cursor-pointer select-none hover:text-black font-semibold" onClick={() => {
           dispatch({
             type: 'MODAL_ADD_NEW',
-            modalHeader: 'Add',
-            component: <ModalAddNewLink />
+            modalHeader: 'Add header',
+            component: <ModalAddNewHeader />
           })
-        }}>
-          <span className="font-bold">+ ADD LINK</span>
-        </button>
-        <div style={{ whiteSpace: 'nowrap' }} className="px-8 uppercase tracking-wide bg-blPrimary w-165 rounded-md select-none cursor-pointer hover:opacity-95 font-inter text-sm font-semibold text-white flex flex-col justify-center items-center text-center" onClick={() => {
-          dispatch({ type: 'OPEN_PLUGIN' })
-        }}>
-          + ADD EMBED
-        </div>
+        }}>+ Add header</div>
       </div>
-
-      <div className="header_tour font-inter text-gray-500 mt-6 inline-flex items-center cursor-pointer select-none hover:text-black font-semibold" onClick={() => {
-        dispatch({
-          type: 'MODAL_ADD_NEW',
-          modalHeader: 'Add header',
-          component: <ModalAddNewHeader />
-        })
-      }}>+ Add header</div>
       <div className='mt-8 link_tour'>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId='draggable'>
