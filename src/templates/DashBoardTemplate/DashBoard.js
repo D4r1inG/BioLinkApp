@@ -1,5 +1,4 @@
 import React from 'react';
-import './DashBoard.css'
 import Header from '../../components/Header/Header';
 import Navigation from '../../components/Navigation/Navigation';
 import PhoneView from '../../components/PhoneView/PhoneView';

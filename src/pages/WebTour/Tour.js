@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { history } from '../../App'
-import './Tour.css'
 
 export default function Tour({ steps, onRequestClose }) {
 
@@ -81,7 +80,7 @@ export default function Tour({ steps, onRequestClose }) {
 
     const renderDot = () => {
         return steps.map((_, itemIndex) => (
-            <div key={itemIndex} className={`tour_dot mr-1 rounded-full ${itemIndex === index ? 'bg-gray-400' : 'bg-gray-200'}`} ></div>
+            <span key={itemIndex} className={`tour_dot mr-1 rounded-full ${itemIndex === index ? 'bg-gray-400' : 'bg-gray-200'}`} ></span>
         ))
     }
 

@@ -79,7 +79,7 @@ export default function ModalAddNewHeader() {
             </div>
 
             <div className='absolute left-0 bottom-0 w-full'>
-                <button onClick={() => { handleSubmit() }} className="bl-btn bl-btn-md bl-bg font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
+                <button onClick={() => { handleSubmit() }} className="button-primary font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
                     <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
                     <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span>
                 </button>

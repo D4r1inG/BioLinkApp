@@ -89,7 +89,7 @@ export default function Login() {
                             </svg>
                         </div>
 
-                        <button className="bl-btn bl-bg font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }} onClick={handleSubmit}>
+                        <button className="button-primary font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }} onClick={handleSubmit}>
                             <span className="">Log in</span>
                             {/* <span className="bl-circle-loader absolute hidden"></span>  */}
                             {/* Loader */}

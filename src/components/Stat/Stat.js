@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
-import './Stat.css'
 
 export default function Stat() {
 
@@ -52,7 +51,7 @@ export default function Stat() {
   }, [socialList])
 
   return (
-    <div className='stat_tour'>
+    <div className='stat_tour' id='stat'>
       <div className="flex justify-between xs:px-16 xs:bg-white xs:pt-32">
         <div className="font-inter font-semibold text-blDark text-xl leading-6 flex items-center">Stats &amp; Insights</div>
         <ul className="flex stat-toolbar">

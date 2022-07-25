@@ -1,0 +1,127 @@
+.modal-content {
+    width: 450px;
+    border-radius: 4px;
+    background-color: $color-white;
+    padding: 0 32px 80px;
+}
+
+#modal{
+    button:focus,
+    input:focus {
+        outline: 0;
+    }
+
+    .modal-content {
+        width: 450px;
+        border-radius: 4px;
+        background-color: $color-white;
+        padding: 0 32px 80px;
+    }
+
+    .modal-header {
+        padding-bottom: 10px;
+        margin: 0 -32px;
+        padding: 0 32px;
+    }
+
+    .input-main-wrap-with-border:focus-within {
+        border: 1px solid transparent;
+        transition: all 0.5s;
+    }
+
+    .btn-on-modal .bl-btn,
+    .btn-on-modal .bl-btn:hover {
+        background: linear-gradient(0.351turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+        background-size: 165%;
+        border-radius: 0;
+    }
+
+    .modal-logo-holder {
+        left: 16px;
+        top: 11px;
+    }
+
+    .modal-input-box {
+        height: 40px;
+        padding-left: 48px;
+        padding-right: 62px;
+    }
+
+    .input-main-wrap-with-border {
+        border: 1px solid $color-gray-6;
+    }
+
+    .input-main-wrap-with-border:focus-within {
+        background: $color-blue-1;
+    }
+
+    .input-main-wrap,
+    .input-main-wrap-with-border:focus-within {
+        border: 1px solid transparent;
+    }
+
+    .modal-logo-holder svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .modal-logo-holder svg path {
+        fill: $color-black;
+    }
+
+    .modal-item-remove {
+        width: 32px;
+        height: 40px;
+    }
+
+    .modal-drag-drop {
+        width: 24px;
+        height: 40px;
+        background: $color-white-1;
+    }
+
+    .modal-input-box {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+
+    .modal-input-box:focus + .modal-right-opt .modal-drag-drop {
+        background: $color-blue-1;
+    }
+
+    .modal-input-box:focus + .modal-right-opt .modal-drag-drop svg circle {
+        fill: $color-white;
+    }
+
+    .img-upload-br {
+        border: 1px dashed #6e6d7a;
+        transition: all 1s ease-in;
+    }
+
+    .img-upload-br:hover {
+        border: 1px dotted $color-gray-4;
+        transition: all 1s ease-out;
+    }
+
+    .link-thumb-img-upload {
+        width: 96px;
+        height: 96px;
+    }
+
+    .img-close-btn {
+        right: -10px;
+        top: -9px;
+    }
+
+    .bl-circle-loader {
+        border-right: 4px solid transparent;
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        border-color: $color-white $color-white transparent transparent;
+        border-style: solid;
+        border-width: 3px 3px 4px 4px;
+        width: 22px;
+        height: 22px;
+        animation: spin 1s linear infinite;
+    }
+}

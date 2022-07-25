@@ -3,7 +3,6 @@ import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDetectClickOutside } from '../../utils/CustomHook'
 import AnimateHeight from 'react-animate-height';
-import './Modal.css'
 
 export default function ModalHOC() {
 
@@ -20,7 +19,7 @@ export default function ModalHOC() {
     useDetectClickOutside(myModal, cancelModal)
 
     return (
-        <div className={`${visible ? '' : 'hidden'} fixed w-screen z-50 h-screen inset-0  transition-all`} style={{ background: 'rgba(0, 0, 0, 0.8)' }} >
+        <div id='modal' className={`${visible ? '' : 'hidden'} fixed w-screen z-50 h-screen inset-0  transition-all`} style={{ background: 'rgba(0, 0, 0, 0.8)' }} >
             <div ref={myModal} className='flex justify-center items-center h-full w-full'>
                 <AnimateHeight duration={500} height={visible ? 'auto' : 0}>
                     <div className='modal-content overflow-hidden relative'>

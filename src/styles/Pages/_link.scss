@@ -1,0 +1,43 @@
+.linkcomponent {
+    .btn-h-48 {
+        height: 48px;
+        width: 100%;
+    }
+
+    .bg-blPrimary {
+        background-color: $color-blue-1;
+    }
+
+    .drag-and-drop {
+        width: 34px;
+        height: 100%;
+        right: 0;
+        top: 0;
+    }
+
+    .socio,
+    .socio:hover {
+        background: $color-white;
+        transition: all 0.15s ease;
+    }
+
+    .socio {
+        transform: scale(1);
+    }
+
+    .sociallink-each svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .skeleton {
+        animation-duration: 1.4s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: linear-gradient(to right, #fafafa 15%, $color-white-3 20%, $color-white-2 30%, $color-white-2 15%);
+        background-size: 1000px 640px;
+        position: relative;
+    }
+}

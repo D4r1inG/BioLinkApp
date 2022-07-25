@@ -1,0 +1,139 @@
+.navigation {
+    position: sticky;
+    top: 10%;
+    width: $indicator-w-h;
+    height: 280px;
+    background: $color-white;
+    border-radius: 35px;
+    box-shadow: 0 15px 25px $color-black-3;
+    z-index: 49;
+    ul {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .indicator {
+            position: absolute;
+            left: 0;
+            width: $indicator-w-h;
+            height: $indicator-w-h;
+            transition: 0.5s;
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                transition: all 0.5s;
+            }
+        }
+
+        li {
+            position: relative;
+            width: $indicator-w-h;
+            height: $indicator-w-h;
+            z-index: 1;
+            &:nth-child(1).active {
+                & ~ .indicator {
+                    transform: translateY(calc($indicator-w-h * 0));
+                    &::before {
+                        background: linear-gradient(0.151turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                    }
+                }
+            }
+            &:nth-child(2).active {
+                & ~ .indicator {
+                    transform: translateY(calc($indicator-w-h * 1));
+                    &::before {
+                        background: linear-gradient(0.151turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                    }
+                }
+            }
+            &:nth-child(3).active {
+                & ~ .indicator {
+                    transform: translateY(calc($indicator-w-h * 2));
+                    &::before {
+                        background: linear-gradient(0.151turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                    }
+                }
+            }
+            &:nth-child(4).active {
+                & ~ .indicator {
+                    transform: translateY(calc($indicator-w-h * 3));
+                    &::before {
+                        background: linear-gradient(0.151turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                    }
+                }
+            }
+
+            &:hover {
+                span {
+                    .title {
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateX(-25px) translateY(-50%);
+                    }
+                }
+            }
+
+            &.active {
+                span {
+                    .icon {
+                        color: $color-white;
+                    }
+                }
+            }
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                text-align: center;
+                color: $color-gray-5;
+                font-weight: 500;
+                transition: 0.5s;
+                .icon {
+                    position: relative;
+                    display: block;
+                    line-height: 75px;
+                    text-align: center;
+                    transition: 0.5s;
+                    i {
+                        font-size: 24px;
+                    }
+                }
+                .title {
+                    position: absolute;
+                    top: 50%;
+                    left: 110px;
+                    background: $color-white;
+                    transform: translateY(-50%);
+                    border-radius: 6px;
+                    transition: 0.5s;
+                    opacity: 0;
+                    box-shadow: 0 5px 15px $color-black-3;
+                    opacity: 0;
+                    visibility: hidden;
+                    padding: 5px;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        width: 12px;
+                        height: 12px;
+                        background-color: #fff;
+                        left: -8px;
+                        top: 46%;
+                        transform: rotate(45deg) translateY(-50%);
+                        border-radius: 2px;
+                        z-index: -1;
+                    }
+                }
+            }
+        }
+    }
+}

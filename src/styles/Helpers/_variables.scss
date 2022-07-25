@@ -1,0 +1,102 @@
+$color-red-primary: #43a047;
+$color-purple-primary: #42a5f5;
+
+$color-gray-1: #222;
+$color-gray-2: rgb(102, 102, 102);
+$color-gray-3: #bbb;
+$color-gray-4: #6e6d7a;
+$color-gray-5: #333;
+$color-gray-6: #e7e7e9;
+$color-gray-7: rgb(102, 102, 102);
+
+$color-red-1: #e63757;
+
+$color-white: #fff;
+$color-white-1: #f3f3f4;
+$color-white-2: #fafafa;
+$color-white-3: #cdcdcd;
+$color-white-4: rgba(255, 255, 255, 0.6);
+
+$color-black: #000;
+$color-black-1: rgba(13, 12, 34, 0.05);
+$color-black-2: rgba(13, 12, 34, 0.2);
+$color-black-3: rgba(0, 0, 0, 0.1);
+$color-black-4: #0d0c22;
+$color-black-5: rgba(0, 0, 0, 0.25);
+$color-black-6: rgba(13, 12, 34, 0.03);
+$color-black-7: rgba(0, 0, 0, 0.75);
+
+$color-blue-1: #0095f6;
+
+$color-progressBar-1: rgba(0, 149, 246, 0.25);
+$color-progressBar-2: rgba(5, 223, 126, 0.25);
+
+$btn-height-1: 40px;
+$btn-height-2: 48px;
+
+$indicator-w-h: 70px;
+
+$fs-24: 24px;
+
+@keyframes bg-anim {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes bg-circle {
+    0% {
+        background-size: 350%;
+        background-position: left 100% bottom 0;
+    }
+
+    50% {
+        background-size: 350%;
+        background-position: left -10% bottom 0;
+    }
+
+    100% {
+        background-size: 350%;
+        background-position: left 100% bottom 0;
+    }
+}
+
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -468px 0;
+    }
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: rotate(25deg) scale(130%);
+    }
+
+    50% {
+        transform: rotate(-25deg) scale(130%);
+    }
+
+    100% {
+        transform: rotate(25deg) scale(130%);
+    }
+}

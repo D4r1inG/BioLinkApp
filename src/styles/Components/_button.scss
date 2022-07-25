@@ -1,0 +1,6 @@
+.button-primary {
+    @include styledBtn($btn-height-2, $color-red-primary, $color-purple-primary);
+    &:hover {
+        @include hoverBtn(bg-anim);
+    }
+}

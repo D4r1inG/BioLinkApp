@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './Link.css'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useSelector, useDispatch } from 'react-redux'
 import { socialLinkList } from '../../utils/SocialLink'
@@ -26,6 +25,7 @@ export default function LinkCom() {
       linkList: items
     })
   }
+
 
   const renderLink = (list) => {
     return visibleSkeleton ?
@@ -117,7 +117,7 @@ export default function LinkCom() {
     <div className='linkcomponent'>
       <div className='add_link_tour'>
         <div className='flex  relative'>
-          <button className="bl-btn bl-btn-md bl-bg text-white rounded-md relative mr-4 uppercase tracking-wide btn-h-48 bl-bg" onClick={() => {
+          <button className="button-primary text-white rounded-md relative mr-4 uppercase tracking-wide btn-h-48 bl-bg" onClick={() => {
             dispatch({
               type: 'MODAL_ADD_NEW',
               modalHeader: 'Add',

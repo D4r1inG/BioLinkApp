@@ -1,0 +1,86 @@
+.phone_view {
+    width: 350px;
+    border: 15px solid $color-gray-1;
+    border-radius: 40px;
+    height: 723px;
+    transform-origin: right top;
+    transform-origin: 0 0;
+    background-color: $color-gray-1;
+    transform: scale(0.733813);
+
+    .embed-ind-arrow-icon {
+        transition: all 0.4s ease-in-out;
+    }
+
+    .embed-ind-arrow {
+        height: 14px;
+        position: absolute;
+        right: 24px;
+        top: calc(50% - 7px);
+    }
+
+    /* .show-embed-item {
+        max-height: 217px;
+    } */
+
+    .embed-wrap iframe,
+    .embed-wrap-inside {
+        border-radius: 0px 0px 22px 22px;
+    }
+
+    .embed-wrap {
+        height: 100%;
+        width: 100%;
+    }
+
+    .embed-wrap-preview {
+        height: 100%;
+    }
+
+    .pill-item {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .page-logo {
+        bottom: 32px;
+        left: calc(50% - 15px);
+        position: absolute;
+    }
+
+    .page-overlay {
+        backdrop-filter: blur(20px);
+        background: $color-black-3;
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 100;
+    }
+
+    .page-overlay-title {
+        font-family: sans-serif;
+        font-size: 30px;
+    }
+
+    .page-text-color {
+        color: #0d0c22;
+    }
+
+    .page-overlay-btn {
+        background: transparent;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Inter, sans-serif;
+        font-size: 1.2em;
+        padding: 10px 30px;
+        text-decoration: none;
+        border: 2px solid $color-black-4;
+    }
+}

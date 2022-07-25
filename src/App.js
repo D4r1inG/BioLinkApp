@@ -10,10 +10,14 @@ import { PublicRoutes } from "./Routes/PublicRoutes";
 import PublicLayout from "./templates/PublicLayout/PublicLayout";
 import Profile from './pages/Profile/Profile'
 import WebTour from "./pages/WebTour/WebTour";
+import './styles/main.scss'
+
 
 export const history = createBrowserHistory();
 
 function App() {
+  // Admin page
+  // UserName, email, name, bio, status(deleted , no), emailConfirm(yes, no), action(edit, delete || active)
 
   //TODO: custom hook => lưu cache
   const isAuthenticated = checkAuth()

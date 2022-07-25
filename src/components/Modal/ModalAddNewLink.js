@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNewLink } from '../../redux/Actions/LinkAction'
 
 export default function ModalAddNewLink() {
 
-    const {loading } = useSelector(state => state.ModalReducer)
+    const { loading } = useSelector(state => state.ModalReducer)
     const [modalInput, setModalInput] = useState()
     const [selectedImage, setSelectedImage] = useState(null)
     const dispatch = useDispatch()
+
+    //window.URL.createObjectURL(new Blob(['https://anhtcogn.blob.core.windows.net/files/0e811b5ae850290e7041.jpg'], { type: "application/zip" }))
+
+    // console.log(window.URL.createObjectURL(new Blob(['https://anhtcogn.blob.core.windows.net/files/0e811b5ae850290e7041.jpg'], { type: "application/zip" })))
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -22,6 +26,7 @@ export default function ModalAddNewLink() {
 
         dispatch(addNewLink(newLink))
     }
+
 
     const renderInput = () => {
         return <div className="w-full flex justify-between flex-col">
@@ -47,7 +52,7 @@ export default function ModalAddNewLink() {
                     </label>
                     <input className='hidden' id='img-input' type='file' name='myImage' onChange={(e) => {
                         setSelectedImage(e.target.files[0]);
-                        console.log(window.URL.createObjectURL(new Blob([e.target.files[0]], { type: "application/zip" })))
+                        console.log(window.URL.createObjectURL(new Blob([selectedImage], { type: "application/zip" })))
                         console.log(e.target.files[0])
                     }} />
                     <svg onClick={() => { setSelectedImage(null) }} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${selectedImage === null ? 'hidden' : 'block'} absolute img-close-btn cursor-pointer`}><circle cx="12" cy="12" r="11" fill="#0D0C22" stroke="white" strokeWidth="2"></circle> <g clipPath="url(#clip0)"><path d="M15.7766 8.21582L8.86487 15.1275" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M15.7823 15.1347L8.86487 8.21582" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></g> <defs><clipPath id="clip0"><rect width="10.3784" height="10.3784" fill="white" transform="translate(7.13513 6.48633)"></rect></clipPath></defs></svg>
@@ -56,7 +61,7 @@ export default function ModalAddNewLink() {
             </div>
 
             <div className='absolute left-0 bottom-0 w-full'>
-                <button onClick={() => { handleSubmit()}} className="bl-btn bl-btn-md bl-bg font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
+                <button onClick={() => { handleSubmit() }} className="button-primary font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
                     <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
                     <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span>
                 </button>

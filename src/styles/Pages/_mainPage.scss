@@ -1,0 +1,85 @@
+#main_page {
+    .nav-smooth {
+        padding-top: 10px;
+        margin: 0;
+        transition: padding-top 0.75s ease;
+        &.active {
+            padding-top: 0px;
+            transition: padding-top 0.75s ease;
+        }
+    }
+
+    .bg_landing {
+        background: $color-white;
+        transition: background 0.75s ease;
+    }
+
+    .bg_dark {
+        background: $color-black;
+        transition: background 0.75s ease;
+    }
+
+    .dark-space-black {
+        transform: matrix(1, -0.04, 0.07, 1, 0, 0) scale(1);
+        border-radius: 12px;
+        transition: all 0.72s ease;
+    }
+
+    .dark-space {
+        background: linear-gradient(180deg, $color-red-primary, $color-purple-primary);
+        transform: matrix(1, 0.04, -0.07, 1, 0, 0) scale(1);
+        width: 1300px;
+        border-radius: 12px;
+        transition: all 0.75s ease;
+    }
+
+    .dark-space-in .dark-space-black {
+        transform: matrix(1, -0.04, 0.07, 1, 0, 0) scale(1.1);
+        border-radius: 0;
+        transition: all 0.72s ease;
+    }
+
+    .bg_trans{
+        background: 0 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .text-gradient {
+        background-color: $color-black;
+        background-image: linear-gradient(0.351turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        -webkit-background-clip: text;
+        transition: all 0.75s ease;
+    }
+
+    .dark-space-in {
+        background: $color-black;
+        border-radius: 0;
+        transition: all 0.75s ease;
+    }
+
+    .heading_gradient {
+        @include headingMainPage($color-black, $color-purple-primary, $color-red-primary, $color-black, bg-circle);
+    }
+
+    .bl-bg {
+        background: linear-gradient(0.351turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+        background-size: 165%;
+        &:hover {
+            animation-name: bg-anim;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    .bl-input {
+        &:focus {
+            outline: 0;
+        }
+    }
+}

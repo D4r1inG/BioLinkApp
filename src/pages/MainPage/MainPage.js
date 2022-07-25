@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { checkAuth } from '../../utils/CheckAuth'
-import './MainPage.css'
 
 export default function Mainpage() {
 
@@ -56,8 +55,8 @@ export default function Mainpage() {
     }
 
     return (
-        <>
-            <div id="parentSection" className={`${!isAnimate ? '' : 'bg_dark'} pt-24 bg_landing overflow-hidden`}>
+        <div id="main_page">
+            <div  className={`${!isAnimate ? '' : 'bg_dark'} pt-24 bg_landing overflow-hidden`}>
                 <div ref={header} className="fixed top-0 left-0 right-0 z-40 nav-smooth text-white">
                     <div className="mx-8">
                         <div id="header" className={`${!isAnimate ? '' : 'bg_dark'} flex relative mx-auto py-4 px-5 shadow-xl width_1300 bg_landing`}>
@@ -556,6 +555,6 @@ export default function Mainpage() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

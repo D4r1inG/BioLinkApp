@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { register } from '../../redux/Actions/UserAction'
-import './Register.css'
 
 export default function Register() {
 
@@ -161,7 +160,7 @@ export default function Register() {
                             <span className="error">{formInput.errors?.passwordConfirm}</span>
                         </div>
 
-                        <button type='submit' className="bl-btn bl-bg font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }}>
+                        <button type='submit' className="button-primary font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }}>
                             <span className={`${!loading ? 'block' : 'hidden'}`}>sign up with email</span>
                             <span className={`bl-circle-loader absolute ${loading ? 'block' : 'hidden'}`}>
                             </span>

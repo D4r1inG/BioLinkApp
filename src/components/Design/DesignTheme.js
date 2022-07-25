@@ -284,7 +284,7 @@ export default function DesignTheme() {
             </div>
 
             <div className='mt-6'>
-                <button onClick={() => { handleSave() }} className="bl-btn bl-btn-md bl-bg font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
+                <button onClick={() => { handleSave() }} className="button-primary font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
                     {/* <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
                     <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span> */}
                     <span>Save theme</span>

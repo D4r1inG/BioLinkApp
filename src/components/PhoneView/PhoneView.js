@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import { getLinkDataFirstTime } from '../../redux/Actions/LinkAction'
 import MediaEmbed from '../MediaEmbed/MediaEmbed'
 import Svg from '../Svg/Svg'
-import './PhoneView.css'
 
 export default function PhoneView() {
 

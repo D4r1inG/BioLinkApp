@@ -1,19 +1,7 @@
-.input-prefix{
-    top: 11px;
-    left: 16px;
-}
 
-.bl-input-with-prefix{
-    padding-left: 63px;
-}
-
-.bl-input-with-icon{
-    top: 15px;
-    right: 16px;
-}
 
 .grey-border-block{
-    background-color: rgba(13,12,34,.05);
+    background-color: $color-black-1;
     height: 1px;
 }
 
@@ -28,7 +16,7 @@
 
 .error {
     position: absolute;
-    color: red;
+    color: $color-red-1;
     font-size: 12px;
     top: 28%;
     right: 5%;
@@ -41,7 +29,7 @@
 }
 
 .input-main-wrap.input-error:focus-within {
-    background: red;
+    background: $color-red-1;
 }
 
 .bl-input:focus+.error {

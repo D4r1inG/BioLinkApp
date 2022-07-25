@@ -1,0 +1,178 @@
+.font-inter {
+    font-family: Inter, sans-serif;
+}
+
+.input-border-none {
+    border: 2px solid transparent;
+}
+
+.heading_gradient,
+.text-gradient {
+    -webkit-text-fill-color: transparent;
+}
+
+.text-whiteLOp {
+    color: $color-white-4;
+}
+
+.text_gray {
+    color: $color-gray-1;
+    transition: all 0.75s ease;
+}
+
+.text_gray_light {
+    color: $color-gray-3;
+    transition: all 0.75s ease;
+}
+
+.width_1300 {
+    width: 1300px;
+    border-radius: 100px;
+}
+
+.w-1100 {
+    width: 1100px;
+}
+
+.width_840 {
+    width: 840px;
+}
+
+.w-760 {
+    width: 760px;
+}
+
+.w-200 {
+    width: 200px;
+}
+
+.w-175 {
+    width: 175px;
+}
+
+.w-125 {
+    width: 125px;
+}
+
+.w-165 {
+    width: 165px;
+}
+
+.w-h-48 {
+    height: 48px;
+    width: 48px;
+}
+
+.h-50 {
+    height: 50px;
+}
+
+.leading-100 {
+    line-height: 100px;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+.input-prefix {
+    top: 11px;
+    left: 16px;
+}
+
+.bl-input-with-prefix {
+    padding-left: 63px;
+}
+
+.bl-input-with-icon {
+    top: 15px;
+    right: 16px;
+}
+
+.pride-page-image {
+    height: 100%;
+    width: 100vw;
+    object-fit: cover;
+    position: fixed;
+    inset: 0;
+}
+
+.limit-one-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.transparent-scroll::-webkit-scrollbar {
+    width: 0;
+}
+
+.transparent-scroll::-webkit-scrollbar-thumb,
+.transparent-scroll::-webkit-scrollbar-track {
+    background: 0 0;
+}
+
+.transparent-scroll::-webkit-scrollbar-thumb,
+.transparent-scroll::-webkit-scrollbar-track {
+    background: 0 0;
+}
+
+.bl-toggle-btn {
+    width: 40px;
+    height: 24px;
+    .bl-toggle-input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        &:checked {
+            & + .bl-toggle-slider {
+                background: $color-blue-1;
+                &:before {
+                    transform: translateX(15px);
+                }
+            }
+        }
+    }
+    .bl-toggle-slider {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $color-black-2;
+        border-radius: 52px;
+        &::before {
+            border-radius: 50%;
+            position: absolute;
+            content: "";
+            height: 17px;
+            width: 17px;
+            left: 4px;
+            bottom: 4px;
+            background-color: $color-white;
+            transition: 0.4s;
+        }
+    }
+}
+
+.input-main-wrap {
+    border: 1px solid transparent;
+    transition: all 0.5s;
+    &:focus-within {
+        background: linear-gradient($color-purple-primary, $color-red-primary);
+    }
+    .bl-input {
+        background-color: $color-black-1;
+        border: 1px solid transparent;
+        height: 40px;
+        border-radius: 0;
+        &:focus {
+            outline: 0;
+            transition: none;
+            background-color: $color-white;
+        }
+    }
+}

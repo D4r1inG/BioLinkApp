@@ -77,7 +77,7 @@ export default function SettingCom() {
         <div className="input-main-wrap overflow-hidden	rounded-sm mt-4">
           <input type="text" name="title" placeholder="Email" className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onChange={handleChange} />
         </div>
-        <button className="bl-btn-md bg-gray-100 text-dark font-inter leading-4 relative flex justify-center items-center hover:bg-gray-200 rounded-sm px-8 mt-6">
+        <button className="bl-btn-md bg-gray-100 text-dark font-inter leading-4 relative flex justify-center items-center hover:bg-gray-200 rounded-sm px-8 py-4 mt-6">
           <span className="flex font-semibold text-14">
             Set Password
           </span>

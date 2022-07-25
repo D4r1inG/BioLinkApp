@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { getTheme, getUserProfile } from '../../redux/Actions/ProfileAction'
-import './DesignCom.css'
 import DesignTheme from './DesignTheme'
 
 export default function DesignCom() {
@@ -73,7 +72,7 @@ export default function DesignCom() {
   }
 
   return (
-    <div className='design_tour relative'>
+    <div id='design' className='design_tour relative'>
       <div className="bg-white rounded-sm shadow-sm p-8 mb-8">
         <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16">Profile</div>
         <div className="mt-8">
@@ -101,7 +100,7 @@ export default function DesignCom() {
               </div>
             </div>
           </div>
-          <button className={`${displayBtn ? 'block' : 'hidden'} bl-bg bl-btn-md text-white rounded-sm leading-4 relative flex items-center justify-center mt-8 w-full uppercase font-bold tracking-wider`} onClick={() => {
+          <button className={`${displayBtn ? 'block' : 'hidden'} button-primary text-white rounded-sm leading-4 relative flex items-center justify-center mt-8 w-full uppercase font-bold tracking-wider`} onClick={() => {
             dispatch({
               type: 'EDIT_VALUE',
               payload: valueInput

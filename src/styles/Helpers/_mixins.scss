@@ -1,0 +1,30 @@
+
+
+@mixin styledBtn($height, $color1, $color2) {
+    height: $height;
+    background: linear-gradient(0.351turn, $color1 23.71%, $color2 78.8%);
+    background-size: 165%;
+    transition: 0.25s ease-in-out;
+}
+
+@mixin hoverBtn($anim){
+    animation-name: $anim;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+@mixin headingMainPage($bgColor, $bgImg1, $bgImg2, $bgImg3, $bgAnim){
+    background-color: #000;
+    background-image: radial-gradient(circle,$bgImg1 0,$bgImg2 26%,$bgImg3 27%);
+    background-position: 100% 100%;
+    background-size: 150%;
+    animation-name: $bgAnim;
+    animation-duration: 10s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    background-repeat: no-repeat;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
