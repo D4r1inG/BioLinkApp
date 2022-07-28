@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNewLink } from '../../redux/Actions/LinkAction'
 
@@ -8,6 +8,8 @@ export default function ModalAddNewLink() {
     const [modalInput, setModalInput] = useState()
     const [selectedImage, setSelectedImage] = useState(null)
     const dispatch = useDispatch()
+
+    const formData = useRef()
 
     //window.URL.createObjectURL(new Blob(['https://anhtcogn.blob.core.windows.net/files/0e811b5ae850290e7041.jpg'], { type: "application/zip" }))
 
@@ -19,24 +21,23 @@ export default function ModalAddNewLink() {
     }
 
     const handleSubmit = () => {
-        let newLink = new FormData()
-        newLink.append('title', modalInput?.title)
-        newLink.append('url', modalInput?.url)
-        newLink.append('image', selectedImage)
-
+        let newLink = new FormData(formData.current)
+        if(selectedImage !== null){
+            newLink.append('image', selectedImage)
+        }
         dispatch(addNewLink(newLink))
     }
 
 
     const renderInput = () => {
-        return <div className="w-full flex justify-between flex-col">
+        return <form ref={formData} className="w-full flex justify-between flex-col">
             <div className="input-main-wrap overflow-hidden	rounded-sm w-full">
                 <input onChange={handleChange} type="text" name="title" placeholder="Title" className="bl-input w-full p-4 text-sm font-normal font-inter tracking-wider placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
             </div>
             <div className="input-main-wrap overflow-hidden	rounded-sm w-full mt-2">
                 <input onChange={handleChange} type="text" name="url" placeholder="URL" className="bl-input w-full p-4 text-sm font-normal font-inter tracking-wider placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
             </div>
-        </div>
+        </form>
     }
 
     return (
@@ -52,8 +53,6 @@ export default function ModalAddNewLink() {
                     </label>
                     <input className='hidden' id='img-input' type='file' name='myImage' onChange={(e) => {
                         setSelectedImage(e.target.files[0]);
-                        console.log(window.URL.createObjectURL(new Blob([selectedImage], { type: "application/zip" })))
-                        console.log(e.target.files[0])
                     }} />
                     <svg onClick={() => { setSelectedImage(null) }} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${selectedImage === null ? 'hidden' : 'block'} absolute img-close-btn cursor-pointer`}><circle cx="12" cy="12" r="11" fill="#0D0C22" stroke="white" strokeWidth="2"></circle> <g clipPath="url(#clip0)"><path d="M15.7766 8.21582L8.86487 15.1275" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M15.7823 15.1347L8.86487 8.21582" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></g> <defs><clipPath id="clip0"><rect width="10.3784" height="10.3784" fill="white" transform="translate(7.13513 6.48633)"></rect></clipPath></defs></svg>
                     <img className={`${selectedImage === null ? 'hidden' : 'block'} link-thumb-img-upload`} alt="not fount" src={window.URL.createObjectURL(new Blob([selectedImage], { type: "application/zip" }))} />

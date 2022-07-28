@@ -1,18 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { getProfile } from '../../redux/Actions/ProfileAction'
+import { getProfileByUserName } from '../../redux/Actions/ProfileAction'
 import { useSelector } from 'react-redux'
-import { getLinkDataFirstTime } from '../../redux/Actions/LinkAction'
-import { socialLinkList } from '../../utils/SocialLink'
 import Svg from '../../components/Svg/Svg'
 import MediaEmbed from '../../components/MediaEmbed/MediaEmbed'
 
 export default function Profile(props) {
 
-    // console.log(props.match)
-
-    const { linkList, socialList } = useSelector(state => state.LinkReducer)
-    const { name, bio, image, activeTheme, themes, showLogo, showWarning } = useSelector(state => state.ProfileReducer)
+    const { userProfileByUserName } = useSelector(state => state.ProfileReducer)
+    console.log(userProfileByUserName)
+    const { name, bio, image, listPlugins, designDto, showLogo, showWarning, listSocial } = userProfileByUserName
     const dispatch = useDispatch()
 
     const [idVisible, setIdVisible] = useState([])
@@ -20,13 +17,13 @@ export default function Profile(props) {
     const [warning, setWarning] = useState(showWarning)
 
     useEffect(() => {
-        dispatch(getLinkDataFirstTime())
-        // dispatch(getProfile(props.match.params.username))
+        dispatch(getProfileByUserName(props.match.params.username))
     }, [])
 
-    useEffect(() => {
-        setTheme(themes.find(item => item.id === activeTheme))
-    }, [activeTheme, themes])
+    useEffect(()=>{
+        setTheme(designDto)
+    },[designDto])
+
 
     let pageItem = {
         borderStyle: theme?.btnBdStyle,
@@ -38,7 +35,7 @@ export default function Profile(props) {
     }
 
     const renderSocialList = (list) => {
-        return list.map((item, index) => {
+        return list?.map((item, index) => {
             return <div key={index} className="page-social relative mx-3 mb-3" style={{ color: theme?.color }}>
                 <a className="absolute h-full inset-0 w-full" target="_blank" href={`https://${item.name}.com/${item.link}`} ></a>
                 <Svg name={item.name} color={theme?.colorHeader} />
@@ -51,10 +48,10 @@ export default function Profile(props) {
             if (item.isHeader) {
 
                 return <div key={index} style={{ color: theme?.colorHeader, fontFamily: theme?.fontFamily }} className="text-center font-bold text-base mt-9 limit-one-line break-all overflow-hidden">
-                    {item.linkHeader}
+                    {item.title}
                 </div>
 
-            } else if (item.isPlugIn) {
+            } else if (item.isPlugin) {
 
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" onClick={() => {
                     if (idVisible.indexOf(item.id) === -1) {
@@ -67,13 +64,13 @@ export default function Profile(props) {
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
                     <div style={{ minHeight: '60px' }} className="z-10 py-2 cursor-pointer flex justify-between items-center relative">
                         <img className='ml-3 rounded-full' src={item.imgSrc} alt="youtube" style={{ width: '40px', height: '40px' }} />
-                        <span className="item-title text-center limit-one-line break-all pl-3 pr-12 " style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
+                        <span className="item-title text-center limit-one-line break-all pl-3 pr-12 " style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>
                         <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)', position: 'relative', marginBottom: 0 }} className="embed-ind-arrow-icon embed-ind-arrow" fill={theme?.colorLink} viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
                     </div>
                     <div className={`embed-wrap relative ${idVisible.indexOf(item.id) !== -1 ? 'py-4' : 'py-0'} px-4 transition-all duration-200`}>
-                        <MediaEmbed isAnimated={true} url={item.link} name={item.plugInName} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
+                        <MediaEmbed isAnimated={true} url={item.url} name={item.plugInName} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
                     </div>
                 </div>
 
@@ -81,9 +78,9 @@ export default function Profile(props) {
 
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" >
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
-                    <a style={{ minHeight: '60px' }} href={item.link} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
+                    <a style={{ minHeight: '60px' }} href={item.url} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
                         {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
-                        <span className="item-title text-center limit-one-line break-all overflow-hidden px-4" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
+                        <span className="item-title text-center limit-one-line break-all overflow-hidden px-4" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>
                     </a>
                 </div>
             }
@@ -91,7 +88,7 @@ export default function Profile(props) {
     }
 
     return (
-        <div>
+        <div id='profile'>
             <div className={`${warning ? 'flex' : 'hidden'} page-overlay justify-center items-center flex-col text-center`}>
                 <svg width="81" height="70" fill='none' xmlns="http://www.w3.org/2000/svg"><path d="M31.445 44.048a12.672 12.672 0 01-3.753-9.043A12.818 12.818 0 0140.53 22.159c3.517 0 6.755 1.424 9.047 3.753M53.13 37.281a12.812 12.812 0 01-10.294 10.314" stroke={theme?.colorHeader} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M18.844 56.647C12.404 51.592 6.952 44.207 3 35.002c3.992-9.247 9.482-16.672 15.962-21.768C25.4 8.138 32.829 5.371 40.53 5.371c7.745 0 15.17 2.808 21.65 7.94M70.751 22.236c2.792 3.709 5.246 7.99 7.311 12.765-7.98 18.489-22.083 29.626-37.53 29.626a32.38 32.38 0 01-10.273-1.676M72.531 3l-64 64" stroke={theme?.colorHeader} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                 <h1 style={{ color: theme?.colorHeader }} className="page-text-color mt-8 text-center page-overlay-title" >Sensitive Content</h1>
@@ -104,7 +101,7 @@ export default function Profile(props) {
                     Yes, I’m 18 or older
                 </button>
             </div>
-            <div className=' w-full min-h-full flex justify-center relative'>
+            <div className=' w-full min-h-screen flex justify-center relative'>
                 <div className='absolute inset-0 w-full -z-10 h-full' style={{ background: theme?.background }}></div>
                 <img className={`pride-page-image ${!theme?.backgroundImg ? 'hidden' : 'block'}`} style={{ zIndex: -1 }} src={theme?.backgroundImg} alt="background" />
                 <div style={{ width: '670px' }} className='mt-12 pb-32'>
@@ -116,10 +113,10 @@ export default function Profile(props) {
                         {bio}
                     </div>
                     <div className="flex justify-center items-center flex-wrap mt-4">
-                        {renderSocialList(socialList)}
+                        {renderSocialList(listSocial)}
                     </div>
                     <div className='mt-6 px-4'>
-                        {renderLink(linkList)}
+                        {renderLink(listPlugins)}
                     </div>
 
                     <div className={`page-logo text-center ${showLogo ? 'block' : 'hidden'}`}>

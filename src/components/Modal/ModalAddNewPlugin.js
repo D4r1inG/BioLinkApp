@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { addNewLink } from '../../redux/Actions/LinkAction'
+import { addNewLink, addNewPlugin } from '../../redux/Actions/LinkAction'
 import MediaEmbed from '../MediaEmbed/MediaEmbed'
 
 const youtubeURLRegex = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
@@ -10,6 +10,8 @@ const spotifyURLRegex = /(https?:\/\/open.spotify.com\/(track|user|artist|album)
 export default function ModalAddNewPlugin() {
 
     const { loading, modalHeader } = useSelector(state => state.ModalReducer)
+    const [selectedImage, setSelectedImage] = useState(null)
+
     const [modalInput, setModalInput] = useState({
         title: '',
         url: '',
@@ -20,6 +22,7 @@ export default function ModalAddNewPlugin() {
     })
     const [imgSrc, setImgSrc] = useState()
     const dispatch = useDispatch()
+    const formData = useRef()
 
     useEffect(() => {
         switch (modalHeader) {
@@ -83,17 +86,11 @@ export default function ModalAddNewPlugin() {
         }
 
         if (valid) {
-            let newLink = {
-                linkHeader: modalInput.title,
-                link: modalInput.url,
-                click: 0,
-                isHeader: false,
-                isHide: false,
-                isPlugIn: true,
-                imgSrc: imgSrc,
-                plugInName: modalHeader
+            let newLink = new FormData(formData.current)
+            if (selectedImage !== null) {
+                newLink.append('image', selectedImage)
             }
-            dispatch(addNewLink(newLink))
+            dispatch(addNewPlugin(newLink))
         } else {
             //TODO: Show toast message
         }
@@ -101,7 +98,7 @@ export default function ModalAddNewPlugin() {
     }
 
     const renderInput = () => {
-        return <div className="w-full flex justify-between flex-col">
+        return <form ref={formData} className="w-full flex justify-between flex-col">
             <div className="input-main-wrap overflow-hidden	rounded-sm w-full">
                 <input onChange={handleChange} type="text" name="title" placeholder="Title" className="bl-input w-full p-4 text-sm font-normal font-inter tracking-wider placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
             </div>
@@ -111,7 +108,7 @@ export default function ModalAddNewPlugin() {
                 <input onChange={handleChange} type="text" name="url" placeholder="URL" className="bl-input w-full p-4 text-sm font-normal font-inter tracking-wider placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
             </div>
             <span className='text-red-400 text-sm mt-1 ml-2'>{error.url}</span>
-        </div>
+        </form>
     }
 
 

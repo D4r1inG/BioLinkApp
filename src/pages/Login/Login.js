@@ -9,6 +9,7 @@ export default function Login() {
 
     const [showPassWord, setShowPassWord] = useState(false)
     const { tempStatus } = useSelector(state => state.UserReducer)
+    const { loading } = useSelector(state => state.ModalReducer)
     const [formInput, setFormInput] = useState({
         username: '',
         password: ''
@@ -49,12 +50,12 @@ export default function Login() {
                     </NavLink>
                     <div className='flex items-center'>
                         <p className='text-sm'>Don't have an account? </p>
-                        <NavLink className='text-sm underline text-blue-500 ml-1' to='/signup' onClick={()=>{
+                        <NavLink className='text-sm underline text-blue-500 ml-1' to='/signup' onClick={() => {
                             dispatch({
                                 type: 'SET_STATUS',
                                 data: {
                                     message: null,
-                                    success: null 
+                                    success: null
                                 }
                             })
                         }}>Sign up</NavLink>
@@ -90,17 +91,17 @@ export default function Login() {
                         </div>
 
                         <button className="button-primary font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }} onClick={handleSubmit}>
-                            <span className="">Log in</span>
-                            {/* <span className="bl-circle-loader absolute hidden"></span>  */}
+                            <span className={`${!loading ? 'block' : 'hidden'}`}>Login</span>
+                            <span className={`bl-circle-loader absolute ${loading ? 'block' : 'hidden'}`}></span>
                             {/* Loader */}
                         </button>
                         <div className="text-center">
                             <a href="#" className="mt-3 text-blue-400 text-sm font-inter font-normal inline-block" onClick={() => {
-                               dispatch({
-                                type: 'MODAL_ADD_NEW',
-                                modalHeader: 'Insert your email',
-                                component: <ModalCheckMail />
-                              })
+                                dispatch({
+                                    type: 'MODAL_ADD_NEW',
+                                    modalHeader: 'Insert your email',
+                                    component: <ModalCheckMail />
+                                })
                             }}>
                                 Forgot password?
                             </a>

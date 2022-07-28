@@ -7,6 +7,7 @@ import ModalAddNewHeader from '../Modal/ModalAddNewHeader'
 import ModalEdit from '../Modal/ModalEdit'
 import ModalSocial from '../Modal/ModalSocial'
 import Svg from '../Svg/Svg'
+import { updateList } from '../../redux/Actions/LinkAction'
 
 export default function LinkCom() {
 
@@ -19,11 +20,7 @@ export default function LinkCom() {
     const items = Array.from(linkList);
     const dragItem = items.splice(res.source.index, 1);
     items.splice(res.destination.index, 0, dragItem[0]);
-
-    dispatch({
-      type: 'SET_LIST',
-      linkList: items
-    })
+    dispatch(updateList(items))
   }
 
 
@@ -42,7 +39,7 @@ export default function LinkCom() {
         ))
       :
       list.map((item, index) => (
-        <Draggable key={item.id} draggableId={item.id} index={index} >
+        <Draggable key={item.id} draggableId={item.id.toString()} index={index} >
           {(provided) => (
             <div className='mb-4 relative ' key={index} {...provided.draggableProps} ref={provided.innerRef} onClick={() => {
               dispatch({
@@ -62,19 +59,19 @@ export default function LinkCom() {
                 {item.isHeader
                   ?
                   <div className="text-center px-6 text-black font-inter font-bold text-base w-full limit-one-line break-all overflow-hidden">
-                    {item.linkHeader}
+                    {item.title}
                   </div>
                   :
                   <div className="flex items-center justify-between">
                     <div className='flex items-center'>
-                      {item.imgSrc ? <img className='w-full h-full mr-3' src={item.imgSrc} alt={item.linkHeader} style={{ width: '52px', height: '52px' }} /> : ""}
+                      {item.image ? <img className='w-full h-full mr-3' src={item.image} alt={item.linkHeader} style={{ width: '52px', height: '52px' }} /> : ""}
                       <div className="flex">
                         <div className="py-2 flex justify-between flex-col">
                           <div className="text-sm font-inter font-bold text-black leading-6 overflow-hidden break-all limit-one-line">
-                            {item.linkHeader}
+                            {item.title}
                           </div>
                           <div className="text-sm font-inter font-normal overflow-hidden break-all cursor-pointer limit-one-line">
-                            {item.link}
+                            {item.url}
                           </div>
                         </div>
                       </div>

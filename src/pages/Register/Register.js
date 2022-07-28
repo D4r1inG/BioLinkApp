@@ -161,7 +161,7 @@ export default function Register() {
                         </div>
 
                         <button type='submit' className="button-primary font-semibold font-inter  text-white rounded-sm leading-4 relative flex justify-center items-center mt-6 w-full uppercase tracking-wider" style={{ height: '40px' }}>
-                            <span className={`${!loading ? 'block' : 'hidden'}`}>sign up with email</span>
+                            <span className={`${!loading ? 'block' : 'hidden'}`}>Sign up with email</span>
                             <span className={`bl-circle-loader absolute ${loading ? 'block' : 'hidden'}`}>
                             </span>
                             {/* Loader */}

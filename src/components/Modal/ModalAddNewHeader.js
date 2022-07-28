@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addNewLink } from '../../redux/Actions/LinkAction'
+import { addNewHeader } from '../../redux/Actions/LinkAction'
 
 export default function ModalAddNewHeader() {
 
@@ -8,6 +8,8 @@ export default function ModalAddNewHeader() {
     const { loading } = useSelector(state => state.ModalReducer)
     const [modalInput, setModalInput] = useState()
     const dispatch = useDispatch()
+    const formData = useRef(null)
+
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -15,23 +17,14 @@ export default function ModalAddNewHeader() {
     }
 
     const handleSubmit = () => {
-        let newLink = {
-            linkHeader: modalInput.title,
-            link: '',
-            click: 0,
-            isHeader: true,
-            isHide: false,
-            isPlugIn: false,
-            imgSrc: '',
-            plugInName: ''
-        }
-        dispatch(addNewLink(newLink))
+        let newLink = new FormData(formData.current)
+        dispatch(addNewHeader(newLink))
     }
 
     const renderInput = () => {
-        return <div className="input-main-wrap overflow-hidden rounded-sm w-full">
-            <input onChange={handleChange} type="text" name="title" placeholder="Title" className="bl-input w-full p-4 text-sm font-normal font-inter tracking-wider placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
-        </div>
+        return <form ref={formData} className="input-main-wrap overflow-hidden rounded-sm w-full">
+            <input type="text" name="title" placeholder="Title" className="bl-input w-full p-4 text-sm font-normal font-inter tracking-wider placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+        </form>
     }
 
     return (

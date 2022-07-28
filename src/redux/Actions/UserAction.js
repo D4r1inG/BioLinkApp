@@ -12,11 +12,12 @@ export const login = (infoUser) => {
                 type: 'LOGIN_ACTION',
                 data
             })
-            if (data.firstLogin) {
-                history.push('/firstlogin')
-            } else {
-                history.push('/dashboard/link')
-            }
+            history.push('/')
+
+            // if (data.firstLogin) {
+            //     history.push('/firstlogin')
+            // } else {
+            // }
         } catch (err) {
             console.log(err)
         }

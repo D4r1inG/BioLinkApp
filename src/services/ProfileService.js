@@ -2,8 +2,8 @@ import { baseService } from "./BaseService";
 
 class ProfileService extends baseService {
 
-    getProfile = (username) => {
-        return this.Get(`v1.0/profile/${username}`)
+    getProfileByUserName = (username) => {
+        return this.Get(`profile/${username}`)
     }
 
     getThemes = () => {
@@ -11,8 +11,17 @@ class ProfileService extends baseService {
     }
 
     getUserProfile = () => {
-        return this.Get('profile')
+        return this.Get('user/profile')
     }
+
+    setProfileTheme = (id) => {
+        return this.Put(`user/profile/active/?designId=${id}`)
+    }
+
+    updateProfile = (newProfile) => {
+        return this.Put('user/profile', newProfile)
+    }
+
 
 }
 

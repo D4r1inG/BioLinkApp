@@ -50,7 +50,7 @@
                 & ~ .indicator {
                     transform: translateY(calc($indicator-w-h * 1));
                     &::before {
-                        background: linear-gradient(0.151turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                        background: linear-gradient(0.300turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
                     }
                 }
             }
@@ -58,7 +58,7 @@
                 & ~ .indicator {
                     transform: translateY(calc($indicator-w-h * 2));
                     &::before {
-                        background: linear-gradient(0.151turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                        background: linear-gradient(0.450turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
                     }
                 }
             }
@@ -66,7 +66,7 @@
                 & ~ .indicator {
                     transform: translateY(calc($indicator-w-h * 3));
                     &::before {
-                        background: linear-gradient(0.151turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                        background: linear-gradient(0.600turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
                     }
                 }
             }

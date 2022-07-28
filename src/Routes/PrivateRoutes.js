@@ -2,6 +2,7 @@ import DesignCom from "../components/Design/DesignCom";
 import LinkCom from "../components/Link/LinkCom";
 import SettingCom from "../components/Setting/SettingCom";
 import Stat from "../components/Stat/Stat";
+import Admin from "../pages/Admin/Admin";
 
 
 export const PrivateRoutes = {
@@ -23,5 +24,10 @@ export const PrivateRoutes = {
     SettingRoute: {
         Component: SettingCom,
         path: '/dashboard/setting'
-    }
+    },
+
+    // AdminRoute: {
+    //     Component: Admin,
+    //     path: '/admin'
+    // }
 }

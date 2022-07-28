@@ -4,7 +4,7 @@ const initialState = {
         message: null,
         success: null
     },
-    isTouring: false
+    isTouring: false,
 }
 
 export const UserReducer = (state = initialState, action) => {

@@ -5,7 +5,7 @@
     padding: 0 32px 80px;
 }
 
-#modal{
+#modal, #design{
     button:focus,
     input:focus {
         outline: 0;
@@ -113,15 +113,4 @@
         top: -9px;
     }
 
-    .bl-circle-loader {
-        border-right: 4px solid transparent;
-        border-top: 4px solid transparent;
-        border-radius: 50%;
-        border-color: $color-white $color-white transparent transparent;
-        border-style: solid;
-        border-width: 3px 3px 4px 4px;
-        width: 22px;
-        height: 22px;
-        animation: spin 1s linear infinite;
-    }
 }

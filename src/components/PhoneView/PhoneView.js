@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { getLinkDataFirstTime } from '../../redux/Actions/LinkAction'
+import { getTheme, getUserProfile } from '../../redux/Actions/ProfileAction'
 import MediaEmbed from '../MediaEmbed/MediaEmbed'
 import Svg from '../Svg/Svg'
 
@@ -9,24 +10,29 @@ export default function PhoneView() {
 
     const { linkList, socialList } = useSelector(state => state.LinkReducer)
     const { isTouring } = useSelector(state => state.UserReducer)
-    const { name, bio, image, activeTheme, themes, showLogo, isCreating, newTheme } = useSelector(state => state.ProfileReducer)
+    const { userProfile, isCreating, newTheme, themes } = useSelector(state => state.ProfileReducer)
+    const { name, bio, image, activeDesign, showLogo } = userProfile
+
     const dispatch = useDispatch()
 
     const [idVisible, setIdVisible] = useState([])
     const [theme, setTheme] = useState()
 
     useEffect(() => {
-        if (!isTouring) {
-            dispatch(getLinkDataFirstTime())
-        }
-
         if (!isCreating) {
-            setTheme(themes.find(item => item.id === activeTheme))
+            setTheme(themes.find(item => item.id === activeDesign))
         } else {
             setTheme(newTheme)
         }
-    }, [activeTheme, themes, newTheme, isCreating, isTouring])
-    
+    }, [activeDesign, themes, newTheme, isCreating])
+
+    useEffect(() => {
+        // Chỉnh api gọi 1 lần
+        dispatch(getLinkDataFirstTime())
+        dispatch(getUserProfile())
+        dispatch(getTheme())
+    }, [])
+
 
     let pageItem = {
         borderStyle: theme?.btnBdStyle,
@@ -40,7 +46,7 @@ export default function PhoneView() {
     const renderSocialList = (list) => {
         return list.map((item, index) => {
             return <div key={index} className="page-social relative mx-3 mb-3" >
-                <a className="absolute h-full inset-0 w-full" target="_blank" href={`https://${item.name}.com/${item.link}`} ></a>
+                <a className="absolute h-full inset-0 w-full" target="_blank" href={`https://${item.name}.com/${item.url}`} ></a>
                 <Svg name={item.name} color={theme?.colorHeader} />
             </div>
         })
@@ -51,10 +57,10 @@ export default function PhoneView() {
             if (item.isHeader) {
 
                 return <div key={index} style={{ color: theme?.colorHeader, fontFamily: theme?.fontFamily }} className="transition-all text-center font-bold text-base mt-9 limit-one-line break-all overflow-hidden">
-                    {item.linkHeader}
+                    {item.title}
                 </div>
 
-            } else if (item.isPlugIn) {
+            } else if (item.isPlugin) {
 
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" onClick={() => {
                     if (idVisible.indexOf(item.id) === -1) {
@@ -67,13 +73,13 @@ export default function PhoneView() {
                     <div style={pageItem} className="flex justify-center items-center pill-item transition-all"></div>
                     <div style={{ minHeight: '60px' }} className="z-10 py-2 cursor-pointer flex justify-between items-center relative">
                         <img className='ml-3 rounded-full' src={item.imgSrc} alt={item.plugInName} style={{ width: '40px', height: '40px' }} />
-                        <span className="item-title limit-one-line break-all overflow-hidden pl-3 pr-12 flex-1 text-center transition-all" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
+                        <span className="item-title limit-one-line break-all overflow-hidden pl-3 pr-12 flex-1 text-center transition-all" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>
                         <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)' }} className="embed-ind-arrow-icon embed-ind-arrow" fill={theme?.colorLink} viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
                     </div>
                     <div className={`embed-wrap relative ${idVisible.indexOf(item.id) !== -1 ? 'py-4' : 'py-0'} px-4 transition-all duration-200 `}>
-                        <MediaEmbed url={item.link} name={item.plugInName} isAnimated={true} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
+                        <MediaEmbed url={item.url} name={item.plugInName} isAnimated={true} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
                     </div>
                 </div>
 
@@ -81,9 +87,9 @@ export default function PhoneView() {
 
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" >
                     <div style={pageItem} className="flex justify-center items-center pill-item transition-all"></div>
-                    <a style={{ minHeight: '60px' }} href={item.link} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
-                        {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
-                        <span className="item-title text-center limit-one-line break-all overflow-hidden px-4 transition-all" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.linkHeader}</span>
+                    <a style={{ minHeight: '60px' }} href={item.url} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
+                        {/* <img className="url-each-image" data-src="https://cdn.bio.url/biolink/icons/youtube.png" src="https://cdn.bio.url/biolink/icons/youtube.png" alt="youtube" /> */}
+                        <span className="item-title text-center limit-one-line break-all overflow-hidden px-4 transition-all" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>
                     </a>
                 </div>
             }

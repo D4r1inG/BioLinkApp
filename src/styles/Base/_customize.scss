@@ -2,6 +2,10 @@
     font-family: Inter, sans-serif;
 }
 
+p{
+    margin-bottom: 0 !important
+}
+
 .input-border-none {
     border: 2px solid transparent;
 }
@@ -99,6 +103,10 @@ video {
     inset: 0;
 }
 
+.bg_landing:focus{
+    outline: none;
+}
+
 .limit-one-line {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -156,6 +164,18 @@ video {
             transition: 0.4s;
         }
     }
+}
+
+.bl-circle-loader {
+    border-right: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    border-color: $color-white $color-white transparent transparent;
+    border-style: solid;
+    border-width: 3px 3px 4px 4px;
+    width: 22px;
+    height: 22px;
+    animation: spin 1s linear infinite;
 }
 
 .input-main-wrap {
