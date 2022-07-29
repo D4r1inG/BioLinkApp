@@ -10,7 +10,6 @@ const spotifyURLRegex = /(https?:\/\/open.spotify.com\/(track|user|artist|album)
 export default function ModalAddNewPlugin() {
 
     const { loading, modalHeader } = useSelector(state => state.ModalReducer)
-    const [selectedImage, setSelectedImage] = useState(null)
 
     const [modalInput, setModalInput] = useState({
         title: '',
@@ -87,9 +86,7 @@ export default function ModalAddNewPlugin() {
 
         if (valid) {
             let newLink = new FormData(formData.current)
-            if (selectedImage !== null) {
-                newLink.append('image', selectedImage)
-            }
+            newLink.append('pluginName', modalHeader)
             dispatch(addNewPlugin(newLink))
         } else {
             //TODO: Show toast message

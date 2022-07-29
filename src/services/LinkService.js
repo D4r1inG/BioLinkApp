@@ -20,7 +20,6 @@ class LinkManagement extends baseService {
     }
 
     editLink = (linkEdit, id) => {
-        console.log(id)
         return this.Put(`user/updateContent/${id}`, linkEdit)
     }
 
@@ -32,6 +31,9 @@ class LinkManagement extends baseService {
         return this.Put(`user/updateLocation`, list)
     }
 
+    // updateSocialLink = (list) => {
+    //     return this.Post('user/createSocial', list)
+    // }
 }
 
 

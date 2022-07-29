@@ -1,16 +1,19 @@
 import { Breadcrumb, Input, Layout, Menu, Popconfirm } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom'; import { Space, Table, Tag } from 'antd';
+import { NavLink } from 'react-router-dom';
+import { Space, Table, Tag, Select } from 'antd';
 import { useDispatch } from 'react-redux';
-import { getAllUsers } from '../../redux/Actions/AdminAction';
+import { activeUser, deleteUser, editUser, getAllUsers } from '../../redux/Actions/AdminAction';
 import { useSelector } from 'react-redux';
 
 
 
 export default function Admin() {
     const { Content } = Layout;
+    const { Option } = Select;
 
     const dispatch = useDispatch()
+    const { loading } = useSelector(state => state.ModalReducer)
     const { userList } = useSelector(state => state.AdminReducer)
     const [userEditId, setUserEditId] = useState(-1)
     const [userEdit, setUserEdit] = useState({
@@ -18,11 +21,13 @@ export default function Admin() {
             name: '',
             bio: '',
             email: '',
+            role: ''
         },
         errors: {
             name: '',
             bio: '',
             email: '',
+            role: ''
         }
     })
 
@@ -47,11 +52,20 @@ export default function Admin() {
         })
     }
 
+
+    const handleSelectChange = (value) => {
+        setUserEdit({
+            values: { ...userEdit.values, role: value },
+            errors: { ...userEdit.errors }
+        })
+    }
+
     const columns = [
         {
             title: 'Id',
             dataIndex: 'id',
             key: 'id',
+            width: '4%'
         },
         {
             title: 'User name',
@@ -62,12 +76,13 @@ export default function Admin() {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
+            ellipsis: true,
             render: (text, record) => {
                 return <div>
                     {userEditId === record.id ?
                         <div style={{ position: 'relative' }} >
-                            <Input defaultValue={record.name} name='name' allowClear onChange={handleChange} />
-                            <span className='text-red-400' style={{ position: 'absolute', bottom: -23, left: 0 }}>{userEdit.errors.name}</span>
+                            <Input disabled={record.name === null ? true : false} defaultValue={record.name} name='name' allowClear onChange={handleChange} />
+                            <span className='text-red-400' style={{ position: 'absolute', bottom: -19, right: 0 }}>{userEdit.errors.name}</span>
                         </div>
                         : <p>{record.name}</p>}
                 </div>
@@ -77,12 +92,13 @@ export default function Admin() {
             title: 'Bio',
             dataIndex: 'bio',
             key: 'bio',
+            ellipsis: true,
             render: (text, record) => {
                 return <div>
                     {userEditId === record.id ?
                         <div style={{ position: 'relative' }} >
-                            <Input defaultValue={record.bio} name='bio' allowClear onChange={handleChange} />
-                            <span className='text-red-400' style={{ position: 'absolute', bottom: -23, left: 0 }}>{userEdit.errors.bio}</span>
+                            <Input disabled={record.bio === null ? true : false} defaultValue={record.bio} name='bio' allowClear onChange={handleChange} />
+                            <span className='text-red-400' style={{ position: 'absolute', bottom: -19, right: 0 }}>{userEdit.errors.bio}</span>
                         </div>
                         : <p>{record.bio}</p>}
                 </div>
@@ -92,11 +108,23 @@ export default function Admin() {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
+            width: '15%',
+            render: (text, record) => {
+                return <div>
+                    {userEditId === record.id ?
+                        <div style={{ position: 'relative' }} >
+                            <Input disabled={record.email === null ? true : false} defaultValue={record.email} name='email' allowClear onChange={handleChange} />
+                            <span className='text-red-400' style={{ position: 'absolute', bottom: -19, right: 0 }}>{userEdit.errors.email}</span>
+                        </div>
+                        : <p>{record.email}</p>}
+                </div>
+            }
         },
         {
             title: 'Email confirm',
             dataIndex: 'enabled',
             key: 'enabled',
+            width: '8%',
             render: (_, record) => {
                 let color = record.enabled ? 'geekblue' : 'volcano';
 
@@ -109,6 +137,7 @@ export default function Admin() {
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
+            width: '4%',
             render: (_, record) => {
                 let color = record.status ? 'geekblue' : 'volcano';
 
@@ -121,48 +150,72 @@ export default function Admin() {
             title: 'Created at',
             dataIndex: 'createdAt',
             key: 'createdAt',
+            width: '6%',
+
         },
         {
             title: 'Role',
             key: 'role',
             dataIndex: 'role',
+            width: '5%',
             render: (_, record) => {
                 let color = record.role === "ROLE_USER" ? 'geekblue' : 'volcano';
 
-                return <Tag className='text-center' color={color} key={record.id}>
-                    {record.role === "ROLE_USER" ? 'User' : 'Admin'}
-                </Tag>
+                return <>
+                    {userEditId === record.id ?
+                        <div style={{ position: 'relative' }} >
+                            <Select defaultValue={record.role} name='role' style={{
+                                width: 120,
+                            }} onChange={handleSelectChange}>
+                                <Option value="ROLE_USER">User</Option>
+                                <Option value="ROLE_ADMIN">Admin</Option>
+                            </Select>
+                        </div>
+                        : <Tag className='text-center' color={color} key={record.id}>
+                            {record.role === "ROLE_USER" ? 'User' : 'Admin'}
+                        </Tag>
+                    }
+                </>
             },
         },
         {
             title: 'Action',
             key: 'action',
+            fixed: 'right',
+            width: '9%',
+
             render: (_, record) => (
                 <Space size="middle">
-                    <a className='text-yellow-400 hover:underline'>Active</a>
-                    <a className='text-red-400 hover:underline'>Delete</a>
+                    {!record.status ?
+                        <a className='text-yellow-400 hover:underline ml-4' onClick={() => { dispatch(activeUser(record.id)) }}>Active</a>
+                        :
+                        <a className='text-red-400 hover:underline ml-4' onClick={() => { dispatch(deleteUser(record.id)) }}>Delete</a>
+                    }
+
                     {userEditId !== record.id ? <a className='text-green-400' onClick={() => {
                         setUserEditId(record.id)
                         setUserEdit({
                             values: {
                                 name: '',
-                                phoneNumber: '',
+                                bio: '',
                                 email: '',
+                                role: ''
                             },
                             errors: {
                                 name: '',
-                                phoneNumber: '',
+                                bio: '',
                                 email: '',
+                                role: ''
                             }
                         })
                     }}>Edit</a> : ''}
 
                     {userEditId === record.id ?
-                        <div className='d-flex flex-column align-items-center'>
+                        <div className='flex flex-col items-center'>
                             <Popconfirm
                                 placement="bottom"
                                 title={'Save changes ?'}
-                                onConfirm={() => { }}
+                                onConfirm={() => { handleSave(record) }}
                                 okText="Yes"
                                 cancelText="No">
                                 <span style={{ color: '#929398', cursor: 'pointer', marginRight: '5px' }}>Save</span>
@@ -171,35 +224,48 @@ export default function Admin() {
                                 setUserEditId(-1)
                             }}>Cancel</span>
                         </div> : ''}
+
                 </Space>
             ),
         },
     ];
 
-    const myList = [
-        {
-            id: 1,
-            username: 'quannt86',
-            name: 'quan',
-            bio: 'st',
-            email: 'quangaobn@gmail.com',
-            enabled: true,
-            status: true,
-            createdAt: 12 / 2 / 2022,
-            role: 'ROLE_USER'
-        },
-        {
-            id: 2,
-            username: 'abc',
-            name: 'asdasd',
-            bio: 'asdasd',
-            email: 'asdasda@gmail.com',
-            enabled: false,
-            status: true,
-            createdAt: 12 / 2 / 2022,
-            role: 'ROLE_ADMIN'
+    const handleSave = (record) => {
+        let newRecord = {
+            ...record,
+            name: userEdit.values.name !== '' ? userEdit.values.name : record.name,
+            bio: userEdit.values.bio !== '' ? userEdit.values.bio : record.bio,
+            email: userEdit.values.email !== '' ? userEdit.values.email : record.email,
+            role: userEdit.values.role !== '' ? userEdit.values.role : record.role,
         }
-    ]
+        dispatch(editUser(newRecord))
+        setUserEditId(-1)
+    }
+
+    // const myList = [
+    //     {
+    //         id: 1,
+    //         username: 'quannt86',
+    //         name: 'quan',
+    //         bio: 'st',
+    //         email: 'quangaobn@gmail.com',
+    //         enabled: true,
+    //         status: true,
+    //         createdAt: 12 / 2 / 2022,
+    //         role: 'ROLE_USER'
+    //     },
+    //     {
+    //         id: 2,
+    //         username: 'abc',
+    //         name: 'asdasd',
+    //         bio: 'asdasd',
+    //         email: 'asdasda@gmail.com',
+    //         enabled: false,
+    //         status: true,
+    //         createdAt: 12 / 2 / 2022,
+    //         role: 'ROLE_ADMIN'
+    //     }
+    // ]
 
     return <Layout style={{ minHeight: '100vh' }}>
         <div className='border-b-2 border-gray-100 w-full z-40'>
@@ -228,7 +294,7 @@ export default function Admin() {
                 <Breadcrumb.Item>User management</Breadcrumb.Item>
             </Breadcrumb>
             <div className='p-4 bg-white h-full mt-4'>
-                <Table columns={columns} dataSource={userList} rowKey={'id'} />
+                <Table size='middle' scroll={{ x: '100vw' }} loading={loading} columns={columns} dataSource={userList} rowKey={'id'} />
             </div>
         </Content>
     </Layout>

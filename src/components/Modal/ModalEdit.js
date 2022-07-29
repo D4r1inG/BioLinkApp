@@ -7,13 +7,24 @@ export default function ModalAddNewHeader() {
 
     const { loading, linkEdit } = useSelector(state => state.ModalReducer)
     const dispatch = useDispatch()
-    const [modalInput, setModalInput] = useState()
     const [selectedImage, setSelectedImage] = useState(null)
     const [isHide, setIsHide] = useState()
     const formData = useRef(null)
+    const [imgSrc, setImgSrc] = useState(null)
 
     useEffect(() => {
         setIsHide(linkEdit?.isHide)
+        switch (linkEdit.pluginName) {
+            case 'Youtube':
+                setImgSrc('/assets/Imgs/youtube.png')
+                break;
+
+            case 'Spotify':
+                setImgSrc('/assets/Imgs/spotify.png')
+
+            default:
+                break;
+        }
     }, [linkEdit])
 
     const handleSubmit = () => {
@@ -21,7 +32,6 @@ export default function ModalAddNewHeader() {
         if (selectedImage !== null) {
             newLink.append('image', selectedImage)
         }
-        console.log(linkEdit.id)
         dispatch(editLink(newLink, linkEdit.id))
     }
 
@@ -48,7 +58,7 @@ export default function ModalAddNewHeader() {
                 {renderInput()}
                 {linkEdit.isPlugin ?
                     <div className='ml-6 flex-shrink-0 relative'>
-                        <img src={linkEdit.imgSrc} style={{ width: '90px', height: '90px' }} alt={linkEdit.plugInName} />
+                        <img src={imgSrc} style={{ width: '90px', height: '90px' }} alt={linkEdit.pluginName} />
                     </div> : ''}
                 {!linkEdit.isHeader && !linkEdit.isPlugin ?
                     <div className='ml-6 flex-shrink-0 relative'>
@@ -67,7 +77,7 @@ export default function ModalAddNewHeader() {
                 }
             </div>
 
-            {linkEdit.isPlugin ? <MediaEmbed name={linkEdit.plugInName} url={linkEdit.link} hide={false} isAnimated={false} /> : ''}
+            {linkEdit.isPlugin ? <MediaEmbed name={linkEdit.pluginName} url={linkEdit.url} hide={false} isAnimated={false} /> : ''}
 
             <div className="flex justify-between w-full mt-8">
                 <div className="text-sm font-inter font-normal cursor-pointer text-red-500" onClick={() => {

@@ -8,22 +8,38 @@ import MediaEmbed from '../../components/MediaEmbed/MediaEmbed'
 export default function Profile(props) {
 
     const { userProfileByUserName } = useSelector(state => state.ProfileReducer)
-    console.log(userProfileByUserName)
-    const { name, bio, image, listPlugins, designDto, showLogo, showWarning, listSocial } = userProfileByUserName
+    const { name, bio, image, listPlugins, design, showLogo, showNSFW, listSocial } = userProfileByUserName
     const dispatch = useDispatch()
+    console.log(userProfileByUserName)
 
     const [idVisible, setIdVisible] = useState([])
     const [theme, setTheme] = useState()
-    const [warning, setWarning] = useState(showWarning)
+    const [warning, setWarning] = useState(null)
 
     useEffect(() => {
         dispatch(getProfileByUserName(props.match.params.username))
     }, [])
 
     useEffect(()=>{
-        setTheme(designDto)
-    },[designDto])
+        setTheme(design)
+        setWarning(showNSFW)
+    },[design, showNSFW])
 
+    const renderImg = (item) => {
+        switch (item.pluginName) {
+            case 'Youtube': {
+                return <img className='ml-3 rounded-full' src={'/assets/Imgs/youtube.png'} alt={'Youtube'} style={{ width: '40px', height: '40px' }} />
+            }
+
+            case 'Spotify': {
+                return <img className='ml-3 rounded-full' src={'/assets/Imgs/spotify.png'} alt={'Spotify'} style={{ width: '40px', height: '40px' }} />
+            }
+
+            default: {
+                return <img className='ml-3 rounded-full absolute left-0' src={item.image} alt={item.name} style={{ width: '40px', height: '40px', top: '10px' }} />
+            }
+        }
+    }
 
     let pageItem = {
         borderStyle: theme?.btnBdStyle,
@@ -63,14 +79,15 @@ export default function Profile(props) {
                 }}>
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
                     <div style={{ minHeight: '60px' }} className="z-10 py-2 cursor-pointer flex justify-between items-center relative">
-                        <img className='ml-3 rounded-full' src={item.imgSrc} alt="youtube" style={{ width: '40px', height: '40px' }} />
+                        {renderImg(item)}
+                        {/* <img className='ml-3 rounded-full' src={item.imgSrc} alt="youtube" style={{ width: '40px', height: '40px' }} /> */}
                         <span className="item-title text-center limit-one-line break-all pl-3 pr-12 " style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>
                         <svg style={{ transform: idVisible.indexOf(item.id) !== -1 ? 'rotate(0deg)' : 'rotate(-90deg)', position: 'relative', marginBottom: 0 }} className="embed-ind-arrow-icon embed-ind-arrow" fill={theme?.colorLink} viewBox="0 0 16 16" enableBackground="new 0 0 24 24">
                             <path d="M8.006 11c.266 0 .486-.106.695-.323l4.061-4.21A.807.807 0 0013 5.87a.855.855 0 00-.846-.87.856.856 0 00-.626.276L8.006 8.957 4.477 5.276A.87.87 0 003.852 5 .86.86 0 003 5.869c0 .235.087.428.243.599l4.062 4.215c.214.217.434.317.7.317z"></path>
                         </svg>
                     </div>
                     <div className={`embed-wrap relative ${idVisible.indexOf(item.id) !== -1 ? 'py-4' : 'py-0'} px-4 transition-all duration-200`}>
-                        <MediaEmbed isAnimated={true} url={item.url} name={item.plugInName} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
+                        <MediaEmbed isAnimated={true} url={item.url} name={item.pluginName} hide={idVisible.indexOf(item.id) !== -1 ? false : true} />
                     </div>
                 </div>
 
@@ -79,7 +96,7 @@ export default function Profile(props) {
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" >
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
                     <a style={{ minHeight: '60px' }} href={item.url} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
-                        {/* <img className="link-each-image" data-src="https://cdn.bio.link/biolink/icons/youtube.png" src="https://cdn.bio.link/biolink/icons/youtube.png" alt="youtube" /> */}
+                        {renderImg(item)}
                         <span className="item-title text-center limit-one-line break-all overflow-hidden px-4" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>
                     </a>
                 </div>

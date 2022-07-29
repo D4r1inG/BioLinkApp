@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { createTheme } from '../../redux/Actions/ProfileAction'
 
 let bgColorOptions = ['rgb(133, 107, 255)', 'rgb(0, 136, 115)', 'rgb(255, 31, 84)', 'rgb(0, 0, 0)', 'rgb(255, 255, 255)']
 let btnRadiusOptions = ['30px', '8px', '0px']
@@ -37,7 +38,9 @@ export default function DesignTheme() {
 
     const dispatch = useDispatch()
     const { newTheme } = useSelector(state => state.ProfileReducer)
+    const { loading } = useSelector(state => state.ModalReducer)
     const themeRef = useRef(null)
+    const [imgSelect, setImgSelect] = useState(null)
     const [bgImg, setBgImg] = useState(false)
 
 
@@ -148,10 +151,17 @@ export default function DesignTheme() {
     }
 
     const handleSave = () => {
-        dispatch({
-            type: 'SAVE_NEW_THEME',
-            name: themeRef.current.value
-        })
+        let temp = new FormData()
+        for (let key in newTheme) {
+            if (key === 'backgroundImg' && newTheme[key] !== null) {
+                temp.append('image', imgSelect)
+                continue
+            }
+            temp.append(key, newTheme[key])
+        }
+        temp.append('name',  themeRef.current.value)
+        
+        dispatch(createTheme(temp))
     }
 
     const handleChangeColor = (e) => {
@@ -196,6 +206,7 @@ export default function DesignTheme() {
                                 <div className="font-inter font-semibold text-sm mt-2 text-center px-6 text-white ">Image</div>
                                 <input type={'file'} className='hidden' id='imgBg' onChange={(e) => {
                                     setBgImg(true)
+                                    setImgSelect(e.target.files[0])
                                     dispatch({
                                         type: 'UPDATE_NEW_THEME',
                                         backgroundImg: window.URL.createObjectURL(new Blob([e.target.files[0]], { type: "application/zip" }))
@@ -300,9 +311,8 @@ export default function DesignTheme() {
 
             <div className='mt-6'>
                 <button onClick={() => { handleSave() }} className="button-primary font-bold text-white flex justify-center items-center w-full uppercase  btn-h-48 mt-8 tracking-wider">
-                    {/* <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
-                    <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span> */}
-                    <span>Save theme</span>
+                    <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
+                    <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span>
                 </button>
             </div>
         </div>

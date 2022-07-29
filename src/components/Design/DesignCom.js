@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { getTheme, getUserProfile, setActiveTheme, updateProfile } from '../../redux/Actions/ProfileAction'
+import { deleteTheme, getTheme, getUserProfile, setActiveTheme, updateProfile } from '../../redux/Actions/ProfileAction'
 import DesignTheme from './DesignTheme'
 
 export default function DesignCom() {
@@ -13,10 +13,13 @@ export default function DesignCom() {
 
   const dispatch = useDispatch()
 
+
   //TODO: Skeleton data cho mỗi theme 
   //TODO: Người dùng tự tạo theme và có thể xóa được 
   const [selectedImage, setSelectedImage] = useState(null)
   const [displayBtn, setDisplayBtn] = useState(false)
+  const [isEdit, setIsEdit] = useState(false)
+  const [themeDeleteId, setThemeDeleteId] = useState(-1)
   const [valueInput, setValueInput] = useState({
     name: '',
     bio: ''
@@ -43,10 +46,32 @@ export default function DesignCom() {
     dispatch(setActiveTheme(id))
   }
 
+  const handleSave = () => {
+    let newForm = new FormData()
+    newForm.append('name', valueInput.name === '' ? name : valueInput.name)
+    newForm.append('bio', valueInput.bio === '' ? bio : valueInput.bio)
+    if (selectedImage !== null && typeof (selectedImage) !== 'string') {
+      newForm.append('image', selectedImage)
+    }
+    dispatch(updateProfile(newForm))
+    setDisplayBtn(false)
+  }
+
   const renderThemes = () => {
     return themes.map((item) => {
-      return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={() => { selectTheme(item.id) }}>
+      return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={() => {
+        if (!isEdit) {
+          selectTheme(item.id)
+        }
+      }}>
         <div className={`rounded-xl relative p-1 transition-all ${activeDesign === item.id && !isCreating ? 'theme-select-border ' : 'theme-default-border'}`} >
+          {item.userId !== null && isEdit && item.id !== activeDesign ? <div className='theme_overlay rounded-xl flex justify-center items-center' onClick={() => {
+            setThemeDeleteId(item.id)
+            dispatch(deleteTheme(item.id))
+          }}>
+            <span className={`${loading ? 'hidden' : 'block'} text-red-500 underline text-xl`}>Delete</span>
+            <span className={`bl-circle-loader absolute ${loading && item.id === themeDeleteId ? 'block' : 'hidden'}`}></span>
+          </div> : ''}
           <div style={{ backgroundColor: item.background }} className='theme-bg-box br-grey rounded-lg overflow-hidden flex flex-col justify-between relative'>
             <img style={{ position: 'absolute' }} className="pride-page-image" src={item.backgroundImg || '1'} alt="background" onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
@@ -109,16 +134,7 @@ export default function DesignCom() {
               </div>
             </div>
           </div>
-          <button className={`${displayBtn ? 'block' : 'hidden'} button-primary text-white rounded-sm leading-4 relative flex items-center justify-center mt-8 w-full uppercase font-bold tracking-wider`} onClick={() => {
-            let newForm = new FormData()
-            newForm.append('name', valueInput.name === '' ? name : valueInput.name)
-            newForm.append('bio', valueInput.bio === '' ? bio : valueInput.bio)
-            if (selectedImage !== null && typeof (selectedImage) !== 'string') {
-              newForm.append('image', selectedImage)
-            }
-            dispatch(updateProfile(newForm))
-            setDisplayBtn(false)
-          }}>
+          <button className={`${displayBtn ? 'block' : 'hidden'} button-primary text-white rounded-sm leading-4 relative flex items-center justify-center mt-8 w-full uppercase font-bold tracking-wider`} onClick={() => { handleSave() }}>
             <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
             <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span>
           </button>
@@ -126,7 +142,10 @@ export default function DesignCom() {
       </div>
 
       <div className="bg-white rounded-sm shadow-sm p-8 theme_tour">
-        <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16">Themes</div>
+        <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16 flex justify-between">
+          <p>Themes</p>
+          <p className='text-sm underline text-blue-400 cursor-pointer hover:text-blue-600' onClick={() => { setIsEdit(!isEdit) }}>Edit</p>
+        </div>
         <div className='mt-8'>
           <div className='grid grid-cols-3 gap-6 gap-x-8'>
             {renderThemes()}

@@ -91,7 +91,7 @@ const initialState = {
     ],
     newTheme: {
         name: '',
-        backgroundImg: '',
+        backgroundImg: null,
         background: '#ffffff',
         btnRadius: '30px',
         btnBg: '#ffffff',
@@ -181,9 +181,6 @@ export const ProfileReducer = (state = initialState, action) => {
         }
 
         case 'SAVE_NEW_THEME': {
-            let newId = Math.floor(Math.random() * 1000)
-            let temp = { ...state.newTheme, name: action.name, id: newId }
-            state.themes.push(temp)
             let tempTheme = {
                 name: '',
                 background: '#ffffff',
@@ -197,7 +194,7 @@ export const ProfileReducer = (state = initialState, action) => {
                 colorLink: '#000000',
                 fontFamily: "'DM Sans', sans-serif"
             }
-            return { ...state, isCreating: false, activeDesign: newId, newTheme: tempTheme }
+            return { ...state, isCreating: false, newTheme: tempTheme }
         }
 
         default:

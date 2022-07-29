@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { settingProfile } from '../../redux/Actions/ProfileAction'
 
 export default function SettingCom() {
 
   const dispatch = useDispatch()
-  const { showLogo, showWarning } = useSelector(state => state.ProfileReducer)
-
+  const { userProfile } = useSelector(state => state.ProfileReducer)
+  const { loading } = useSelector(state => state.ModalReducer)
   const [displayBtn, setDisplayBtn] = useState(false)
-  const [isHide, setIsHide] = useState()
-  const [warning, setWarning] = useState()
-
+  const [displaySettingBtn, setDisplaySettingBtn] = useState(false)
+  const [setting, setSetting] = useState({
+    showLogo: null,
+    showNSFW: null
+  })
+  
   useEffect(() => {
-    setIsHide(showLogo)
-    setWarning(showWarning)
-  }, [showLogo, showWarning])
+    setSetting({
+      showLogo: userProfile.showLogo,
+      showNSFW: userProfile.showNSFW
+    })
+  }, [userProfile])
 
+  
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setDisplayBtn(true)
+    const { name, checked } = e.target
+    setSetting({ ...setting, [name]: checked })
+    setDisplaySettingBtn(true)
+  }
+
+  const handleSave = () => {
+    dispatch(settingProfile(setting.showLogo, setting.showNSFW))
+    setDisplaySettingBtn(false)
   }
 
   return (
@@ -35,7 +48,7 @@ export default function SettingCom() {
           </div>
             <div>
               <label className="bl-toggle-btn relative inline-block ring-opacity-0">
-                <input checked={isHide || false} type="checkbox" className="bl-toggle-input" onChange={() => { dispatch({ type: 'TOGGLE_LOGO' }) }} />
+                <input checked={setting.showLogo || false} type="checkbox" className="bl-toggle-input" name='showLogo' onChange={handleChange} />
                 <span className="bl-toggle-slider absolute cursor-pointer rounded-52" >
                 </span>
               </label>
@@ -53,7 +66,7 @@ export default function SettingCom() {
           </div>
             <div>
               <label className="bl-toggle-btn relative inline-block ring-opacity-0">
-                <input checked={warning || false} type="checkbox" className="bl-toggle-input" onChange={() => { dispatch({ type: 'TOGGLE_WARNING' }) }} />
+                <input checked={setting.showNSFW || false} type="checkbox" className="bl-toggle-input" name='showNSFW' onChange={handleChange} />
                 <span className="bl-toggle-slider absolute cursor-pointer rounded-52" >
                 </span>
               </label>
@@ -62,6 +75,11 @@ export default function SettingCom() {
             <div className="font-inter font-normal text-black text-sm leading-6 mt-4">Show a warning before displaying your page.</div>
           </div>
         </div>
+
+        <button className={`${displaySettingBtn ? 'block' : 'hidden'} button-primary text-white rounded-sm leading-4 relative flex items-center justify-center mt-8 w-full uppercase font-bold tracking-wider`} onClick={() => { handleSave() }}>
+          <span className={`${loading ? 'hidden' : 'block'}`}>Save</span>
+          <span className={`bl-circle-loader absolute ${!loading ? 'hidden' : 'block'}`}></span>
+        </button>
       </div>
 
       <div className='bg-white round-sm shadow-sm p-8 mt-6'>

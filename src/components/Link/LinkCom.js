@@ -15,12 +15,34 @@ export default function LinkCom() {
   const { visibleSkeleton } = useSelector(state => state.SkeletonReducer)
   const dispatch = useDispatch()
 
-  const handleOnDragEnd = (res) => {
+  const handleOnDragEnd = async (res) => {
     if (!res.destination) return;
     const items = Array.from(linkList);
     const dragItem = items.splice(res.source.index, 1);
     items.splice(res.destination.index, 0, dragItem[0]);
+    
+    dispatch({
+      type: 'SET_LIST',
+      linkList: items
+    })
+
     dispatch(updateList(items))
+  }
+
+  const renderImg = (item) => {
+    switch (item.pluginName) {
+      case 'Youtube': {
+        return <img className='w-full h-full mr-3' src={'/assets/Imgs/youtube.png'} alt={'Youtube'} style={{ width: '52px', height: '52px' }} />
+      }
+
+      case 'Spotify': {
+        return <img className='w-full h-full mr-3' src={'/assets/Imgs/spotify.png'} alt={'Spotify'} style={{ width: '52px', height: '52px' }} />
+      }
+
+      default: {
+        return <img className='w-full h-full mr-3' src={item.image} alt={item.title} style={{ width: '52px', height: '52px' }} />
+      }
+    }
   }
 
 
@@ -64,7 +86,7 @@ export default function LinkCom() {
                   :
                   <div className="flex items-center justify-between">
                     <div className='flex items-center'>
-                      {item.image ? <img className='w-full h-full mr-3' src={item.image} alt={item.linkHeader} style={{ width: '52px', height: '52px' }} /> : ""}
+                      {item.image || item.isPlugin ? renderImg(item) : ""}
                       <div className="flex">
                         <div className="py-2 flex justify-between flex-col">
                           <div className="text-sm font-inter font-bold text-black leading-6 overflow-hidden break-all limit-one-line">

@@ -1,48 +1,70 @@
-#design{
+#design {
     .bl-btn-md {
         min-width: 96px;
         height: 40px;
     }
-    
+
     .theme-bg-box,
     .theme-btn-box {
         height: 200px;
     }
-    
+
     .br-grey {
         border: 1px solid $color-gray-6;
     }
-    
+
     .theme-btn {
         height: 22px;
         background-repeat: no-repeat;
         background-position-y: center;
         background-size: cover;
-        box-shadow: rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px, rgb(24 39 75 / 5%) 0px 0px 2px 1px inset;
+        box-shadow: rgb(24 39 75 / 12%) 0px 6px 14px -6px, rgb(24 39 75 / 10%) 0px 10px 32px -4px,
+            rgb(24 39 75 / 5%) 0px 0px 2px 1px inset;
     }
-    
+
     .border-dash {
         border: 1.5px dashed #6e6d7a;
     }
-    
+
     .theme-gradient-btn {
         background: linear-gradient(180deg, $color-black, $color-black-5);
     }
-    
+
     .theme-default-border {
         border: 2px solid transparent;
     }
-    
+
     .theme-select-border {
         border: 2px solid $color-blue-1;
     }
-    
+
     .theme-bordered-btn {
         border: 2px solid $color-black;
     }
-    
+
     .custom-color-picker {
-        background: radial-gradient(43.44% 43.44% at 50% 50%, $color-white 0, hsla(0, 0%, 100%, .0001) 100%), conic-gradient(from 90deg at 50% 50%, #ff0606 -1.92deg, #ff06e8 46.47deg, #120bff 116.9deg, #0ad5ff 163.94deg, #11feff 178.78deg, #10f93b 222.31deg, #09ff08 248.2deg, #fffa06 302.85deg, #ff0606 358.08deg, #ff06e8 406.47deg);
+        background: radial-gradient(43.44% 43.44% at 50% 50%, $color-white 0, hsla(0, 0%, 100%, 0.0001) 100%),
+            conic-gradient(
+                from 90deg at 50% 50%,
+                #ff0606 -1.92deg,
+                #ff06e8 46.47deg,
+                #120bff 116.9deg,
+                #0ad5ff 163.94deg,
+                #11feff 178.78deg,
+                #10f93b 222.31deg,
+                #09ff08 248.2deg,
+                #fffa06 302.85deg,
+                #ff0606 358.08deg,
+                #ff06e8 406.47deg
+            );
     }
-    
+
+    .theme_overlay {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 20;
+    }
 }

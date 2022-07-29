@@ -1,10 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 export default function Header() {
 
     const dispatch = useDispatch()
+    const { userProfile } = useSelector(state => state.ProfileReducer)
+
 
     return (
         <div className='fixed border-b-2 border-gray-100 w-full z-40'>
@@ -24,7 +27,7 @@ export default function Header() {
                     </div>
                     <div style={{ width: '36px', height: '36px' }}>
                         <div alt="Quân Nguyễn Thế" className="object-cover ml-auto rounded-full transform scale-105 cursor-pointer hover:scale-90 duration-100" >
-                            <img className='h-full w-full ' src="https://cdn.bio.link/uploads/profile_pictures/2022-06-24/uypEvJN3i7IAPaRcpuIgeBs3qlxRAeDD.png" alt="Quân Nguyễn Thế" />
+                            <img className='h-full w-full rounded-full' src={userProfile.image} alt={userProfile.name} />
                         </div>
                     </div>
                 </div>

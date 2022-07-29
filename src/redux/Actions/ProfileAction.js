@@ -1,12 +1,11 @@
 import { profileService } from "../../services/ProfileService"
-
+import { openNotification } from '../../utils/Notification'
 
 
 export const getProfileByUserName = (username) => {
     return async (dispatch) => {
         try {
             const { data } = await profileService.getProfileByUserName(username)
-
             dispatch({
                 type: 'UPDATE_PROFILE_BY_USERNAME',
                 data: data.data
@@ -40,6 +39,7 @@ export const getUserProfile = () => {
                 data: res.data
             })
         } catch (err) {
+            openNotification('error', 'Oppsy! Something went wrong!', err.message)
             console.log(err)
         }
     }
@@ -70,6 +70,62 @@ export const updateProfile = (newProfile) => {
                 type: 'SET_PROFILE',
                 data
             })
+            openNotification('success', 'Profile updated!',)
+
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }
+}
+
+export const deleteTheme = (id) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await profileService.deleteTheme(id)
+            await dispatch(getTheme())
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }
+}
+
+export const createTheme = (newTheme) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await profileService.createTheme(newTheme)
+            await dispatch(getTheme())
+            dispatch({
+                type: 'CLOSE_CREATE_THEME'
+            })
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }
+}
+
+export const settingProfile = (showLogo, showNsfw) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await profileService.settingProfile(showLogo, showNsfw)
+            await dispatch(getUserProfile())
         } catch (err) {
             console.log(err)
         }

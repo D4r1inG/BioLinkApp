@@ -42,11 +42,8 @@ export const addNewLink = (newLink) => {
             type: 'DISLAY_LOADING',
         })
         try {
-            for(let value of newLink.values()){
-                console.log(value)
-            }
+
             const { data, status } = await linkManagement.addNewLink(newLink)
-            console.log(data)
             await dispatch(getLinkData())
         } catch (err) {
             console.log(err)
