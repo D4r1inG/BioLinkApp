@@ -276,7 +276,7 @@ export default function DesignTheme() {
                         </div>
 
 
-                        <div className={`p-1 rounded-xl border  ${bgGradiant ? 'theme-select-border' : 'border-black'}`} onClick={() => {
+                        <div className={`p-1 rounded-xl border border-black  ${bgGradiant ? 'theme-select-border' : ''}`} onClick={() => {
                             setBgGradiant(true)
                             setBgImg(false)
                             dispatch({
@@ -315,9 +315,7 @@ export default function DesignTheme() {
                                 {renderBgGradiant2()}
                             </>
                             :
-                            renderBgColor()
-                        }
-
+                            !bgImg ? renderBgColor() : ''}
                     </div>
                 </div>
             </div>

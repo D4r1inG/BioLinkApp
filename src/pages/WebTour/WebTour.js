@@ -42,7 +42,7 @@ const steps = [
     },
     {
         selector: 'design_tour',
-        content: 'Trong phần Design, cậu có thể sửa tên và mô tả của mình.',
+        content: 'Trong phần Design, cậu có thể sửa tên, mô tả và thay ảnh đại diện của mình.',
         path: '/dashboard/design'
     },
     {

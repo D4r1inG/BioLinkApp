@@ -60,7 +60,6 @@ export default function DesignCom() {
 
   const renderThemes = () => {
     return themes.map((item) => {
-      console.log(item)
       return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={() => {
         if (!isEdit) {
           selectTheme(item.id)

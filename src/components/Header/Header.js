@@ -24,7 +24,7 @@ export default function Header() {
                 </div>
                 <div className='flex gap-4 items-center'>
                     <NavLink to={'/profile/username'} className='underline font-inter text-base text-blue-400 cursor-pointer profile_tour'>My profile</NavLink>
-                    <div className='instruc_tour underline text-blue-400 cursor-pointer' onClick={() => {
+                    <div className='instruc_tour underline text-base text-blue-400 cursor-pointer' onClick={() => {
                         dispatch({
                             type: 'TOGGLE_TOUR'
                         })

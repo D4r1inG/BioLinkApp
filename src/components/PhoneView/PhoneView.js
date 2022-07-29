@@ -27,11 +27,12 @@ export default function PhoneView() {
     }, [activeDesign, themes, newTheme, isCreating])
 
     useEffect(() => {
-        // Chỉnh api gọi 1 lần
-        dispatch(getLinkDataFirstTime())
-        dispatch(getUserProfile())
-        dispatch(getTheme())
-    }, [])
+        if (!isTouring) {
+            dispatch(getLinkDataFirstTime())
+            dispatch(getUserProfile())
+            dispatch(getTheme())
+        }
+    }, [isTouring])
 
     const renderImg = (item) => {
         switch (item.pluginName) {
@@ -103,7 +104,7 @@ export default function PhoneView() {
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" >
                     <div style={pageItem} className="flex justify-center items-center pill-item transition-all"></div>
                     <a style={{ minHeight: '60px' }} href={item.url} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
-                    {renderImg(item)}
+                        {renderImg(item)}
                         <span className="item-title text-center limit-one-line break-all overflow-hidden px-4 transition-all" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>
                     </a>
                 </div>

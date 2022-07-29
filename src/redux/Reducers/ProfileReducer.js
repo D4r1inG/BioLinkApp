@@ -139,7 +139,15 @@ export const ProfileReducer = (state = initialState, action) => {
                 colorHeader: '#000000',
                 colorLink: '#000000'
             }
-            return { ...state, themes: [dummyTheme], activeDesign: 0 }
+            let newUserProfile = {
+                name: 'Khanh Noi',
+                bio: 'Hello mng, chuc vui ve hanh phuc!',
+                image: '/assets/Imgs/Khanh_Noi.jpg',
+                activeDesign: 0,
+                showLogo: true,
+                showNSFW: true,
+            }
+            return { ...state, themes: [dummyTheme], userProfile: newUserProfile }
         }
 
         case 'SELECT_THEME': {

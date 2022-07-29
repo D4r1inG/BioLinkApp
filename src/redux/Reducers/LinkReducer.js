@@ -44,16 +44,16 @@ export const LinkReducer = (state = initialState, action) => {
             let newList = [
                 {
                     id: '1',
-                    linkHeader: 'My header',
-                    link: 'http://Mylink.com/',
+                    title: 'My header',
+                    url: 'http://Mylink.com/',
                     click: 0,
                     isHeader: true,
                     ishide: false
                 },
                 {
                     id: '2',
-                    linkHeader: 'My Link',
-                    link: 'http://Mylink.com/',
+                    title: 'My Link',
+                    url: 'http://Mylink.com/',
                     click: 69,
                     isHeader: false,
                     ishide: false
