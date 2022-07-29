@@ -31,7 +31,7 @@ class ProfileService extends baseService {
     }
 
     settingProfile = (showLogo, showNsfw) => {
-        return this.Put(`user/profile/setting/?showLogo=${showLogo}&showNsfw=${showNsfw}`)
+        return this.Put(`user/profile/setting/?showLogo=${showLogo}&showNSFW=${showNsfw}`)
     }
 
 }

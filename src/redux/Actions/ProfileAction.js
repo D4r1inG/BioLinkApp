@@ -107,7 +107,7 @@ export const createTheme = (newTheme) => {
             const { data } = await profileService.createTheme(newTheme)
             await dispatch(getTheme())
             dispatch({
-                type: 'CLOSE_CREATE_THEME'
+                type: 'SAVE_NEW_THEME'
             })
         } catch (err) {
             console.log(err)

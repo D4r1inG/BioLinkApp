@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Các chức năng chính 
 * Web tour with Khanh Noi
-* Login, Sign up (with JWT token)
+* Login, Sign up, logout (with JWT token)
 * Thêm, sửa, xóa, ẩn, sắp xếp link, Header, plugin(Youtube, Spotify) 
 * Thêm, sửa, xóa social link
 * Chọn theme sẵn có
@@ -22,13 +22,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 * Toggle NSFW (Not Safe For Work) 
 * Page profile 
 * Tự tạo theme (Done)
+* Ảnh cho mỗi link (Done)
+* Thay dummy data bằng data lấy từ Api từ backend cho các chức năng (Done)
+* Cập nhật sắp xếp link trên database (Bug fix pendding)
 
 ## Chức năng đang thực hiện 
 * Comment profile
 * Rating profile
-* Ảnh cho mỗi link (chưa có server để lưu huhu)
-* Cập nhật sắp xếp link trên database 
-* Thay dummy data bằng data lấy từ Api từ backend cho các chức năng (Hiện tại mới lấy data cho link từ mockApi)
-* Chức năng logout
 * Performent !!!IMPORTANT
 * OATH2 with github

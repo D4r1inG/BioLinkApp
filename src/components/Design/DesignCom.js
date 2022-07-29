@@ -1,3 +1,4 @@
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
@@ -59,20 +60,25 @@ export default function DesignCom() {
 
   const renderThemes = () => {
     return themes.map((item) => {
+      console.log(item)
       return <div key={item.id} className='ring-0 cursor-pointer hover:scale-105 transition-all' onClick={() => {
         if (!isEdit) {
           selectTheme(item.id)
         }
       }}>
         <div className={`rounded-xl relative p-1 transition-all ${activeDesign === item.id && !isCreating ? 'theme-select-border ' : 'theme-default-border'}`} >
-          {item.userId !== null && isEdit && item.id !== activeDesign ? <div className='theme_overlay rounded-xl flex justify-center items-center' onClick={() => {
-            setThemeDeleteId(item.id)
-            dispatch(deleteTheme(item.id))
-          }}>
-            <span className={`${loading ? 'hidden' : 'block'} text-red-500 underline text-xl`}>Delete</span>
-            <span className={`bl-circle-loader absolute ${loading && item.id === themeDeleteId ? 'block' : 'hidden'}`}></span>
-          </div> : ''}
-          <div style={{ backgroundColor: item.background }} className='theme-bg-box br-grey rounded-lg overflow-hidden flex flex-col justify-between relative'>
+          {item.userId !== null && isEdit && item.id !== activeDesign ?
+            <div className='theme_overlay rounded-xl flex justify-center items-center' onClick={() => {
+              setThemeDeleteId(item.id)
+              dispatch(deleteTheme(item.id))
+            }}>
+              <span className={`${loading ? 'hidden' : 'block'} text-red-500 underline text-3xl`}>
+                <DeleteOutlined />
+              </span>
+              <span className={`bl-circle-loader absolute ${loading && item.id === themeDeleteId ? 'block' : 'hidden'}`}></span>
+            </div>
+            : ''}
+          <div style={{ background: item.background }} className='theme-bg-box br-grey rounded-lg overflow-hidden flex flex-col justify-between relative'>
             <img style={{ position: 'absolute' }} className="pride-page-image" src={item.backgroundImg || '1'} alt="background" onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
               currentTarget.classList = "hidden";
@@ -142,9 +148,11 @@ export default function DesignCom() {
       </div>
 
       <div className="bg-white rounded-sm shadow-sm p-8 theme_tour">
-        <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16 flex justify-between">
+        <div className="font-inter font-semibold text-blDark text-xl leading-24 xs:text-16 flex justify-between items-center">
           <p>Themes</p>
-          <p className='text-sm underline text-blue-400 cursor-pointer hover:text-blue-600' onClick={() => { setIsEdit(!isEdit) }}>Edit</p>
+          <p className={`edit_btn rounded-full text-sm underline transition-all cursor-pointer border ${isEdit ? 'bg-blue-500 text-white border-white' : 'bg-white text-black border-blue-500'}`} onClick={() => { setIsEdit(!isEdit) }}>
+            <EditOutlined />
+          </p>
         </div>
         <div className='mt-8'>
           <div className='grid grid-cols-3 gap-6 gap-x-8'>

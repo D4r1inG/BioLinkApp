@@ -1,3 +1,4 @@
+import { CameraOutlined } from '@ant-design/icons'
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createTheme } from '../../redux/Actions/ProfileAction'
@@ -42,19 +43,83 @@ export default function DesignTheme() {
     const themeRef = useRef(null)
     const [imgSelect, setImgSelect] = useState(null)
     const [bgImg, setBgImg] = useState(false)
+    const [bgGradiant, setBgGradiant] = useState(false)
+    const [bgColor, setBgColor] = useState({
+        color1: '#000',
+        color2: '#000',
+    })
 
 
     const renderBgColor = () => {
-        return bgColorOptions.map((item, index) => {
-            return <div key={index} className={`rounded-full flex justify-center items-center cursor-pointer ${newTheme.background === item ? 'theme-select-border' : 'theme-default-border'}`} style={{ width: '70px', height: '70px' }} onClick={() => {
-                dispatch({
-                    type: 'UPDATE_NEW_THEME',
-                    background: item
-                })
-            }}>
-                <div className="bl-color-each rounded-full br-grey relative" style={{ backgroundColor: item, width: '64px', height: '64px' }}></div>
+        return <div className='grid grid-cols-6 items-center'>
+            <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
+                <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
+                    <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
+                </div>
+                <input type="color" name='background' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeColor} />
             </div>
-        })
+            {bgColorOptions.map((item, index) => {
+                return <div key={index} className={`rounded-full flex justify-center items-center cursor-pointer ${newTheme.background === item ? 'theme-select-border' : 'theme-default-border'}`} style={{ width: '70px', height: '70px' }} onClick={() => {
+                    dispatch({
+                        type: 'UPDATE_NEW_THEME',
+                        background: item
+                    })
+                }}>
+                    <div className="bl-color-each rounded-full br-grey relative" style={{ backgroundColor: item, width: '64px', height: '64px' }}></div>
+                </div>
+            })}
+        </div>
+    }
+
+    const renderBgGradiant1 = () => {
+        return <div className='flex flex-col'>
+            <p className='text-center font-bold text-xl'>Color 1</p>
+            <div className='pt-2 grid grid-cols-6 items-center'>
+                <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
+                    <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
+                        <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
+                    </div>
+                    <input type="color" name='color1' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeBgGradiantColor} />
+                </div>
+                {bgColorOptions.map((item, index) => {
+                    return <div key={index} className={`rounded-full flex justify-center items-center cursor-pointer ${bgColor.color1 === item ? 'theme-select-border' : 'theme-default-border'}`} style={{ width: '70px', height: '70px' }} onClick={() => {
+                        setBgColor({ ...bgColor, color1: item })
+                        dispatch({
+                            type: 'UPDATE_NEW_THEME',
+                            background: `linear-gradient(${item}, ${bgColor.color2})`
+                        })
+                    }}>
+                        <div className="bl-color-each rounded-full br-grey relative" style={{ backgroundColor: item, width: '64px', height: '64px' }}></div>
+                    </div>
+                })}
+            </div>
+        </div>
+    }
+
+    const renderBgGradiant2 = () => {
+        return <div className='flex flex-col pt-4'>
+            <p className='text-center font-bold text-xl'>Color 2</p>
+            <div className='pt-2 grid grid-cols-6 items-center'>
+                <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
+                    <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
+                        <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
+                    </div>
+                    <input type="color" name='color2' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeBgGradiantColor} />
+                </div>
+                {bgColorOptions.map((item, index) => {
+                    return <div key={index} className={`rounded-full flex justify-center items-center cursor-pointer ${bgColor.color2 === item ? 'theme-select-border' : 'theme-default-border'}`} style={{ width: '70px', height: '70px' }} onClick={() => {
+                        setBgColor({ ...bgColor, color2: item })
+                        dispatch({
+                            type: 'UPDATE_NEW_THEME',
+                            background: `linear-gradient(${bgColor.color1}, ${item})`
+                        })
+                    }}>
+                        <div className="bl-color-each rounded-full br-grey relative" style={{ backgroundColor: item, width: '64px', height: '64px' }}></div>
+                    </div>
+                })}
+            </div>
+
+        </div>
     }
 
     const renderBtnRadius = () => {
@@ -159,9 +224,18 @@ export default function DesignTheme() {
             }
             temp.append(key, newTheme[key])
         }
-        temp.append('name',  themeRef.current.value)
-        
+        temp.append('name', themeRef.current.value)
+
         dispatch(createTheme(temp))
+    }
+
+    const handleChangeBgGradiantColor = (e) => {
+        const { name, value } = e.target
+        setBgColor({ ...bgColor, [name]: value })
+        dispatch({
+            type: 'UPDATE_NEW_THEME',
+            background: `linear-gradient(${bgColor.color1}, ${bgColor.color2})`
+        })
     }
 
     const handleChangeColor = (e) => {
@@ -187,8 +261,9 @@ export default function DesignTheme() {
             <div className='pb-8 border-b-gray-200 border-b mt-6'>
                 <div className='w-full'>
                     <div className='grid grid-cols-3 gap-x-8'>
-                        <div className={`p-1 rounded-xl ${!bgImg ? 'theme-select-border' : 'theme-default-border'}`} onClick={() => {
+                        <div className={`p-1 rounded-xl ${!bgImg && !bgGradiant ? 'theme-select-border' : 'theme-default-border'}`} onClick={() => {
                             setBgImg(false)
+                            setBgGradiant(false)
                             dispatch({
                                 type: 'UPDATE_NEW_THEME',
                                 backgroundImg: null
@@ -200,12 +275,28 @@ export default function DesignTheme() {
                             </div>
                         </div>
 
+
+                        <div className={`p-1 rounded-xl border  ${bgGradiant ? 'theme-select-border' : 'border-black'}`} onClick={() => {
+                            setBgGradiant(true)
+                            setBgImg(false)
+                            dispatch({
+                                type: 'UPDATE_NEW_THEME',
+                                backgroundImg: null
+                            })
+                        }}>
+                            <div className="theme-btn-box rounded-md flex justify-center items-center flex-col relative cursor-pointer">
+                                <CameraOutlined className='text-3xl' />
+                                <div className="font-inter text-black font-semibold text-sm mt-2 text-center px-6 ">Gradiant</div>
+                            </div>
+                        </div>
+
                         <label htmlFor='imgBg' className={`p-1 rounded-xl ${bgImg ? 'theme-select-border' : 'theme-default-border'}`}>
                             <div className="theme-btn-box theme-gradient-btn rounded-md flex justify-center items-center flex-col relative cursor-pointer">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.6667 8H13.3333V10.6667H10.6667V8ZM8 10.6667H10.6667V13.3333H8V10.6667ZM13.3333 10.6667H16V13.3333H13.3333V10.6667ZM16 8H18.6667V10.6667H16V8ZM5.33333 8H8V10.6667H5.33333V8ZM21.3333 0H2.66667C1.2 0 0 1.2 0 2.66667V21.3333C0 22.8 1.2 24 2.66667 24H21.3333C22.8 24 24 22.8 24 21.3333V2.66667C24 1.2 22.8 0 21.3333 0ZM8 20H5.33333V17.3333H8V20ZM13.3333 20H10.6667V17.3333H13.3333V20ZM18.6667 20H16V17.3333H18.6667V20ZM21.3333 10.6667H18.6667V13.3333H21.3333V16H18.6667V13.3333H16V16H13.3333V13.3333H10.6667V16H8V13.3333H5.33333V16H2.66667V13.3333H5.33333V10.6667H2.66667V2.66667H21.3333V10.6667Z" fill="#F3F3F4"></path></svg>
                                 <div className="font-inter font-semibold text-sm mt-2 text-center px-6 text-white ">Image</div>
                                 <input type={'file'} className='hidden' id='imgBg' onChange={(e) => {
                                     setBgImg(true)
+                                    setBgGradiant(false)
                                     setImgSelect(e.target.files[0])
                                     dispatch({
                                         type: 'UPDATE_NEW_THEME',
@@ -214,15 +305,19 @@ export default function DesignTheme() {
                                 }} />
                             </div>
                         </label>
+
                     </div>
-                    <div className='pt-8 grid grid-cols-6 items-center'>
-                        <div className={`rounded-full relative overflow-hidden flex justify-center items-center br-gray custom-color-picker cursor-pointer ${newTheme.background === true ? 'theme-select-border' : ''}`} style={{ width: '64px', height: '64px' }} >
-                            <div className="flex justify-center items-center absolute w-full h-full top-0 left-0 " style={{ background: 'rgba(0,0,0,.25)' }}>
-                                <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0678 8.38654C19.3238 9.04108 19.2464 10.1734 19.9009 10.9218L18.5493 12.1033L12.6409 5.34181L13.9926 4.16145C14.646 4.90763 15.7795 4.9829 16.5235 4.32945L20.0646 1.30108C20.5773 0.857082 21.2078 0.636719 21.8373 0.636719C23.3427 0.636719 24.5449 1.86726 24.5449 3.33235C24.5449 4.12872 24.1936 4.85199 23.6133 5.35926L20.0678 8.38654ZM12.4936 12.6367H9.76638L13.6522 9.22981L12.4686 7.87708L4.46238 14.8447C3.16529 15.9716 4.06092 16.8422 2.99183 18.3302C2.84674 18.5331 2.76274 18.736 2.73983 18.9302C2.66783 19.5193 3.09438 20.0156 3.6311 20.0822C3.84274 20.1073 4.07838 20.0658 4.3031 19.9327C5.99401 18.9378 6.6791 20.0604 8.00783 18.8996L16.0151 11.9353L14.8358 10.5814L12.4936 12.6367ZM2.55983 20.8185C1.97619 23.0582 0.544922 23.3658 0.544922 24.8374C0.544922 25.9316 1.45474 26.8185 2.55983 26.8185C3.66492 26.8185 4.56056 25.9316 4.56056 24.8374C4.56056 23.3658 3.14347 23.0582 2.55983 20.8185Z" fill="white"></path></svg>
-                            </div>
-                            <input type="color" name='background' className="absolute w-full h-full top-0 left-0 opacity-0 cursor-pointer" onChange={handleChangeColor} />
-                        </div>
-                        {renderBgColor()}
+                    <div className='pt-8'>
+
+                        {bgGradiant ?
+                            <>
+                                {renderBgGradiant1()}
+                                {renderBgGradiant2()}
+                            </>
+                            :
+                            renderBgColor()
+                        }
+
                     </div>
                 </div>
             </div>
