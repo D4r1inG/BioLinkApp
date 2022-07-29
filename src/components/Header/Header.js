@@ -2,12 +2,19 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { Dropdown, Menu, Popconfirm, Space } from 'antd';
+import { history } from '../../App';
+
 
 export default function Header() {
 
     const dispatch = useDispatch()
     const { userProfile } = useSelector(state => state.ProfileReducer)
 
+    const confirm = (e) => {
+        localStorage.removeItem('accessToken')
+        history.push('/login')
+    };
 
     return (
         <div className='fixed border-b-2 border-gray-100 w-full z-40'>
@@ -23,7 +30,13 @@ export default function Header() {
                         })
                     }}>Web guild</div>
                     <div>
-                        <div className="flex items-center rounded-sm px-3 select-none py-1 cursor-pointer justify-center font-inter text-14 border hover:bg-gray-100"><div>Share</div></div>
+                        <Popconfirm
+                            title="Are you sure to log out?"
+                            onConfirm={confirm}
+                            okText="Yes"
+                            cancelText="No">
+                            <div className="flex items-center rounded-sm px-3 select-none py-1 cursor-pointer justify-center font-inter text-14 border hover:bg-gray-100"><div>Log out</div></div>
+                        </Popconfirm>
                     </div>
                     <div style={{ width: '36px', height: '36px' }}>
                         <div alt="Quân Nguyễn Thế" className="object-cover ml-auto rounded-full transform scale-105 cursor-pointer hover:scale-90 duration-100" >
