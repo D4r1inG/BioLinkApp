@@ -38,7 +38,7 @@ export default function SettingCom() {
     <div className='setting_tour'>
       <div className="font-inter font-semibold text-blDark text-2xl leading-6 flex items-center">Setting</div>
       <div className='bg-white round-sm shadow-sm p-8 mt-6'>
-        <div>
+        <div className='showlogo_tour'>
           <div className="border-b-gray-100 border-b-2 py-8"><div className="flex justify-between"><div className="w-11/12 pr-24">
             <div className="font-inter font-semibold text-black text-xl leading-6 flex ">
               Show
@@ -58,7 +58,7 @@ export default function SettingCom() {
           </div>
         </div>
 
-        <div>
+        <div className='warning_tour'>
           <div className="py-8"><div className="flex justify-between"><div className="w-11/12 pr-24">
             <div className="font-inter font-semibold text-black text-xl leading-6 flex ">
               NSFW warning

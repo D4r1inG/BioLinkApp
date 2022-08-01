@@ -1,13 +1,16 @@
-import React from 'react';
+import { WechatOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import ChatBox from '../../components/ChatBox/ChatBox';
 import Header from '../../components/Header/Header';
 import Navigation from '../../components/Navigation/Navigation';
 import PhoneView from '../../components/PhoneView/PhoneView';
 
 export const DashBoard = (props) => {
     const { ComponentRender, route } = props
+    const [isOpen, setIsOpen] = useState(false)
 
     return <>
-        <div className='-z-1' style={{ backgroundColor: 'rgba(0,0,0,.025)', minHeight: '100vh' }}>
+        <div className='-z-1 relative' style={{ backgroundColor: 'rgba(0,0,0,.025)', minHeight: '100vh' }}>
             <Header />
             <div className='flex ' style={{ paddingTop: '60px' }}>
                 <div className='fixed h-screen left-0 py-8 z-10 bg-white' style={{ width: '40vw' }}>
@@ -29,6 +32,10 @@ export const DashBoard = (props) => {
                     </div>
                 </div>
             </div>
+            <div className='chat_box rounded-full' onClick={()=>{setIsOpen(!isOpen)}}>
+                <WechatOutlined color='#fff' />
+            </div>
+            {isOpen ? <ChatBox /> : ''}
         </div>
     </>
 }

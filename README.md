@@ -1,4 +1,4 @@
-# BioLink project by Sieu nhan cuong phong
+# GHTKLink project by Sieu nhan cuong phong
 This project was built base on bio.link
 
 ## Available Scripts
@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 * Tự tạo theme (Done)
 * Ảnh cho mỗi link (Done)
 * Thay dummy data bằng data lấy từ Api từ backend cho các chức năng (Done)
-* Cập nhật sắp xếp link trên database (Bug fix pendding)
+* Cập nhật sắp xếp link trên database (Bug fix pending)
 
 ## Chức năng đang thực hiện 
 * Comment profile

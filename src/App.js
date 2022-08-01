@@ -41,7 +41,7 @@ function App() {
         {Object.keys(PrivateRoutes).map((item, index) => {
           const { Component, path } = PrivateRoutes[item]
           // TODO: Thêm key={index} bị giật => why??
-          return <Route key={path} exact path={path} render={(route) => {
+          return <Route exact path={path} render={(route) => {
             if (checkAuth.getToken() !== null) {
               return <DashBoard route={route} ComponentRender={Component} />
             } else {
@@ -53,7 +53,7 @@ function App() {
 
         {Object.keys(PublicRoutes).map((item, index) => {
           const { Component, path } = PublicRoutes[item]
-          return <Route exact key={index} path={path} render={(route) => {
+          return <Route exact key={path} path={path} render={(route) => {
             if (checkAuth.getToken() === null) {
               return <PublicLayout route={route} Component={Component} />
             } else {

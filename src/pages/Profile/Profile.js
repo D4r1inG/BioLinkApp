@@ -51,7 +51,7 @@ export default function Profile(props) {
     }
 
     const renderSocialList = (list) => {
-        return list?.map((item, index) => {
+        return list?.filter(item => item.status).map((item, index) => {
             return <div key={index} className="page-social relative mx-3 mb-3" style={{ color: theme?.color }}>
                 <a className="absolute h-full inset-0 w-full" target="_blank" href={`https://${item.name}.com/${item.link}`} ></a>
                 <Svg name={item.name} color={theme?.colorHeader} />

@@ -88,11 +88,11 @@ export default function Tour({ steps, onRequestClose }) {
         <div className='tour' style={{ fontFamily: "'DM Sans', sans-serif" }}>
             <div className='tour_overlay transition-all duration-500' style={styleTarget} ></div>
             <div className={`modal_tour shadow-md transition-all duration-700 ${index === 0 ? 'text-center index0' : ''}`} style={position} ref={myModal}>
-                <img src='./assets/Imgs/Quan_noi.jpg' className={`tour_img ngocanh_noi quan_noi transition-all object-contain ${index === 0 ? 'block' : 'hidden'}`} alt='Quan_Noi' />
+                <img src='./assets/Imgs/Quan_noi.jpg' className={`tour_img ngocanh_noi quan_noi transition-all  ${index === 0 ? 'block' : 'hidden'}`} alt='Quan_Noi' />
                 <img src='./assets/Imgs/Khanh_noi.jpg' className={`tour_img khanh_noi transition-all ${index === 1 ? 'active' : ''} ${index === 0 ? '' : 'img_left'}`} alt='Khanh_Noi' />
                 <img src='./assets/Imgs/Lam_noi.jpg' className={`tour_img lam_noi transition-all ${index === 0 ? 'block' : 'hidden'}`} alt='Lam_Noi' />
                 <img src='./assets/Imgs/Hieu_noi.jpg' className={`tour_img hieu_noi transition-all ${index === 0 ? 'block' : 'hidden'}`} alt='Hieu_Noi' />
-                <img src='./assets/Imgs/NgocAnh_noi.jpg' className={`tour_img quan_noi transition-all ${index === 0 ? 'block' : 'hidden'}`} alt='NgocAnh_Noi' />
+                <img src='./assets/Imgs/NgocAnh_noi.jpg' className={`tour_img object-cover quan_noi transition-all ${index === 0 ? 'block' : 'hidden'}`} alt='NgocAnh_Noi' />
                 <span className={`step_index bg-green-300 flex justify-center items-center rounded-full transition-all ${index === 0 ? 'opacity-0' : 'opacity-100'}`}>{index + 1}</span>
                 <svg onClick={() => { closeTour() }} className={`tour_close transition-all ${index === 0 ? 'hidden' : 'block'}`} viewBox="0 0 9.1 9.1"><path fill="currentColor" d="M5.9 4.5l2.8-2.8c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0L4.5 3.1 1.7.3C1.3-.1.7-.1.3.3c-.4.4-.4 1 0 1.4l2.8 2.8L.3 7.4c-.4.4-.4 1 0 1.4.2.2.4.3.7.3s.5-.1.7-.3L4.5 6l2.8 2.8c.3.2.5.3.8.3s.5-.1.7-.3c.4-.4.4-1 0-1.4L5.9 4.5z"></path></svg>
                 {steps[index].content}
@@ -101,7 +101,7 @@ export default function Tour({ steps, onRequestClose }) {
                 </p>
                 <div className='mt-4 flex justify-center items-center'>
                     <button className={`cursor-pointer py-1 px-3 rounded-md mr-6 ${index === 0 ? 'bg-gray-200 hidden' : 'bg-red-100 block'} hover:scale-110 transition-all`} onClick={handlePrevStep}>Trở lại</button>
-                    <div className={`flex ${index === 0 ? 'hidden' : 'block'}`}>
+                    <div className={`flex ${index === 0 ? 'hidden' : 'block'} grid grid-cols-9 gap-1`}>
                         {renderDot()}
                     </div>
                     <button className={`cursor-pointer py-1 px-3 rounded-md ${index === 0 ? '' : 'ml-6'} bg-green-100 hover:scale-110 transition-all`} onClick={handleNextStep}>{index === 0 ? 'Yay!' : index === steps.length - 1 ? 'Bye Khanh Noi ~' : 'Đi tiếp'}</button>

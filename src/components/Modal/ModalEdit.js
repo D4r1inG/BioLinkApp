@@ -32,6 +32,7 @@ export default function ModalAddNewHeader() {
         if (selectedImage !== null) {
             newLink.append('image', selectedImage)
         }
+        newLink.append('isHide', isHide)
         dispatch(editLink(newLink, linkEdit.id))
     }
 

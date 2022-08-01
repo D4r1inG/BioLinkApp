@@ -50,7 +50,7 @@
                 & ~ .indicator {
                     transform: translateY(calc($indicator-w-h * 1));
                     &::before {
-                        background: linear-gradient(0.300turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                        background: linear-gradient(0.3turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
                     }
                 }
             }
@@ -58,7 +58,7 @@
                 & ~ .indicator {
                     transform: translateY(calc($indicator-w-h * 2));
                     &::before {
-                        background: linear-gradient(0.450turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                        background: linear-gradient(0.45turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
                     }
                 }
             }
@@ -66,7 +66,7 @@
                 & ~ .indicator {
                     transform: translateY(calc($indicator-w-h * 3));
                     &::before {
-                        background: linear-gradient(0.600turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
+                        background: linear-gradient(0.6turn, $color-red-primary 23.71%, $color-purple-primary 78.8%);
                     }
                 }
             }
@@ -135,5 +135,56 @@
                 }
             }
         }
+    }
+}
+
+.chat_box {
+    position: fixed;
+    bottom: 5%;
+    right: 3%;
+    background-color: $color-black;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.chat_box_popup {
+    position: fixed;
+    bottom: 15%;
+    right: 3%;
+    background-color: $color-white;
+    width: 500px;
+    height: 400px;
+    .chatbox_input {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        background-color: $color-white;
+    }
+    .chatbox_btn {
+        margin: 0 5px 0 10px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+            color: $color-white;
+        }
+    }
+    .text_box{
+        position: relative;
+        max-width: 250px;
+        padding: 5px 10px;
+        word-break: break-all;
     }
 }

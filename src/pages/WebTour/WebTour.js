@@ -12,7 +12,7 @@ const steps = [
     },
     {
         selector: '',
-        content: 'Chào cậu! mình là Khanh Noi >_< - hướng dẫn viên tại GHTKlink! Mình sẽ hướng dẫn cậu đi thăm quan và giới thiệu cho cậu hiểu rõ hơn về GHTKlink nhé! Được rồi đi thôi!',
+        content: 'Chào cậu! mình là Khanh Noi (/◕ヮ◕)/ - hướng dẫn viên tại GHTKlink! Mình sẽ hướng dẫn cậu đi thăm quan và giới thiệu cho cậu hiểu rõ hơn về GHTKlink nhé! Được rồi đi thôi!',
         path: '/'
     },
     {
@@ -52,7 +52,7 @@ const steps = [
     },
     {
         selector: 'themeCreate_tour',
-        content: 'Tạo mới theme cũng là một sự lựa chọn không tồi (Khanh Noi recommend cậu tạo thật nhiều theme nha ^^).',
+        content: 'Tạo mới theme cũng là một sự lựa chọn không tồi (Khanh Noi recommend cậu tạo thật nhiều theme nha (๑•̀ㅂ•́)ﻭ✧).',
         path: '/dashboard/design'
     },
     {
@@ -66,24 +66,34 @@ const steps = [
         path: '/dashboard/setting'
     },
     {
+        selector: 'showlogo_tour',
+        content: 'Tích vào đây để giấu logo của web chúng mình.',
+        path: '/dashboard/setting'
+    },
+    {
+        selector: 'warning_tour',
+        content: 'Cậu có thể cảnh báo nội dung nhạy cảm cho người xem trước khi vào profile của mình ( ͡° ͜ʖ ͡°).',
+        path: '/dashboard/setting'
+    },
+    {
         selector: 'phone_tour',
         content: 'Các thay đổi của cậu sẽ được hiển thị tại đây.',
         path: '/dashboard/link'
     },
     {
         selector: 'profile_tour',
-        content: 'Đây là nơi cậu có thể xem profile của mình trên toàn màn hình >_<.',
+        content: 'Đây là nơi cậu có thể xem profile của mình trên toàn màn hình (；･`д･´).',
         path: '/dashboard/link'
     },
     {
         selector: 'instruc_tour',
-        content: 'Nên nhớ là Khanh Noi luôn ở đây nha <3.',
+        content: 'Nên nhớ là Khanh Noi luôn ở đây nha (๑•̀ㅂ•́)ﻭ✧ <3.',
         path: '/dashboard/link',
         quote: "Em bảo tôi nói xấu sau lưng ư? Xin lỗi, tôi còn chưa biết đâu là lưng em."
     },
     {
         selector: '',
-        content: 'Vậy là chuyến thăm quan được thực hiện bởi Khanh Noi đến đây kết thúc rùi (T . T) Noi hy vọng cậu sẽ có một khoảng thời gian vui vẻ khi trải nghiệm GHTKlink được thực hiện bởi sieu nhan cuong phong! nha.',
+        content: 'Vậy là chuyến thăm quan được thực hiện bởi Khanh Noi đến đây kết thúc rùi (;´༎ຶД༎ຶ`) Noi hy vọng cậu sẽ có một khoảng thời gian vui vẻ khi trải nghiệm GHTKlink được thực hiện bởi sieu nhan cuong phong! nha.',
         path: '/'
     },
 ]
