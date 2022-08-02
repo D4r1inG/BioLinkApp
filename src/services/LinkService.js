@@ -28,6 +28,7 @@ class LinkManagement extends baseService {
     }
 
     updatePosition = (list) => {
+        console.log(list)
         return this.Put(`user/updateLocation`, list)
     }
 

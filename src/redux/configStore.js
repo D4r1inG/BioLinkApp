@@ -5,6 +5,7 @@ import { LinkReducer } from './Reducers/LinkReducer'
 import { ModalReducer } from './Reducers/ModalReducer'
 import { ProfileReducer } from './Reducers/ProfileReducer'
 import { SkeletonReducer } from './Reducers/SkeletonReducer'
+import { StatReducer } from './Reducers/StatReducer'
 import { UserReducer } from './Reducers/UserReducer'
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     ProfileReducer,
     UserReducer,
     SkeletonReducer,
-    AdminReducer
+    AdminReducer,
+    StatReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
