@@ -1,23 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { getProfileByUserName } from '../../redux/Actions/ProfileAction'
+import { getAllComment, getProfileByUserName } from '../../redux/Actions/ProfileAction'
 import { useSelector } from 'react-redux'
 import Svg from '../../components/Svg/Svg'
 import MediaEmbed from '../../components/MediaEmbed/MediaEmbed'
+import { WechatOutlined } from '@ant-design/icons'
+import ChatBox from '../../components/ChatBox/ChatBox'
 
 export default function Profile(props) {
 
-    const { userProfileByUserName } = useSelector(state => state.ProfileReducer)
+    const { userProfileByUserName, commentList } = useSelector(state => state.ProfileReducer)
     const { name, bio, image, listPlugins, design, showLogo, showNSFW, listSocial } = userProfileByUserName
     const dispatch = useDispatch()
-    console.log(userProfileByUserName)
 
     const [idVisible, setIdVisible] = useState([])
     const [theme, setTheme] = useState()
     const [warning, setWarning] = useState(null)
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         dispatch(getProfileByUserName(props.match.params.username))
+        dispatch(getAllComment())
     }, [])
 
     useEffect(()=>{
@@ -145,6 +148,10 @@ export default function Profile(props) {
                     </div>
                 </div>
             </div>
+            <div className='chat_box rounded-full' onClick={() => { setIsOpen(!isOpen) }}>
+                <WechatOutlined color='#fff' />
+            </div>
+            {isOpen ? <ChatBox list={commentList} /> : ''}
         </div>
 
     )

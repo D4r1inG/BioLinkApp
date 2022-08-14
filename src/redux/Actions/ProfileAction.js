@@ -59,6 +59,25 @@ export const setActiveTheme = (id) => {
     }
 }
 
+export const createProfile = (name, bio) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await profileService.createNewProfile(name, bio)
+            dispatch({
+                type: 'TOGGLE_TOUR'
+            })
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }
+}
+
 export const updateProfile = (newProfile) => {
     return async (dispatch) => {
         dispatch({
@@ -126,6 +145,43 @@ export const settingProfile = (showLogo, showNsfw) => {
         try {
             const { data } = await profileService.settingProfile(showLogo, showNsfw)
             await dispatch(getUserProfile())
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }
+}
+
+export const getAllComment = () => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await profileService.getAllComment()
+            dispatch({
+                type: 'GET_ALL_COMMENT',
+                data
+            })
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }
+}
+
+export const saveComment = (cmt) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await profileService.saveComment(cmt)
+            await dispatch(getAllComment())
         } catch (err) {
             console.log(err)
         }

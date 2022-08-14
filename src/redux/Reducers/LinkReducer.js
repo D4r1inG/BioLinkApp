@@ -60,8 +60,7 @@ export const LinkReducer = (state = initialState, action) => {
         }
 
         case 'SET_SOCIAL_LIST': {
-            let newList = [...action.newList]
-            return { ...state, socialList: newList }
+            return { ...state, socialList: action.newList }
         }
 
         case 'ADD_DUMMY_DATA': {

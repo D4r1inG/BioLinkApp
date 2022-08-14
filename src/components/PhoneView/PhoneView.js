@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { getLinkDataFirstTime } from '../../redux/Actions/LinkAction'
+import { getLinkDataFirstTime, getSocialList } from '../../redux/Actions/LinkAction'
 import { getTheme, getUserProfile } from '../../redux/Actions/ProfileAction'
 import MediaEmbed from '../MediaEmbed/MediaEmbed'
 import Svg from '../Svg/Svg'
@@ -29,6 +29,7 @@ export default function PhoneView() {
     useEffect(() => {
         if (!isTouring) {
             dispatch(getLinkDataFirstTime())
+            dispatch(getSocialList())
             dispatch(getUserProfile())
             dispatch(getTheme())
         }

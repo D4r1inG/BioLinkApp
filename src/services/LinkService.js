@@ -28,13 +28,16 @@ class LinkManagement extends baseService {
     }
 
     updatePosition = (list) => {
-        console.log(list)
         return this.Put(`user/updateLocation`, list)
     }
 
-    // updateSocialLink = (list) => {
-    //     return this.Post('user/createSocial', list)
-    // }
+    getSocialLink = () => {
+        return this.Get(`user/social`)
+    }
+
+    updateSocialLink = (list) => {
+        return this.Post('user/updateSocial', list)
+    }
 }
 
 

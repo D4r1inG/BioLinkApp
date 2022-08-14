@@ -8,6 +8,7 @@ export const getLinkDataFirstTime = () => {
         })
         try {
             const { data, status } = await linkManagement.getLinkData()
+            console.log(data)
             dispatch({
                 type: 'SET_LIST',
                 linkList: data
@@ -138,4 +139,38 @@ export const updateList = (newList) => {
             type: 'CLOSE_LOADING',
         })
     }
+}
+
+export const getSocialList = () => {
+    return async (dispatch) => {
+ 
+        try {
+            const { data, status } = await linkManagement.getSocialLink()
+            console.log(data)
+            dispatch({
+                type: 'SET_SOCIAL_LIST',
+                newList: data
+            })
+        } catch (err) {
+            console.log(err)
+        }
+
+    }  
+}
+
+export const updateSocialList = (list) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data, status } = await linkManagement.updateSocialLink(list)
+            await dispatch(getLinkData())
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }   
 }

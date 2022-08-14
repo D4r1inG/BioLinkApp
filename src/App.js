@@ -5,7 +5,7 @@ import { createBrowserHistory } from "history"
 import ModalHOC from "./HOC/Modal/ModalHOC";
 import ModalSelectPlugin from "./components/Modal/ModalSelectPlugin";
 import { PrivateRoutes } from "./Routes/PrivateRoutes";
-import  checkAuth  from "./utils/CheckAuth";
+import checkAuth from "./utils/CheckAuth";
 import { PublicRoutes } from "./Routes/PublicRoutes";
 import PublicLayout from "./templates/PublicLayout/PublicLayout";
 import Profile from './pages/Profile/Profile'
@@ -14,13 +14,13 @@ import Admin from "./pages/Admin/Admin";
 import './styles/main.scss'
 import 'antd/dist/antd.css';
 import { useSelector } from "react-redux";
+import FirstTimeLogin from "./pages/FirstTimeLogin/FirstTimeLogin";
+import ProtectedLayout from "./templates/ProtectedLayout/ProtectedLayout";
 
 
 export const history = createBrowserHistory();
 
 function App() {
-  // Admin page
-  // UserName, email, name, bio, status(deleted , no), emailConfirm(yes, no), action(edit, delete || active)
 
   // TODO: custom hook => lưu cache
   // Attatactment: Luu cac ảnh ở trong này (Obj trên redux)
@@ -42,8 +42,10 @@ function App() {
           const { Component, path } = PrivateRoutes[item]
           // TODO: Thêm key={index} bị giật => why??
           return <Route exact path={path} render={(route) => {
-            if (checkAuth.getToken() !== null) {
+            if (checkAuth.getToken() !== null && PrivateRoutes[item].isDashboard) {
               return <DashBoard route={route} ComponentRender={Component} />
+            } else if (checkAuth.getToken() !== null) {
+              return <ProtectedLayout route={route} Component={Component} />
             } else {
               return <Redirect to={'/login'} />
             }
@@ -54,16 +56,20 @@ function App() {
         {Object.keys(PublicRoutes).map((item, index) => {
           const { Component, path } = PublicRoutes[item]
           return <Route exact key={path} path={path} render={(route) => {
-            if (checkAuth.getToken() === null) {
+            if (checkAuth.getToken() === null && PublicRoutes[item].tokenNeeded) {
               return <PublicLayout route={route} Component={Component} />
-            } else {
+            } else if (!PublicRoutes[item].tokenNeeded) {
+              return <PublicLayout route={route} Component={Component} />
+            }else{
               return <Redirect to={'/'} />
             }
           }} />
         })}
 
+        {/*TODO: Gửi api xác minh người dùng có phải admin hay k */}
         <Route path="/" exact component={MainPage} />
-        <Route path="/admin" exact component={Admin} />
+
+        <Route path="/firstTimeLogin" exact component={FirstTimeLogin} />
         <Route path="/profile/:username" exact component={Profile} />
       </Switch>
     </Router>

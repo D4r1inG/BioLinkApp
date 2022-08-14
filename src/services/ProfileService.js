@@ -18,6 +18,10 @@ class ProfileService extends baseService {
         return this.Put(`user/profile/active/?designId=${id}`)
     }
 
+    createNewProfile = (name, bio) => {
+        return this.Post(`user/profile/?name=${name}&bio=${bio}`)
+    }
+
     updateProfile = (newProfile) => {
         return this.Put('user/profile', newProfile)
     }
@@ -34,6 +38,13 @@ class ProfileService extends baseService {
         return this.Put(`user/profile/setting/?showLogo=${showLogo}&showNSFW=${showNsfw}`)
     }
 
+    getAllComment = () => {
+        return this.Get("/user/getAllComment")
+    }
+
+    saveComment = (cmt) => {
+        return this.Post("user/saveComment", cmt)
+    }
 }
 
 export const profileService = new ProfileService()

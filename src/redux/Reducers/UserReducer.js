@@ -5,6 +5,7 @@ const initialState = {
         success: null
     },
     isTouring: false,
+    userName: ""
 }
 
 export const UserReducer = (state = initialState, action) => {
@@ -13,7 +14,7 @@ export const UserReducer = (state = initialState, action) => {
         case 'LOGIN_ACTION': {
             const { accessToken } = action.data
             localStorage.setItem('accessToken', accessToken)
-            return { ...state }
+            return { ...state,userName: action.data.username }
         }
 
         case 'SET_STATUS': {

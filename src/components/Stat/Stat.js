@@ -27,7 +27,7 @@ export default function Stat() {
             <div className="text-black text-sm font-inter font-semibold text-center">{item.clickCount === null ? 0 : item.clickCount}</div>
             <div className="text-gray-500 text-sm font-inter font-normal">clicks</div>
           </div>
-          <div className="absolute stat-progress-bar" style={{ width: '30%' }}></div>
+          <div className="absolute stat-progress-bar" style={{ width: (item.clickCount / clickList.totalClickPlugins) * 100 + '%' }}></div>
           {/* TODO: thay đổi width theo từng click count */}
         </div>
       </div>

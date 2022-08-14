@@ -1,117 +1,40 @@
-import { ArrowRightOutlined } from '@ant-design/icons'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { saveComment } from '../../redux/Actions/ProfileAction'
 
-const arrMess = [
-    {
-        username: '123',
-        role: 'ROLE_ADMIN',
-        image: '/assets/Imgs/Quan_Noi.jpg',
-        message: 'Abc'
-    },
-    {
-        username: '123',
-        role: 'ROLE_ADMIN',
-        image: '/assets/Imgs/Quan_Noi.jpg',
-        message: 'ASaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    },
-    {
-        username: 'Khanh noi',
-        role: 'ROLE_USER',
-        image: '/assets/Imgs/Khanh_Noi.jpg',
-        message: '12333333333333333333333333333333333333333333'
-    },
-    {
-        username: 'Khanh noi',
-        role: 'ROLE_USER',
-        image: '/assets/Imgs/Khanh_Noi.jpg',
-        message: 'test'
-    },
-    {
-        username: 'Khanh noi',
-        role: 'ROLE_USER',
-        image: '/assets/Imgs/Khanh_Noi.jpg',
-        message: 'test222'
-    },
-    {
-        username: 'Khanh noi',
-        role: 'ROLE_USER',
-        image: '/assets/Imgs/Khanh_Noi.jpg',
-        message: 'test'
-    },
-    {
-        username: 'Khanh noi',
-        role: 'ROLE_USER',
-        image: '/assets/Imgs/Khanh_Noi.jpg',
-        message: 'test222'
-    },
-    {
-        username: '123',
-        role: 'ROLE_ADMIN',
-        image: '/assets/Imgs/Quan_Noi.jpg',
-        message: 'ASaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    },
 
-]
+export default function ChatBox({list}) {
 
-export default function ChatBox() {
-
-    const [messList, setMessList] = useState(arrMess)
-    const [message, setMessage] = useState('')
     const inputValue = useRef(null)
-    let usernameCurrent = JSON.parse(localStorage.getItem('username')).toString()
+    const { username } = useSelector(state => state.UserReducer)
+    const dispatch = useDispatch()
 
     const renderMessage = (arr) => {
         return arr.map((item, index) => {
-            let isMargin = false
-            let isUser = false
-            if (index !== 0 && arr[index - 1].username === item.username) {
-                isMargin = true
-            }
-            if (index === arr.length - 1 || arr[index + 1].username !== item.username) {
-                isUser = true
-            }
-            if (item.username === usernameCurrent) {
-                return <div key={index} className={`text_box self-end mr-4 bg-green-300 rounded-md relative ${isMargin ? 'mt-1' : 'mt-4'}`}>
-                    {item.message}
-                    {isUser ?
-                        <img src={item.image} alt={item.name} className='absolute rounded-full' style={{ width: 18, height: 18, right: -8, bottom: -8 }} />
-                        : ''
-                    }
-                </div>
-            } else {
-                return <div key={index} className={`text_box self-start ml-4 bg-blue-400 rounded-md relative ${isMargin ? 'mt-1' : 'mt-4'}`}>
-                    {item.message}
-                    {isUser ?
-                        <img src={item.image} alt={item.name} className='absolute rounded-full' style={{ width: 18, height: 18, left: -8, bottom: -8 }} />
-                        : ''
-                    }
-                </div>
-            }
+            return <div key={index} className={`text_box my-2 self-end mr-4 bg-green-300 rounded-md relative ${item.username === username ? 'bg-green-300' : 'bg-blue-300'}`}>
+                {item.content_comment}
+                <img src={item.image} alt={item.name} className='absolute rounded-full' style={{ width: 18, height: 18, right: -8, bottom: -8 }} />
+            </div>
         })
     }
 
     const handleSend = (e) => {
-        let newMess = {
-            username: usernameCurrent,
-            role: 'ROLE_ADMIN',
-            image: '/assets/Imgs/Quan_Noi.jpg',
-            message: inputValue.current.value
-        }
-        setMessList([...messList, newMess])
-        inputValue.current.value = null 
+        dispatch(saveComment(inputValue.current.value))
+        inputValue.current.value = ""
     }
 
     return (
         <div className='chat_box_popup rounded-md shadow-md '>
-            <div className='pt-4 h-full w-full'>
-                <div className='flex flex-col w-full py-4 h-full overflow-auto transparent-scroll' style={{ paddingBottom: '70px' }}>
-                    {renderMessage(messList)}
+            <div className='pt-4 h-full w-full chat-box-top transparent-scroll'>
+                <div className='flex flex-col w-full py-4 h-full' style={{ paddingBottom: '70px' }}>
+                    {renderMessage(list)}
                 </div>
             </div>
             <div className='chatbox_input '>
                 <div className='input-main-wrap overflow-hidden rounded-sm flex-1'>
-                    <input ref={inputValue} type="text" name="name" placeholder="Say something to everyone..." className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onKeyDown={(e) => {
-                       if (e.key === 'Enter') {
+                    <input ref={inputValue} type="text" name="name" placeholder="Say something..." className="bl-input w-full p-4 text-sm font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
                             handleSend()
                         }
                     }} />

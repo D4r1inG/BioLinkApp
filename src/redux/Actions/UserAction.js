@@ -10,14 +10,13 @@ export const login = (infoUser) => {
             const { data } = await userService.login(infoUser)
             dispatch({
                 type: 'LOGIN_ACTION',
-                data
+                data: data.loginResponse
             })
-            history.push('/')
-
-            // if (data.firstLogin) {
-            //     history.push('/firstlogin')
-            // } else {
-            // }
+            if (data.loginResponse.firstLogin) {
+                history.push('/firstTimeLogin')
+            } else {
+                history.push('/')
+            }
         } catch (err) {
             console.log(err)
         }
@@ -54,7 +53,6 @@ export const verifyAcc = (token) => {
     return async (dispatch) => {
         try {
             const { data } = await userService.verify(token)
-            console.log(data)
         } catch (err) {
             console.log(err)
         }

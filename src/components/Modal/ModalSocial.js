@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { updateSocialList } from '../../redux/Actions/LinkAction'
 import { socialLinkList } from '../../utils/SocialLink'
 import Svg from '../Svg/Svg'
 
@@ -31,8 +32,7 @@ export default function ModalSocial() {
     }
 
     const handleSubmit = () => {
-        
-        console.log(socialArr)
+        dispatch(updateSocialList(socialArr))
         dispatch({
             type: 'CLOSE_MODAL'
         })

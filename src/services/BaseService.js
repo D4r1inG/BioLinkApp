@@ -2,6 +2,7 @@ import Axios from "axios"
 import { DOMAIN } from '../utils/Config'
 
 export class baseService {
+    //TODO: interceptors
     Put = (url, model) => {
         return Axios({
             url: `${DOMAIN}/${url}`,

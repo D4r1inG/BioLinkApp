@@ -103,11 +103,16 @@ const initialState = {
         colorLink: '#000000',
         fontFamily: "'DM Sans', sans-serif"
     },
-    isCreating: false
+    isCreating: false,
+    commentList: []
 }
 
 export const ProfileReducer = (state = initialState, action) => {
     switch (action.type) {
+
+        case 'GET_ALL_COMMENT': {
+            return {...state, commentList: action.data}
+        }
 
         case 'EDIT_VALUE': {
             return { ...state, name: action.payload.name || state.name, bio: action.payload.bio || state.bio }
