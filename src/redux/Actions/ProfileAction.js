@@ -49,6 +49,7 @@ export const setActiveTheme = (id) => {
     return async (dispatch) => {
         try {
             const { data } = await profileService.setProfileTheme(id)
+            openNotification('success', 'Theme selected')
             dispatch({
                 type: 'SELECT_THEME',
                 newProfile: data
@@ -89,7 +90,7 @@ export const updateProfile = (newProfile) => {
                 type: 'SET_PROFILE',
                 data
             })
-            openNotification('success', 'Profile updated!',)
+            openNotification('success', 'Profile updated!')
 
         } catch (err) {
             console.log(err)
@@ -107,6 +108,7 @@ export const deleteTheme = (id) => {
         })
         try {
             const { data } = await profileService.deleteTheme(id)
+            openNotification('success', 'Theme deleted!')
             await dispatch(getTheme())
         } catch (err) {
             console.log(err)
@@ -124,6 +126,7 @@ export const createTheme = (newTheme) => {
         })
         try {
             const { data } = await profileService.createTheme(newTheme)
+            openNotification('success', `Theme ${newTheme.name} has been added!`)
             await dispatch(getTheme())
             dispatch({
                 type: 'SAVE_NEW_THEME'

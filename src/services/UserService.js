@@ -10,6 +10,10 @@ class UserService extends baseService {
         return this.Post('signup', data)
     }
 
+    loginWithSocial = () => {
+        return this.Post('login/social')
+    }
+
     verify = (token) => {
         return this.Get(`verify/?code=${token}`)
     }

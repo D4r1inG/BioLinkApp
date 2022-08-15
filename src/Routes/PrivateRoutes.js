@@ -31,6 +31,11 @@ export const PrivateRoutes = {
         isDashboard: true
     },
 
+    FirstTimeLogin: {
+        Component: FirstTimeLogin,
+        path: 'firsttimelogin',
+        isDashboard: false
+    },
 
     AdminRoute: {
         Component: Admin,

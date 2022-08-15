@@ -16,6 +16,7 @@ import 'antd/dist/antd.css';
 import { useSelector } from "react-redux";
 import FirstTimeLogin from "./pages/FirstTimeLogin/FirstTimeLogin";
 import ProtectedLayout from "./templates/ProtectedLayout/ProtectedLayout";
+import LoginWithSocial from "./pages/Login/LoginWithSocial";
 
 
 export const history = createBrowserHistory();
@@ -69,7 +70,8 @@ function App() {
         {/*TODO: Gửi api xác minh người dùng có phải admin hay k */}
         <Route path="/" exact component={MainPage} />
 
-        <Route path="/firstTimeLogin" exact component={FirstTimeLogin} />
+        <Route path="/success" exact component={LoginWithSocial} />
+        {/* <Route path="/firstTimeLogin" exact component={FirstTimeLogin} /> */}
         <Route path="/profile/:username" exact component={Profile} />
       </Switch>
     </Router>

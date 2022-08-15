@@ -1,4 +1,5 @@
 import { linkManagement } from "../../services/LinkService";
+import { openNotification } from "../../utils/Notification";
 
 
 export const getLinkDataFirstTime = () => {
@@ -43,10 +44,11 @@ export const addNewLink = (newLink) => {
             type: 'DISLAY_LOADING',
         })
         try {
-
             const { data, status } = await linkManagement.addNewLink(newLink)
+            openNotification('success', 'New link added.')
             await dispatch(getLinkData())
         } catch (err) {
+            openNotification('error', 'Opps, something went wrong.')
             console.log(err)
         }
         dispatch({
@@ -62,8 +64,10 @@ export const addNewHeader = (newHeader) => {
         })
         try {
             const { data, status } = await linkManagement.addNewHeader(newHeader)
+            openNotification('success', 'New header added.')
             await dispatch(getLinkData())
         } catch (err) {
+            openNotification('error', 'Opps, something went wrong.')
             console.log(err)
         }
         dispatch({
@@ -79,8 +83,10 @@ export const addNewPlugin = (newPlugin) => {
         })
         try {
             const { data, status } = await linkManagement.addNewPlugin(newPlugin)
+            openNotification('success', 'New plugin added.')
             await dispatch(getLinkData())
         } catch (err) {
+            openNotification('error', 'Opps, something went wrong.')
             console.log(err)
         }
         dispatch({
@@ -97,8 +103,10 @@ export const editLink = (newLink, id) => {
         })
         try {
             const { data, status } = await linkManagement.editLink(newLink, id)
+            openNotification('success', 'Link edited successful.')
             await dispatch(getLinkData())
         } catch (err) {
+            openNotification('error', 'Opps, something went wrong.')
             console.log(err)
         }
         dispatch({
@@ -114,8 +122,10 @@ export const deleteLink = (id) => {
         })
         try {
             const { data, status } = await linkManagement.deleteLink(id)
+            openNotification('success', 'Link deleted.')
             await dispatch(getLinkData())
         } catch (err) {
+            openNotification('error', 'Opps, something went wrong.')
             console.log(err)
         }
         dispatch({
@@ -165,8 +175,10 @@ export const updateSocialList = (list) => {
         })
         try {
             const { data, status } = await linkManagement.updateSocialLink(list)
+            openNotification('success', 'Social links updated.')
             await dispatch(getLinkData())
         } catch (err) {
+            openNotification('error', 'Opps, something went wrong.')
             console.log(err)
         }
         dispatch({

@@ -114,7 +114,7 @@ export default function Login() {
                         <div className="grey-border-block w-2/4 ml-4"></div>
                     </div>
 
-                    <a href="#">
+                    <a href="http://localhost:8080/oauth2/authorization/facebook">
                         <button className="font-semibold text-sm relative flex justify-center items-center mt-4 btn-signup-social text-black rounded-md w-full h-10">
                             <span className="flex">
                                 <span className="flex w-4 justify-center items-center mr-2">
