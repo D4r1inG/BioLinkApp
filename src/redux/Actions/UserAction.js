@@ -1,6 +1,7 @@
 import { userService } from "../../services/UserService";
 import { history } from '../../App'
 import { openNotification } from "../../utils/Notification";
+import { getAllUserProfile } from "./ProfileAction";
 
 export const login = (infoUser) => {
     return async (dispatch) => {
@@ -115,6 +116,23 @@ export const forgotPassProcess = (token, newPass) => {
                 data
             })
             history.push('/login')
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    }
+}
+
+export const likeProfile = () => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await userService.likeProfile()
+            dispatch(getAllUserProfile())
         } catch (err) {
             console.log(err)
         }

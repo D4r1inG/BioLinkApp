@@ -2,71 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import CardDefault from './CardDefault'
 import CardTop from './CardTop'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllUserProfile } from '../../redux/Actions/ProfileAction'
 
 export default function ListUserPage() {
 
-    let mylist = [
-        {
-            "username": null,
-            "name": "Pokemon Goo22",
-            "bio": "Raichu",
-            "image": './assets/Imgs/Khanh_Noi.jpg',
-            "totalLike": 1,
-            "totalDislike": 0,
-            "userLike": false
-        },
-        {
-            "username": null,
-            "name": "Pokemon Goo22",
-            "bio": "Raichu2",
-            "image": './assets/Imgs/Khanh_Noi.jpg',
-            "totalLike": 3,
-            "totalDislike": 1,
-            "userLike": false
-        },
-        {
-            "username": null,
-            "name": "Pokemon Goo22 qưdqwd",
-            "bio": "Raichu3",
-            "image": './assets/Imgs/Khanh_Noi.jpg',
-            "totalLike": 1,
-            "totalDislike": 1,
-            "userLike": false
-        },
-        {
-            "username": null,
-            "name": "Pokemon Go4",
-            "bio": "Raichu4",
-            "image": './assets/Imgs/Khanh_Noi.jpg',
-            "totalLike": 0,
-            "totalDislike": 0,
-            "userLike": false
-        },
-        {
-            "username": null,
-            "name": "Pokemon Go5",
-            "bio": "Raichu5",
-            "image": './assets/Imgs/Khanh_Noi.jpg',
-            "totalLike": 0,
-            "totalDislike": 0,
-            "userLike": false
-        }
-    ]
-
-    const [pageNum, setPageNum] = useState(1)
-    const [list, setList] = useState(mylist)
+    const { profileList } = useSelector(state => state.ProfileReducer)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        const fetchData = async (pageNum) => {
-            let data = await getListUser(pageNum)
-            return data
-        }
-        fetchData()
-    }, [pageNum])
-
-    const getListUser = (pageNum) => {
-
-    }
+        dispatch(getAllUserProfile())
+    }, [])
 
     const renderCard = (list) => {
         return list.filter((item, index) => index !== 0).map((item, index) => {
@@ -86,10 +32,10 @@ export default function ListUserPage() {
 
             <div className='my-container p-8 bg-white'>
                 <div className='flex justify-center items-center'>
-                    <CardTop item={list[0]} />
+                    <CardTop item={profileList[0]} />
                 </div>
                 <div className='grid grid-cols-2 gap-8 mt-8'>
-                    {renderCard(list)}
+                    {renderCard(profileList)}
                 </div>
             </div>
         </div>

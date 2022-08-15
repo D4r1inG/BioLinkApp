@@ -1,20 +1,34 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import checkAuth from '../../utils/CheckAuth'
+import { openNotification } from '../../utils/Notification'
+import { useDispatch } from 'react-redux'
+import { likeProfile } from '../../redux/Actions/UserAction'
+
 
 export default function CardDefault({item}) {
 
     const [like, setLike] = useState(false)
+    const dispatch = useDispatch()
+
+    const handleLike = () => {
+        if(checkAuth.getToken() === null){
+            openNotification('error', 'Vui lòng đăng nhập để sử dụng chức năng này.',)
+        }else{
+            dispatch(likeProfile())
+        }
+    }
  
     return (
-        <NavLink to={`/profile/${item.username}`} className={`card-default transition-all border text-black hover:text-black border-gray-200 rounded-xl shadow-xl hover:scale-105 duration-300`}>
+        <NavLink to={`/profile/${item?.username}`} className={`card-default transition-all border text-black hover:text-black border-gray-200 rounded-xl shadow-xl hover:scale-105 duration-300`}>
             <div className='absolute bl-bg rounded-full overflow-hidden'>
-                <img src={item.image} className="hover:scale-90 rounded-full duration-300" />
+                <img src={item?.image} className="hover:scale-90 rounded-full duration-300" />
             </div>
             <div className='card-body p-2 bg-gray-200 rounded-md'>
-                <h2 className='text-xl font-bold pb-1 border-b border-gray-400'>{item.name}</h2>
-                <p >{item.bio}</p>
+                <h2 className='text-xl font-bold pb-1 border-b border-gray-400'>{item?.name}</h2>
+                <p >{item?.bio}</p>
             </div>
-            <div className='emote rounded-lg transition-all duration-300 bg-gray-200'>
+            <div className='emote rounded-lg transition-all duration-300 bg-gray-200' onClick={handleLike}>
                     {like ?
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="30" height="30" viewBox="0 0 100 100" onClick={()=>{setLike(!like)}}>
                             <g stroke='none' strokeWidth='0' strokeDasharray='none' strokeLinecap='butt' strokeLinejoin='miter' strokeMiterlimit='0' fillRule='nozero' fill='#e63757' >

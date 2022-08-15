@@ -104,7 +104,8 @@ const initialState = {
         fontFamily: "'DM Sans', sans-serif"
     },
     isCreating: false,
-    commentList: []
+    commentList: [],
+    profileList: []
 }
 
 export const ProfileReducer = (state = initialState, action) => {
@@ -112,6 +113,10 @@ export const ProfileReducer = (state = initialState, action) => {
 
         case 'GET_ALL_COMMENT': {
             return {...state, commentList: action.data}
+        }
+
+        case 'SET_PROFILE_LIST': {
+            return {...state, profileList: action.data}
         }
 
         case 'EDIT_VALUE': {

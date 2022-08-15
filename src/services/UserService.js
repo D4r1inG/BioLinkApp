@@ -25,6 +25,10 @@ class UserService extends baseService {
     forgotPass = (token, newPass) => {
         return this.Post(`processForgot/?token=${token}`, { password: newPass })
     }
+
+    likeProfile = () => {
+        return this.Post("user/saveLike")
+    }
 }
 
 export const userService = new UserService()

@@ -193,3 +193,23 @@ export const saveComment = (cmt) => {
         })
     }
 }
+
+export const getAllUserProfile = () => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'DISLAY_LOADING',
+        })
+        try {
+            const { data } = await profileService.getAllProfile()
+            dispatch({
+                type: 'SET_PROFILE_LIST',
+                data: data.data
+            })
+        } catch (err) {
+            console.log(err)
+        }
+        dispatch({
+            type: 'CLOSE_LOADING',
+        })
+    } 
+}

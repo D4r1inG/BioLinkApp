@@ -45,6 +45,10 @@ class ProfileService extends baseService {
     saveComment = (cmt) => {
         return this.Post("user/saveComment", cmt)
     }
+
+    getAllProfile = () => {
+        return this.Get("getAllProfile")
+    }
 }
 
 export const profileService = new ProfileService()
