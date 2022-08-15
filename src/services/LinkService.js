@@ -36,7 +36,7 @@ class LinkManagement extends baseService {
     }
 
     updateSocialLink = (list) => {
-        return this.Post('user/updateSocial', list)
+        return this.Put('user/updateSocial', list)
     }
 }
 
