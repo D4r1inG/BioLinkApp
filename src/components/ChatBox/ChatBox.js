@@ -7,12 +7,11 @@ import { saveComment } from '../../redux/Actions/ProfileAction'
 export default function ChatBox({list}) {
 
     const inputValue = useRef(null)
-    const { username } = useSelector(state => state.UserReducer)
     const dispatch = useDispatch()
 
     const renderMessage = (arr) => {
         return arr.map((item, index) => {
-            return <div key={item.username} className={`text_box my-2 self-end mr-4 bg-green-300 rounded-md relative ${item.username === username ? 'bg-green-300' : 'bg-blue-300'}`}>
+            return <div key={item.username} className={`text_box my-2 self-end mr-4 bg-green-300 rounded-md relative ${item.username === localStorage.getItem('username') ? 'bg-green-300' : 'bg-blue-300'}`}>
                 {item.comment}
                 <img src={item.imageUser} alt={item.username} className='absolute rounded-full' style={{ width: 18, height: 18, right: -8, bottom: -8 }} />
             </div>
