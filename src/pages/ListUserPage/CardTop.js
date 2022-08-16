@@ -47,7 +47,7 @@ export default function CardTop({ item }) {
                             </g>
                         </svg>
                     }
-                    <p>{item.totalLike}</p>
+                    <p>{item?.totalLike}</p>
                 </div>
             </div>
         </div>

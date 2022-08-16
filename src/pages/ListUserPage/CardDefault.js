@@ -44,7 +44,7 @@ export default function CardDefault({ item }) {
                         </g>
                     </svg>
                 }
-                <p>{item.totalLike}</p>
+                <p>{item?.totalLike}</p>
             </div>
         </div>
     )

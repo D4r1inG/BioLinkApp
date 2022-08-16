@@ -101,7 +101,7 @@ export default function Mainpage() {
                                 className={`${!isAnimate ? 'text-black' : ' text-white'} font-inter header_btn font-semibold cursor-pointer self-center duration-200 hover:text-gray-600`}>
                                 FAQ</div>
                             <div className="flex flex-grow flex-row-reverse">
-                                <NavLink to='/listuser' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} mr-3 font-inter sign_up_btn font-medium text-base cursor-pointer rounded-full py-2 px-6 dashboard_tour`}>
+                                <NavLink to='/listuser' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} ml-2 font-inter sign_up_btn font-medium text-base cursor-pointer rounded-full py-2 px-6 dashboard_tour`}>
                                     List profiles
                                 </NavLink>
                                 {checkAuth.getToken() === null ?
@@ -114,13 +114,13 @@ export default function Mainpage() {
                                         </NavLink>
                                     </>
                                     :
-                                    <>
-                                        <div onClick={logout} className={`${!isAnimate ? 'text-black' : 'text-white'} font-inter header_btn font-semibold ml-3 px-3 cursor-pointer text-base self-center`}>
-                                            Log out
-                                        </div>
+                                    <>  
                                         <NavLink to='/dashboard/link' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium text-base cursor-pointer rounded-full py-2 px-6 dashboard_tour`}>
                                             DashBoard
                                         </NavLink>
+                                        <div onClick={logout} className={`${!isAnimate ? 'text-black' : 'text-white'} font-inter header_btn font-semibold ml-3 px-3 cursor-pointer text-base self-center`}>
+                                            Log out
+                                        </div>
                                     </>
                                 }
 
