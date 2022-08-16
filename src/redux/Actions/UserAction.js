@@ -40,7 +40,7 @@ export const loginWithSocial = () => {
             })
             if (data.loginResponse.firstLogin) {
                 openNotification('success', 'Please update your profile to continue.',)
-                history.push('/firstTimeLogin')
+                history.push('/firsttimelogin')
             } else {
                 history.push('/')
             }

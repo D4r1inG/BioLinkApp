@@ -139,14 +139,14 @@ export const deleteTheme = (id) => {
     }
 }
 
-export const createTheme = (newTheme) => {
+export const createTheme = (newTheme, name = '') => {
     return async (dispatch) => {
         dispatch({
             type: 'DISLAY_LOADING',
         })
         try {
             const { data } = await profileService.createTheme(newTheme)
-            openNotification('success', `Theme ${newTheme.name} has been added!`)
+            openNotification('success', `Theme ${name} has been added!`)
             await dispatch(getTheme())
             dispatch({
                 type: 'SAVE_NEW_THEME'
@@ -223,7 +223,7 @@ export const getAllUserProfile = () => {
             const { data } = await profileService.getAllProfile()
             dispatch({
                 type: 'SET_PROFILE_LIST',
-                data: data.data
+                data
             })
         } catch (err) {
             console.log(err)

@@ -47,7 +47,7 @@ class ProfileService extends baseService {
     }
 
     getAllComment = () => {
-        return this.Get("/user/getAllComment")
+        return this.Get("user/getAllComment")
     }
 
     saveComment = (cmt) => {

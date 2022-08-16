@@ -226,7 +226,7 @@ export default function DesignTheme() {
         }
         temp.append('name', themeRef.current.value)
 
-        dispatch(createTheme(temp))
+        dispatch(createTheme(temp, themeRef.current.value))
     }
 
     const handleChangeBgGradiantColor = (e) => {
