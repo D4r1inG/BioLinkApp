@@ -58,7 +58,7 @@ export default function Profile(props) {
         return list?.filter(item => item.status).map((item, index) => {
             return <div key={index} className="page-social relative mx-3 mb-3" style={{ color: theme?.color }}>
                 <a className="absolute h-full inset-0 w-full" target="_blank" rel="noreferrer" href={`${item.url}`} onClick={() => {
-                    dispatch(handleClickSocialLink(username))
+                    dispatch(handleClickSocialLink(username, item))
                 }
                 }></a>
                 <Svg name={item.name} color={theme?.colorHeader} />
@@ -103,7 +103,7 @@ export default function Profile(props) {
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" >
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
                     <a style={{ minHeight: '60px' }} href={item.url} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative" onClick={() => {
-                        dispatch(handleClickPluginLink(username))
+                        dispatch(handleClickPluginLink(username, item))
                     }}>
                         {renderImg(item)}
                         <span className="item-title text-center limit-one-line break-all overflow-hidden px-4" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>

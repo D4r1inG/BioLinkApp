@@ -45,20 +45,20 @@ export const getUserProfile = () => {
     }
 }
 
-export const handleClickSocialLink = (username) => {
+export const handleClickSocialLink = (username, item) => {
     return async (dispatch) => {
         try {
-            const res = await profileService.handleClickSocialLink(username)
+            const res = await profileService.handleClickSocialLink(username, item)
         } catch (err) {
             console.log(err);
         };
     }
 }
 
-export const handleClickPluginLink = (username) => {
+export const handleClickPluginLink = (username, item) => {
     return async (dispatch) => {
         try {
-            const res = await profileService.handleClickPluginLink(username)
+            const res = await profileService.handleClickPluginLink(username, item)
         } catch (err) {
             console.log(err);
         };

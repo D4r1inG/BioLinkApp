@@ -33,7 +33,7 @@ export const PrivateRoutes = {
 
     FirstTimeLogin: {
         Component: FirstTimeLogin,
-        path: 'firsttimelogin',
+        path: '/firsttimelogin',
         firstLogin: true
     },
 

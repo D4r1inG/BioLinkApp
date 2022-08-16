@@ -14,12 +14,12 @@ class ProfileService extends baseService {
         return this.Get('user/profile')
     }
 
-    handleClickSocialLink = (username) => {
-        return this.Put(`"/${username}/social"`)
+    handleClickSocialLink = (username, item) => {
+        return this.Put(`${username}/social`, item)
     }
 
-    handleClickPluginLink = (username) => {
-        return this.Put(`"/${username}/plugins"`)
+    handleClickPluginLink = (username, item) => {
+        return this.Put(`${username}/plugins`, item)
     }
 
     setProfileTheme = (id) => {

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { history } from '../../App'
 import checkAuth from '../../utils/CheckAuth'
 
 export default function Mainpage() {
@@ -52,6 +53,12 @@ export default function Mainpage() {
         }
     }
 
+    const logout = (e) => {
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('username')
+        history.push('/login')
+    };
+
     return (
         <div id="main_page">
             <div className={`${!isAnimate ? '' : 'bg_dark'} pt-24 bg_landing overflow-hidden`}>
@@ -94,7 +101,7 @@ export default function Mainpage() {
                                 className={`${!isAnimate ? 'text-black' : ' text-white'} font-inter header_btn font-semibold cursor-pointer self-center duration-200 hover:text-gray-600`}>
                                 FAQ</div>
                             <div className="flex flex-grow flex-row-reverse">
-                                {checkAuth.getToken() === null?
+                                {checkAuth.getToken() === null ?
                                     <>
                                         <NavLink to='/signup' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium text-base cursor-pointer rounded-full py-2 px-6 `}>
                                             Sign up
@@ -104,9 +111,17 @@ export default function Mainpage() {
                                         </NavLink>
                                     </>
                                     :
-                                    <NavLink to='/dashboard/link' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium text-base cursor-pointer rounded-full py-2 px-6 dashboard_tour`}>
-                                        DashBoard
-                                    </NavLink>
+                                    <>
+                                        <div onClick={logout} className={`${!isAnimate ? 'text-black' : 'text-white'} font-inter header_btn font-semibold ml-3 px-3 cursor-pointer text-base self-center`}>
+                                            Log out
+                                        </div>
+                                        <NavLink to='/dashboard/link' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium text-base cursor-pointer rounded-full py-2 px-6 dashboard_tour`}>
+                                            DashBoard
+                                        </NavLink>
+                                        <NavLink to='/listuser' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} mr-3 font-inter sign_up_btn font-medium text-base cursor-pointer rounded-full py-2 px-6 dashboard_tour`}>
+                                            List profiles
+                                        </NavLink>
+                                    </>
                                 }
                             </div>
                         </div>
