@@ -125,13 +125,13 @@ export const forgotPassProcess = (token, newPass) => {
     }
 }
 
-export const likeProfile = () => {
+export const likeProfile = (status, username) => {
     return async (dispatch) => {
         dispatch({
             type: 'DISLAY_LOADING',
         })
         try {
-            const { data } = await userService.likeProfile()
+            const { data } = await userService.likeProfile(status, username)
             dispatch(getAllUserProfile())
         } catch (err) {
             console.log(err)

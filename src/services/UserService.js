@@ -26,8 +26,8 @@ class UserService extends baseService {
         return this.Post(`processForgot/?token=${token}`, { password: newPass })
     }
 
-    likeProfile = () => {
-        return this.Post("user/saveLike")
+    likeProfile = (status, username) => {
+        return this.Post(`user/saveLike?statusLike=${status}&username=${username}`)
     }
 }
 

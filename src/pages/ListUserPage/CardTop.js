@@ -14,12 +14,13 @@ export default function CardTop({ item }) {
         if(checkAuth.getToken() === null){
             openNotification('error', 'Vui lòng đăng nhập để sử dụng chức năng này.',)
         }else{
-            dispatch(likeProfile())
+            dispatch(likeProfile(like, item.username))
         }
     }
 
     return (
-        <NavLink to={`/profile/${item?.username}`} className='card-top text-black transition-all hover:text-black rounded-xl overflow-hidden hover:scale-105 duration-300 shadow-xl'>
+        <div  className='card-top text-black transition-all hover:text-black rounded-xl overflow-hidden hover:scale-105 duration-300 shadow-xl'>
+            <NavLink to={`/profile/${item?.username}`}>
             <img src={`${item?.image}`} alt={item?.name} className='card-img' />
             <div className='card-body rounded-md z-20 relative'>
                 <h2 className='font-bold text-2xl m-0 pb-2 w-full border-b border-gray-300 text-right'>
@@ -29,6 +30,7 @@ export default function CardTop({ item }) {
                     {item?.bio}
                 </p>
             </div>
+            </NavLink>
             <div className='card-footer'>
                 <img src='/assets/Imgs/anh_lap_lanh.jpg' className='object-contain' />
                 <div className='over-lay'></div>
@@ -45,9 +47,9 @@ export default function CardTop({ item }) {
                             </g>
                         </svg>
                     }
-                    <p>45</p>
+                    <p>{item.totalLike}</p>
                 </div>
             </div>
-        </NavLink>
+        </div>
     )
 }
