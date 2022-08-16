@@ -21,7 +21,7 @@ export default function Profile(props) {
 
     useEffect(() => {
         dispatch(getProfileByUserName(username))
-        dispatch(getAllComment())
+        dispatch(getAllComment(username))
     }, [])
 
     useEffect(() => {
@@ -157,7 +157,7 @@ export default function Profile(props) {
             <div className='chat_box rounded-full' onClick={() => { setIsOpen(!isOpen) }}>
                 <WechatOutlined color='#fff' />
             </div>
-            {isOpen ? <ChatBox list={commentList} /> : ''}
+            {isOpen ? <ChatBox list={commentList} username={username} /> : ''}
         </div>
 
     )

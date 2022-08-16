@@ -36,7 +36,7 @@ export default function ModalSelectPlugin() {
                             </div>
                         </div>
                         <div>
-                            <div className=' my-6 transparent-scroll border-b pb-4'>
+                            <div className='my-6'>
                                 <div className='pb-3'>
                                     <div className="font-inter font-semibold text-black leading-4 mt-6 text-xl">Content</div>
                                 </div>
@@ -103,61 +103,7 @@ export default function ModalSelectPlugin() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='pb-3'>
-                                <div className="font-inter font-semibold text-black leading-4 mt-4 text-xl">Basics</div>
-                            </div>
-                            <div className='grid grid-cols-2 items-center'>
-                                <div>
-                                    <div className="flex items-center justify-betweeen px-3  h-20 cursor-pointer rounded-lg hover:bg-gray-100 justify-between" >
-                                        <div className="" style={{ flex: '0 0 48px' }}>
-                                            <img src={`/assets/Imgs/embed-contactform-new.png`} alt="forms" />
-                                        </div>
-                                        <div className="flex w-full items-center ml-3 pr-3 justify-between" >
-                                            <div>
-                                                <div className="text-sm text-black font-inter font-semibold leading-7 tracking-wide	" >
-                                                    Forms
-                                                </div>
-                                                <div className="text-xs w-52 text-gray-500 font-inter">
-                                                    Collect information from your visitors easily.
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <button className="py-2 px-3 bg-gray-100 text-dark font-inter leading-4 relative flex justify-center items-center rounded-full text-xs text-blue-500 bl-btn-sm">
-                                                    <span className="flex font-semibold text-xs">
-                                                        ADD
-                                                    </span> <span className="bl-circle-loader absolute hidden"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div className="flex items-center justify-betweeen px-3  h-20 cursor-pointer rounded-lg hover:bg-gray-100 justify-between" >
-                                        <div className="" style={{ flex: '0 0 48px' }}>
-                                            <img src={`/assets/Imgs/embed-story-new.png`} alt="spotify" />
-                                        </div>
-                                        <div className="flex w-full items-center ml-3 pr-3 justify-between" >
-                                            <div>
-                                                <div className="text-sm text-black font-inter font-semibold leading-7 tracking-wide	" >
-                                                    Story
-                                                </div>
-                                                <div className="text-xs w-52 text-gray-500 font-inter">
-                                                    Add a text area.
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <button className="py-2 px-3 bg-gray-100 text-dark font-inter leading-4 relative flex justify-center items-center rounded-full text-xs text-blue-500 bl-btn-sm">
-                                                    <span className="flex font-semibold text-xs">
-                                                        ADD
-                                                    </span> <span className="bl-circle-loader absolute hidden"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>                       
                         </div>
                     </div>
                 </div>

@@ -177,13 +177,13 @@ export const settingProfile = (showLogo, showNsfw) => {
     }
 }
 
-export const getAllComment = () => {
+export const getAllComment = (username) => {
     return async (dispatch) => {
         dispatch({
             type: 'DISLAY_LOADING',
         })
         try {
-            const { data } = await profileService.getAllComment()
+            const { data } = await profileService.getAllComment(username)
             dispatch({
                 type: 'GET_ALL_COMMENT',
                 data
@@ -197,14 +197,14 @@ export const getAllComment = () => {
     }
 }
 
-export const saveComment = (cmt) => {
+export const saveComment = (cmt, username) => {
     return async (dispatch) => {
         dispatch({
             type: 'DISLAY_LOADING',
         })
         try {
-            const { data } = await profileService.saveComment(cmt)
-            await dispatch(getAllComment())
+            const { data } = await profileService.saveComment(cmt, username)
+            await dispatch(getAllComment(username))
         } catch (err) {
             console.log(err)
         }

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { saveComment } from '../../redux/Actions/ProfileAction'
 
 
-export default function ChatBox({list}) {
+export default function ChatBox({list, username}) {
 
     const inputValue = useRef(null)
     const dispatch = useDispatch()
@@ -19,7 +19,9 @@ export default function ChatBox({list}) {
     }
 
     const handleSend = (e) => {
-        dispatch(saveComment(inputValue.current.value))
+        if(inputValue.current.value !== ""){
+            dispatch(saveComment(inputValue.current.value, username))
+        }
         inputValue.current.value = ""
     }
 

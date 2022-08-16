@@ -46,12 +46,12 @@ class ProfileService extends baseService {
         return this.Put(`user/profile/setting/?showLogo=${showLogo}&showNSFW=${showNsfw}`)
     }
 
-    getAllComment = () => {
-        return this.Get("user/getAllComment")
+    getAllComment = (username) => {
+        return this.Get(`user/getAllComment?username=${username}`)
     }
 
-    saveComment = (cmt) => {
-        return this.Post("user/saveComment", cmt)
+    saveComment = (cmt, username) => {
+        return this.Post(`user/saveComment?comment=${cmt}&username=${username}`)
     }
 
     getAllProfile = () => {

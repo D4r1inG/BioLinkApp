@@ -13,7 +13,7 @@ export default function Stat() {
   }, [stat])
 
   const renderLink = () => {
-    return clickList.clickPluginsList?.filter(item => !item.isHeader).map((item, index) => {
+    return clickList.clickPluginsList?.filter(item => !item.isHeader).sort((a, b) => b.clickCount - a.clickCount).map((item, index) => {
       return <div key={index} className='flex mb-4 last:mb-0' >
         <div className="font-inter font-bold text-xl text-gray-400 flex items-center flex-shrink-0">{index + 1}</div>
         <div className='stat-progress-each flex justify-between py-3 px-6 ml-4 w-full relative '>
@@ -35,21 +35,21 @@ export default function Stat() {
   }
 
   const renderSocialLink = () => {
-    return clickList.clickSocialList?.map((item, index) => {
+    return clickList.clickSocialList?.filter(item => item.url).sort((a, b) => b.clickCount - a.clickCount).map((item, index) => {
       return <div key={index} className='flex mb-4 last:mb-0' >
         <div className="font-inter font-bold text-xl text-gray-400 flex items-center flex-shrink-0">{index + 1}</div>
         <div className='stat-progress-each flex justify-between py-3 px-6 ml-4 w-full relative '>
           <div className="pr-8">
             <div className="text-black text-sm font-inter font-semibold">{item.name}</div>
             <div className="text-gray-500 text-sm font-inter font-normal limit-one-line break-all pr-8">
-              {item.link}
+              {item.url}
             </div>
           </div>
           <div>
-            <div className="text-black text-sm font-inter font-semibold text-center">{item.click}</div>
+            <div className="text-black text-sm font-inter font-semibold text-center">{item.clickCount === null ? 0 : item.clickCount}</div>
             <div className="text-gray-500 text-sm font-inter font-normal">clicks</div>
           </div>
-          <div className="absolute stat-progress-bar" style={{ width: '50%' }}></div>
+          <div className="absolute stat-progress-bar" style={{ width: (item.clickCount / clickList.totalClickSocial) * 100 + '%' }}></div>
           {/* TODO: thay đổi width theo từng click count */}
         </div>
       </div>
@@ -86,13 +86,23 @@ export default function Stat() {
 
       <div className='bg-white round-sm shadow-sm p-8 mt-6'>
         <div className="font-inter font-semibold text-black text-xl leading-6 mb-6">Top Socials</div>
-        {clickList.clickSocialList?.length === 0 &&
+        {clickList.clickSocialList?.filter(item => item.url).length === 0 &&
           <div className='flex justify-center items-center'>
             <div className="grey-border-block w-2/5 mr-4"></div>
             <div className="text-gray-500 text-sm font-inter font-normal " style={{ userSelect: 'none' }}>No data</div>
             <div className="grey-border-block w-2/5 ml-4"></div>
           </div>}
         {renderSocialLink()}
+      </div>
+
+      <div className='bg-white round-sm shadow-sm p-8 mt-6 flex justify-between items-center'>
+        <div className="font-inter font-semibold text-black text-xl leading-6">Page Views</div>
+        <div className='flex flex-col items-center'>
+          <p className='font-inter font-semibold text-black text-xl leading-6 underline'>
+            {clickList.totalClickProfile}
+          </p>
+          <span className='text-base font-normal'>clicks</span>
+        </div>
       </div>
     </div>
   )
