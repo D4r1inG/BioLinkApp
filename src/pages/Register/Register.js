@@ -79,17 +79,18 @@ export default function Register() {
     }
 
     const renderMessage = () => {
-        if (tempStatus.success === 1) {
+        if(tempStatus.success === null) {
+            return
+        }
+        if (tempStatus.success) {
             return <div className='mb-4 bg-green-100 p-6 text-center' >
                 <p className='text-gray-600'>{tempStatus.message}</p>
             </div>
-        } else if (tempStatus.success === 0) {
+        } else {
             return <div className='mb-4 bg-red-100 p-6 text-center' >
                 <p className='text-red-500 font-semibold'>{tempStatus.message}</p>
             </div>
-        } else {
-            return
-        }
+        } 
     }
 
     return (

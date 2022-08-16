@@ -10,10 +10,11 @@ export default function ChatBox({list, username}) {
     const dispatch = useDispatch()
 
     const renderMessage = (arr) => {
-        return arr.map((item, index) => {
-            return <div key={item.username} className={`text_box my-2 self-end mr-4 bg-green-300 rounded-md relative ${item.username === localStorage.getItem('username') ? 'bg-green-300' : 'bg-blue-300'}`}>
-                {item.comment}
-                <img src={item.imageUser} alt={item.username} className='absolute rounded-full' style={{ width: 18, height: 18, right: -8, bottom: -8 }} />
+        return arr.reverse().map((item, index) => {
+            return <div key={index} className={`text_box p-4 my-4 flex items-center w-full self-end mr-4 bg-green-300 rounded-md relative ${item.username === localStorage.getItem('username') ? 'bg-green-300' : 'bg-blue-300'}`}>
+                <p className="text-lg">{item.comment}</p>
+                <p className='absolute -top-6 left-0'>{item.username}</p>
+                <img src={item.imageUser} alt={item.username} className='absolute -left-6 top-1/3 rounded-full' style={{ width: 20, height: 20, right: -8, bottom: -8 }} />
             </div>
         })
     }

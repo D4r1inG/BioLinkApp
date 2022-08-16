@@ -82,7 +82,7 @@ export default function SettingCom() {
         </button>
       </div>
 
-      <div className='bg-white round-sm shadow-sm p-8 mt-6'>
+      {/* <div className='bg-white round-sm shadow-sm p-8 mt-6'>
         <div className="font-inter font-semibold text-black text-xl leading-6 ">Account</div>
         <div className="mt-6">
           <div className="relative bl-input-with-suffix-wrap">
@@ -106,7 +106,7 @@ export default function SettingCom() {
           <span className="bl-circle-loader absolute hidden">
           </span>
         </button>
-      </div>
+      </div> */}
     </div>
   )
 }

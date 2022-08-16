@@ -58,12 +58,12 @@ export const register = (infoUser) => {
             type: 'DISLAY_LOADING',
         })
         try {
-            const { data } = await userService.register(infoUser)
+            const res = await userService.register(infoUser)
             // history.push('/login')
             // console.log(data)
             dispatch({
                 type: 'SET_STATUS',
-                data
+                data: res.data
             })
         } catch (err) {
             console.log(err)
