@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import checkAuth from '../../utils/CheckAuth'
 import { openNotification } from '../../utils/Notification'
@@ -8,8 +8,12 @@ import { likeProfile } from '../../redux/Actions/UserAction'
 
 export default function CardDefault({ item }) {
 
-    const [like, setLike] = useState(false)
+    const [like, setLike] = useState()
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        setLike(item?.statusLike)
+    },[])
 
     const handleLike = () => {
         if (checkAuth.getToken() === null) {
