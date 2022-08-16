@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { getAllComment, getProfileByUserName } from '../../redux/Actions/ProfileAction'
+import { getAllComment, getProfileByUserName, handleClickPluginLink, handleClickSocialLink } from '../../redux/Actions/ProfileAction'
 import { useSelector } from 'react-redux'
 import Svg from '../../components/Svg/Svg'
 import MediaEmbed from '../../components/MediaEmbed/MediaEmbed'
@@ -17,16 +17,17 @@ export default function Profile(props) {
     const [theme, setTheme] = useState()
     const [warning, setWarning] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
+    const username = props.match.params.username
 
     useEffect(() => {
-        dispatch(getProfileByUserName(props.match.params.username))
+        dispatch(getProfileByUserName(username))
         dispatch(getAllComment())
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         setTheme(design)
         setWarning(showNSFW)
-    },[design, showNSFW])
+    }, [design, showNSFW])
 
     const renderImg = (item) => {
         switch (item.pluginName) {
@@ -56,7 +57,10 @@ export default function Profile(props) {
     const renderSocialList = (list) => {
         return list?.filter(item => item.status).map((item, index) => {
             return <div key={index} className="page-social relative mx-3 mb-3" style={{ color: theme?.color }}>
-                <a className="absolute h-full inset-0 w-full" target="_blank" href={`${item.url}`} ></a>
+                <a className="absolute h-full inset-0 w-full" target="_blank" rel="noreferrer" href={`${item.url}`} onClick={() => {
+                    dispatch(handleClickSocialLink(username))
+                }
+                }></a>
                 <Svg name={item.name} color={theme?.colorHeader} />
             </div>
         })
@@ -98,7 +102,9 @@ export default function Profile(props) {
 
                 return <div key={index} className="my-4 relative transition-all hover:scale-105" >
                     <div style={pageItem} className="flex justify-center items-center pill-item"></div>
-                    <a style={{ minHeight: '60px' }} href={item.url} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative">
+                    <a style={{ minHeight: '60px' }} href={item.url} target="_blank" className="z-10 py-3 cursor-pointer flex justify-center items-center relative" onClick={() => {
+                        dispatch(handleClickPluginLink(username))
+                    }}>
                         {renderImg(item)}
                         <span className="item-title text-center limit-one-line break-all overflow-hidden px-4" style={{ color: theme?.colorLink, fontFamily: theme?.fontFamily }}>{item.title}</span>
                     </a>

@@ -45,6 +45,26 @@ export const getUserProfile = () => {
     }
 }
 
+export const handleClickSocialLink = (username) => {
+    return async (dispatch) => {
+        try {
+            const res = await profileService.handleClickSocialLink(username)
+        } catch (err) {
+            console.log(err);
+        };
+    }
+}
+
+export const handleClickPluginLink = (username) => {
+    return async (dispatch) => {
+        try {
+            const res = await profileService.handleClickPluginLink(username)
+        } catch (err) {
+            console.log(err);
+        };
+    }
+}
+
 export const setActiveTheme = (id) => {
     return async (dispatch) => {
         try {
@@ -211,5 +231,5 @@ export const getAllUserProfile = () => {
         dispatch({
             type: 'CLOSE_LOADING',
         })
-    } 
+    }
 }
