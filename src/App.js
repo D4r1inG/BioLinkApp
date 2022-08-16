@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import FirstTimeLogin from "./pages/FirstTimeLogin/FirstTimeLogin";
 import ProtectedLayout from "./templates/ProtectedLayout/ProtectedLayout";
 import LoginWithSocial from "./pages/Login/LoginWithSocial";
+import Page404 from "./pages/Page404";
 
 
 export const history = createBrowserHistory();
@@ -75,6 +76,7 @@ function App() {
         <Route path="/success" exact component={LoginWithSocial} />
         {/* <Route path="/firstTimeLogin" exact component={FirstTimeLogin} /> */}
         <Route path="/profile/:username" exact component={Profile} />
+        <Route path="/*" exact component={Page404} /> 
       </Switch>
     </Router>
   )
