@@ -25,6 +25,7 @@ export default function Header() {
                 </NavLink>
                 <div className='flex gap-4 items-center'>
                     <NavLink to={`/profile/${localStorage.getItem('username')}`} className='underline font-inter text-base text-blue-400 cursor-pointer profile_tour'>My profile</NavLink>
+                    <NavLink to={`/admin`} className='underline font-inter text-base text-blue-400 cursor-pointer profile_tour'>Admin</NavLink>
                     <div className='instruc_tour underline text-base text-blue-400 cursor-pointer' onClick={() => {
                         dispatch({
                             type: 'TOGGLE_TOUR'

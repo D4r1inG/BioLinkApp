@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Redirect, Route } from 'react-router-dom'
+import { userService } from '../../services/UserService'
 
 export default function ProtectedLayout({ route, Component }) {
 
@@ -8,7 +9,7 @@ export default function ProtectedLayout({ route, Component }) {
 
     useEffect(() => {
         const checkAdmin = async () => {
-            let res = await axios.get()
+            let res = await userService.checkRole()
             setCheck(res.data)
         }
         checkAdmin()

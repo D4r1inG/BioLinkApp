@@ -29,6 +29,10 @@ class UserService extends baseService {
     likeProfile = (status, username) => {
         return this.Post(`user/saveLike?statusLike=${status}&username=${username}`)
     }
+
+    checkRole = () => {
+        return this.Get(`user/checkUserRole`)
+    }
 }
 
 export const userService = new UserService()
