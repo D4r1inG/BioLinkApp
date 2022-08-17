@@ -12,7 +12,7 @@ export default function CardTop({ item }) {
 
     useEffect(()=>{
         setLike(item?.statusLike)
-    },[])
+    },[item])
 
     const handleLike = () => {
         if(checkAuth.getToken() === null){
