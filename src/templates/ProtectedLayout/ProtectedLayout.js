@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import { userService } from '../../services/UserService'
+import { openNotification } from '../../utils/Notification'
 
 export default function ProtectedLayout({ route, Component }) {
 
@@ -9,8 +10,14 @@ export default function ProtectedLayout({ route, Component }) {
 
     useEffect(() => {
         const checkAdmin = async () => {
-            let res = await userService.checkRole()
-            setCheck(res.data)
+            try {
+                let res = await userService.checkRole()
+                setCheck(true)
+            } catch (err) {
+                setCheck(false) 
+                openNotification('error', 'Tài khoản của bạn không có quyền truy cập trang này!')
+                console.log(err);
+            };
         }
         checkAdmin()
     }, [])
