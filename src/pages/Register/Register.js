@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -10,6 +10,18 @@ export default function Register() {
     const { loading } = useSelector(state => state.ModalReducer)
     const { tempStatus } = useSelector(state => state.UserReducer)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch({
+                type: 'SET_STATUS',
+                data: {
+                    message: null,
+                    success: null
+                }
+            })
+        }, 4000)
+    }, [tempStatus])
 
     const [formInput, setFormInput] = useState({
         values: {
@@ -47,6 +59,15 @@ export default function Register() {
             }
         }
 
+        if (name === 'password') {
+            if (value.length < 6) {
+                newError[name] = 'Password must be at least 6 characters!'
+            } else {
+                newError[name] = ''
+            }
+        }
+
+
         if (name === 'passwordConfirm') {
             if (value !== formInput.values.password) {
                 newError[name] = 'Password does not match!'
@@ -79,7 +100,7 @@ export default function Register() {
     }
 
     const renderMessage = () => {
-        if(tempStatus.success === null) {
+        if (tempStatus.success === null) {
             return
         }
         if (tempStatus.success) {
@@ -90,7 +111,7 @@ export default function Register() {
             return <div className='mb-4 bg-red-100 p-6 text-center' >
                 <p className='text-red-500 font-semibold'>{tempStatus.message}</p>
             </div>
-        } 
+        }
     }
 
     return (
@@ -103,13 +124,6 @@ export default function Register() {
                     <div className='flex items-center'>
                         <p className='text-sm'>Already have an account? </p>
                         <NavLink className='text-sm underline text-blue-500 ml-1' to='/login' onClick={() => {
-                            dispatch({
-                                type: 'SET_STATUS',
-                                data: {
-                                    message: null,
-                                    success: null
-                                }
-                            })
                         }}>Login</NavLink>
                     </div>
                 </div>

@@ -166,26 +166,6 @@ export default function Mainpage() {
                         <h1 className="w-760 text-8xl font-bold my-12 heading_gradient self-center leading-100">
                             The One Link for All Your Links
                         </h1>
-                        <div className="mx-auto duration-300" id="topHead">
-                            <div className="flex input-border-none overflow-hidden rounded-md z-10 bl-bg">
-                                <div className={`${!isAnimate ? '' : 'bg_dark'} flex flex-col justify-center bg_landing`}>
-                                    <div className="pl-6 font-inter font-semibold text-lg text-left leading-17 text-blDark">
-                                        bio.link/
-                                    </div>
-                                </div>
-                                <input name="link" placeholder="yourname" type="text" className={`${!isAnimate ? '' : 'bg_dark'} h-50 bg_landing text-black font-semibold font-inter placeholder-grey w-200`} />
-                                <div className="cursor-pointer w-full flex items-center justify-center bg_trans">
-                                    <a href="#">
-                                        <button className="font-semibold text-white w-125p rounded-r-md px-6 ">
-                                            Claim my link
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="mt-4 text-black">
-                                It’s free, and takes less than a minute
-                            </div>
-                        </div>
                     </div>
                 </div>
 
