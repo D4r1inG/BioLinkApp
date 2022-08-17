@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { history } from '../../App'
+import { getAllUserProfile } from '../../redux/Actions/ProfileAction'
 import checkAuth from '../../utils/CheckAuth'
 
 export default function Mainpage() {
@@ -11,11 +12,13 @@ export default function Mainpage() {
     const header = useRef(null)
     const svgHeader = useRef(null)
     const { isTouring } = useSelector(state => state.UserReducer)
+    const { profileList } = useSelector(state => state.ProfileReducer)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        const onScroll = () => handleScroll(window.pageYOffset);
 
+    useEffect(() => {
+        dispatch(getAllUserProfile())
+        const onScroll = () => handleScroll(window.pageYOffset);
         // window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
@@ -31,6 +34,35 @@ export default function Mainpage() {
             })
         }
     }, [isTouring])
+
+    const renderProfile = () => {
+        return profileList.map((item, index) => {
+            if (index < 5) {
+                return <NavLink to={`/profile/${item?.username}`}
+                    className="flex flex-col justify-center text-center cursor-pointer w-175 duration-500 opacity-100">
+                    <div className="bl-bg rounded-full overflow-hidden">
+                        <img src={item?.image} alt=""
+                            className="object-cover w-175 rounded-full transform hover:scale-95 duration-300" />
+                    </div>
+                    <div className="mt-4 leading-17 text-black font-inter font-medium">
+                        {item?.name}
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" className="inline -mt-2">
+                            <path fillRule="evenodd" clipRule="evenodd"
+                                d="M8 0L9.99182 1.3121L12.3696 1.29622L13.3431 3.48797L15.3519 4.77336L14.9979 7.14888L16 9.32743L14.431 11.1325L14.1082 13.5126L11.8223 14.1741L10.277 16L8 15.308L5.72296 16L4.17772 14.1741L1.89183 13.5126L1.569 11.1325L0 9.32743L1.00206 7.14888L0.648112 4.77336L2.65693 3.48797L3.6304 1.29622L6.00818 1.3121L8 0Z"
+                                fill="#0095F6"></path>
+                            <path fillRule="evenodd" clipRule="evenodd"
+                                d="M10.4036 5.20536L7.18853 8.61884L6.12875 7.49364C5.8814 7.23102 5.46798 7.21864 5.20536 7.466C4.94274 7.71335 4.93036 8.12677 5.17771 8.38939L6.71301 10.0195C6.9709 10.2933 7.40616 10.2933 7.66405 10.0195L11.3546 6.10111C11.6019 5.83848 11.5896 5.42507 11.3269 5.17771C11.0643 4.93036 10.6509 4.94274 10.4036 5.20536Z"
+                                fill="white"></path>
+                        </svg>
+                    </div>
+                    <div className=" mt-3 text-gradient">profile/{item?.url}</div>
+                </NavLink>
+            } else {
+                return ''
+            }
+        })
+    }
 
     const handleScroll = (offset) => {
         if (offset > 10 || offset > 10) {
@@ -114,7 +146,7 @@ export default function Mainpage() {
                                         </NavLink>
                                     </>
                                     :
-                                    <>  
+                                    <>
                                         <NavLink to='/dashboard/link' className={`${!isAnimate ? 'bg-black text-white' : 'bg-white text-black'} font-inter sign_up_btn font-medium text-base cursor-pointer rounded-full py-2 px-6 dashboard_tour`}>
                                             DashBoard
                                         </NavLink>
@@ -278,7 +310,7 @@ export default function Mainpage() {
                             brands...</span></h3>
                     <div className="">
                         <div className="flex justify-between mt-6 w-1100 px-6 ">
-                            <a href="#"
+                            {/* <a href="#"
                                 className="flex flex-col justify-center text-center cursor-pointer w-175 duration-700 opacity-100">
                                 <div className="bl-bg rounded-full overflow-hidden">
                                     <img src="https://cdn.bio.link/landing/user_1.webp" alt=""
@@ -377,7 +409,8 @@ export default function Mainpage() {
                                     </svg>
                                 </div>
                                 <div className=" mt-3 text-gradient">bio.link/afrochella</div>
-                            </a>
+                            </a> */}
+                            {renderProfile()}
                         </div>
                     </div>
                 </div>
