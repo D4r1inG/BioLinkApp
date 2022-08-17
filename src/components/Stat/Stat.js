@@ -96,12 +96,12 @@ export default function Stat() {
       </div>
 
       <div className='bg-white round-sm shadow-sm p-8 mt-6 flex justify-between items-center'>
-        <div className="font-inter font-semibold text-black text-xl leading-6">Page Views</div>
+        <div className="font-inter font-semibold text-black text-xl leading-6">Profile Views</div>
         <div className='flex flex-col items-center'>
           <p className='font-inter font-semibold text-black text-xl leading-6 underline'>
             {clickList.totalClickProfile}
           </p>
-          <span className='text-base font-normal'>clicks</span>
+          <span className='text-base font-normal'>views</span>
         </div>
       </div>
     </div>
