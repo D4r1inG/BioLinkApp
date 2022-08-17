@@ -11,18 +11,6 @@ export default function Register() {
     const { tempStatus } = useSelector(state => state.UserReducer)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        setTimeout(() => {
-            dispatch({
-                type: 'SET_STATUS',
-                data: {
-                    message: null,
-                    success: null
-                }
-            })
-        }, 4000)
-    }, [tempStatus])
-
     const [formInput, setFormInput] = useState({
         values: {
             username: '',

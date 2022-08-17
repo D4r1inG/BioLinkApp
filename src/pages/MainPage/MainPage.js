@@ -45,7 +45,7 @@ export default function Mainpage() {
                             className="object-cover w-175 rounded-full transform hover:scale-95 duration-300" />
                     </div>
                     <div className="mt-4 leading-17 text-black font-inter font-medium">
-                        <p className='text-xl mr-2'>{item?.name}</p>
+                        <p className='text-xl m-0 mr-2'>{item?.name}</p>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                             xmlns="http://www.w3.org/2000/svg" className="inline -mt-2">
                             <path fillRule="evenodd" clipRule="evenodd"
