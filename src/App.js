@@ -49,7 +49,7 @@ function App() {
             } else if (checkAuth.getToken() !== null && PrivateRoutes[item].firstLogin){
               return <PublicLayout route={route} Component={Component} />
             } else if (checkAuth.getToken() !== null) {
-              return <ProtectedLayout route={route} Component={Component} />
+              return <PublicLayout route={route} Component={Component} />
             } else {
               return <Redirect to={'/login'} />
             }

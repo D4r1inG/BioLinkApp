@@ -1,3 +1,4 @@
+import { history } from "../../App"
 import { adminService } from "../../services/AdminService"
 import { openNotification } from "../../utils/Notification"
 
@@ -14,6 +15,8 @@ export const getAllUsers = () => {
                 data
             })
         } catch (err) {
+            openNotification('error', 'Tài khoản của bạn không có quyền truy cập trang này!')
+            history.push('/')
             console.log(err)
         }
         dispatch({
