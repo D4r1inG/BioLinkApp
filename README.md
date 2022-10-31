@@ -26,8 +26,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 * Thay dummy data bằng data lấy từ Api từ backend cho các chức năng (Done)
 * Cập nhật sắp xếp link trên database (Bug fix pending)
 
-## Chức năng đang thực hiện 
-* Comment profile
-* Rating profile
-* Performent !!!IMPORTANT
-* OATH2 with github
