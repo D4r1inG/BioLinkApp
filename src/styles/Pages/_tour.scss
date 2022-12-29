@@ -35,12 +35,12 @@
 
     .step_index {
         position: absolute;
-        top: -10px;
-        left: 10px;
+        top: -13px;
+        left: -13px;
         z-index: 10010;
-        width: 30px;
-        height: 30px;
-        transform: rotate(15deg);
+        width: 40px;
+        height: 40px;
+        transform: rotate(-15deg);
         cursor: default;
     }
 
