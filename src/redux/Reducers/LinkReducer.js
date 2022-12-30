@@ -23,8 +23,15 @@ const initialState = {
     {
       id: 0,
       name: "instagram",
-      url: "Link/insta",
+      url: "https://www.instagram.com/d4_l1ng/",
     },
+    {
+      id: 3,
+      name: "facebook",
+      url: "https://www.facebook.com/profile.php?id=100005135208157",
+    },
+  ],
+  unActiveSocial: [
     {
       id: 1,
       name: "twitter",
@@ -34,13 +41,6 @@ const initialState = {
       id: 2,
       name: "tiktok",
       url: "Link/tittok",
-    },
-  ],
-  unActiveSocial: [
-    {
-      id: 3,
-      name: "facebook",
-      url: "",
     },
     {
       id: 4,

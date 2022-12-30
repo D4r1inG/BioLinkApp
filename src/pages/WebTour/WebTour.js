@@ -14,7 +14,7 @@ const steps = [
   {
     selector: "",
     content:
-      "Chào cậu! mình là Khanh Noi (/◕ヮ◕)/ - hướng dẫn viên tại GHTKlink! Mình sẽ hướng dẫn cậu đi thăm quan và giới thiệu cho cậu hiểu rõ hơn về GHTKlink nhé! Được rồi đi thôi!",
+      "Chào cậu! mình là Khanh Noi (/◕ヮ◕)/ - hướng dẫn viên tại Biolink! Mình sẽ hướng dẫn cậu đi thăm quan và giới thiệu cho cậu hiểu rõ hơn về Biolink nhé! Được rồi đi thôi!",
     path: "/",
   },
   {
@@ -103,7 +103,7 @@ const steps = [
   {
     selector: "",
     content:
-      "Vậy là chuyến thăm quan được thực hiện bởi Khanh Noi đến đây kết thúc rùi (;´༎ຶД༎ຶ`) Noi hy vọng cậu sẽ có một khoảng thời gian vui vẻ khi trải nghiệm GHTKlink được thực hiện bởi sieu nhan cuong phong! nha.",
+      "Vậy là chuyến thăm quan được thực hiện bởi Khanh Noi đến đây kết thúc rùi (;´༎ຶД༎ຶ`) Noi hy vọng cậu sẽ có một khoảng thời gian vui vẻ khi trải nghiệm Biolink được thực hiện bởi sieu nhan cuong phong! nha.",
     path: "/",
   },
 ];

@@ -77,13 +77,13 @@ export default function Header() {
           >
             My profile
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to={`/admin`}
             className="underline font-inter text-base text-blue-400 cursor-pointer profile_tour"
           >
             Admin
-          </NavLink>
-          <div
+          </NavLink> */}
+          {/* <div
             className="instruc_tour underline text-base text-blue-400 cursor-pointer"
             onClick={() => {
               dispatch({
@@ -92,8 +92,8 @@ export default function Header() {
             }}
           >
             Web guild
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <Popconfirm
               title="Are you sure to log out?"
               onConfirm={confirm}
@@ -104,6 +104,16 @@ export default function Header() {
                 <div>Log out</div>
               </div>
             </Popconfirm>
+          </div> */}
+          <div
+            className="instruc_tour underline text-base text-blue-400 cursor-pointer"
+            onClick={() => {
+              dispatch({
+                type: "TOGGLE_TOUR",
+              });
+            }}
+          >
+            Web guide
           </div>
           <div
             alt="Quân Nguyễn Thế"

@@ -6,6 +6,8 @@ import { history } from "../../App";
 import { getAllUserProfile } from "../../redux/Actions/ProfileAction";
 import { defaultThemes } from "../../utils/themes";
 
+let firstTime = true;
+
 export default function Mainpage() {
   const [isAnimate, setIsAnimate] = useState(false);
   const header = useRef(null);
@@ -15,12 +17,23 @@ export default function Mainpage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllUserProfile());
+    // dispatch(getAllUserProfile());
     const onScroll = () => handleScroll(window.pageYOffset);
     // window.removeEventListener('scroll', onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (firstTime) {
+      dispatch({
+        type: "TOGGLE_TOUR",
+      });
+    }
+    return () => {
+      firstTime = false;
+    };
+  });
 
   useEffect(() => {
     if (isTouring) {
