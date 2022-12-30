@@ -35,12 +35,12 @@ const initialState = {
     {
       id: 1,
       name: "twitter",
-      url: "Link/twitter",
+      url: "",
     },
     {
       id: 2,
       name: "tiktok",
-      url: "Link/tittok",
+      url: "",
     },
     {
       id: 4,
